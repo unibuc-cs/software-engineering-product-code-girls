@@ -1,8 +1,9 @@
-//import './App.css'
+import './style.css'
 import AllBooks from "./pages/AllBooks"
 import AddBook from "./pages/AddBook"
 import UpdateBook from "./pages/UpdateBook"
 import AllCategories from "./pages/AllCategories"
+import ShowBook from "./pages/ShowBook"
 
 import {
   BrowserRouter,
@@ -18,7 +19,8 @@ function App() {
       <Route path="/categories" element={<AllCategories/>}/>
       <Route path="/" element={<AllBooks/>}/>
       <Route path="/add" element={<AddBook/>}/>
-      <Route path="/update" element={<UpdateBook/>}/>
+      <Route path="/update/:id" element={<UpdateBook/>}/>
+      <Route path="/book/:id" element={<ShowBook/>}/>
       </Routes>
       </BrowserRouter>
     </div>
