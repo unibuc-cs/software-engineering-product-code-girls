@@ -1,6 +1,7 @@
 import express from "express"
 import bookRoutes from "./routes/books.js"
 import categoryRoutes from "./routes/categories.js"
+import userRoutes from "./routes/authentification.js"
 import cors from "cors"
 
 const app = express();
@@ -11,6 +12,8 @@ app.use(cors())
 app.use("/books", bookRoutes);
 
 app.use("/categories", categoryRoutes);
+
+app.use("/users", userRoutes);
 
 app.listen(8081, () => {
     console.log("Connected to backend!")
