@@ -8,7 +8,7 @@ const router = express.Router();
 const dbPath = resolve("database/database.db");
 const db = new Database(dbPath);
 
-function verifyToken(req, res, next) {
+export function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -143,7 +143,7 @@ router.post("/assign-admin", verifyToken, (req, res) => {
     }
 
     const insertRoleQuery = "INSERT INTO userroles (user_id, role_id) VALUES (?, ?)";
-    db.prepare(insertRoleQuery).run(userId, 1); // Role ID 1: Admin
+    db.prepare(insertRoleQuery).run(userId, 1); //Role ID 1: Admin
 
     res.status(200).json({ success: true, message: "Admin role assigned successfully!" });
   } catch (error) {

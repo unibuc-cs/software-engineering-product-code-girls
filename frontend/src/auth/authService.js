@@ -24,12 +24,26 @@ export const login = async (credentials) => {
   }
 };
 
-export const logout = () => {
+export const logout = async () => {
   const refreshToken = localStorage.getItem('refreshToken');
-  axios.post(`${API_URL}/users/logout`, { token: refreshToken });
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
+  if (!refreshToken) {
+    console.warn("No refresh token found. Logging out locally.");
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    return;
+  }
+
+  try {
+    const response = await axios.post(`${API_URL}/users/logout`, { token: refreshToken });
+    console.log("Logout successful:", response.data.message);
+  } catch (error) {
+    console.error("Error during logout:", error.response?.data || error.message);
+  } finally {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+  }
 };
+
 
 export const refreshAccessToken = async () => {
   const refreshToken = localStorage.getItem('refreshToken');

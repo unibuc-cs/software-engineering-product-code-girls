@@ -5,6 +5,33 @@ import { Link } from 'react-router-dom';
 
 const Books = () => {
     const [books, setBooks] = useState([])
+    const [isAdmin, setIsAdmin] = useState(false);
+    useEffect(() => {
+        const fetchUserRole = async () => {
+          const token = localStorage.getItem('accessToken');
+          if (!token) {
+            console.error('No token found. Please log in.');
+            return ;
+          }
+    
+          try {
+            const res = await axios.get("http://localhost:8081/userrole", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            if (res.data.role === 1) {
+              setIsAdmin(true);
+            }
+          } catch (error) {
+            
+            console.error("Error fetching user role:", error);
+          }
+        };
+    
+        fetchUserRole();
+      }, []);
+
 
     useEffect(()=>{
         const fetchAllBooks = async () => {
@@ -40,14 +67,22 @@ const Books = () => {
                     <h2>{book.title}</h2>
                     <h2>{book.author}</h2>
                     <p>{book.description}</p>
-                    <button className="delete" onClick = {()=>{handleDelete(book.id)}} >Delete</button>
-                    <button className="update"><Link to = {`/books/update/${book.id}`}>Update</Link></button>
+                    {isAdmin && (
+                        <>
+                        <button className="delete" onClick = {()=>{handleDelete(book.id)}} >Delete</button>
+                        <button className="update"><Link to = {`/books/update/${book.id}`}>Update</Link></button>
+                        </>
+                    )
+                    }
                     <button className="details"><Link to = {`/books/${book.id}`}>Details</Link></button>
                     <br></br>
                 </div>
             ))}
         </div>
-        <button><Link to="/books/add">Add new book</Link></button>
+        {isAdmin && (
+            <button><Link to="/books/add">Add new book</Link></button>
+        )
+        }
         </>
     )
 }

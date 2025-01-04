@@ -21,7 +21,7 @@ const Add = () => {
         e.preventDefault()
         try{
             if(user.name&&user.password){
-                await axios.post("http://localhost:8081/users", user)
+                await axios.post("http://localhost:8081/users/register", user)
                 navigate("/homepage")
             }
             else{
@@ -30,7 +30,7 @@ const Add = () => {
         }
         catch(error)
         {
-            console.log(error)
+            setError(error.response?.data?.message || "An unexpected error occurred!")
         }
     }
 
