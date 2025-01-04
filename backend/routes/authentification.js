@@ -12,7 +12,7 @@ function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
+  if (!token)  {
     return res.status(401).json({ success: false, message: "You are not authenticated!" });
   }
 
