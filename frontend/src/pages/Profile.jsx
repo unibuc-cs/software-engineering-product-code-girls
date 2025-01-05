@@ -12,7 +12,7 @@ const ProfilePage = () => {
         
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/user/${user.id}`);
+                const response = await axios.get(`http://localhost:5174/user/${user.id}`);
                 setUser(response.data);
             } catch (error) {
                 console.error('Error fetching user:', error);
@@ -21,7 +21,7 @@ const ProfilePage = () => {
         fetchUser();
     }, [user]);
 
-    //if (!userData) return <p>Loading...</p>;
+    if (!userData) return <p>Loading...</p>;
 
     return (
         <div>
