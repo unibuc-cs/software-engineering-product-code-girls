@@ -70,7 +70,7 @@ router.post("/register", async (req, res) => {
     const roleQuery = "INSERT INTO userroles (user_id, role_id) VALUES (?, ?)";
     db.prepare(roleQuery).run(userId, 2); //Default role: user
 
-    res.status(201).json({ success: true, message: "Account created successfully!" });
+    res.status(201).json({ success: true, message: "Account created successfully!"});
   } catch (error) {
     console.error("Error during registration:", error.message);
     res.status(500).json({ success: false, message: "Internal server error during registration." });
@@ -101,7 +101,14 @@ router.post("/login", async (req, res) => {
     const accessToken = generateAccessToken({ id: user.id, name: user.name });
     const refreshToken = generateRefreshToken({ id: user.id, name: user.name });
 
-    res.json({ id: user.id, username: user.name, accessToken, refreshToken });
+    res.json({
+      success: true,
+      message: "Login successful",
+      id: user.id,
+      username: user.name,
+      accessToken,
+      refreshToken
+    });
   } catch (error) {
     console.error("Error during login:", error.message);
     res.status(500).json({ success: false, message: "Internal server error during login." });
