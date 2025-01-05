@@ -30,7 +30,7 @@ const db = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'your_database_name'
-});
+});*/
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

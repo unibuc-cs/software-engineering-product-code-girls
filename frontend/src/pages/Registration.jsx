@@ -2,6 +2,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import {useUser} from './UserContext'
 
 const Add = () => {
     const [user,setUser] = useState({
@@ -10,6 +11,7 @@ const Add = () => {
     });
 
     const [error,setError] = useState("");
+    const { updateUser } = useUser(); 
 
     const navigate = useNavigate()
 
@@ -21,7 +23,8 @@ const Add = () => {
         e.preventDefault()
         try{
             if(user.name&&user.password){
-                await axios.post("http://localhost:8081/users/register", user)
+                const response = await axios.post("http://localhost:8081/users/register", user)
+                updateUser({ id: response.id, name: user.name, profile_picture: response.profile_picture });
                 navigate("/homepage")
             }
             else{

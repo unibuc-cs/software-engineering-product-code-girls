@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';  
+import { useUser } from './UserContext';
 
 
 
-const UpdateProfilePicture = ({ user_id }) => {
+const UpdateProfilePicture = () => {
+     const { user } = useUser(); 
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -14,7 +15,7 @@ const UpdateProfilePicture = ({ user_id }) => {
     const handleUpload = async () => {
         const formData = new FormData();
         formData.append('profilePicture', file);
-        formData.append('userId', user_id);
+        formData.append('userId', user.id);
 
         try {
             await axios.post('http://localhost:8081/update-profile-picture', formData, {

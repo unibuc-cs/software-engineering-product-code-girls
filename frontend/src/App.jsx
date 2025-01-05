@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage"
 import RegistrationPage from "./pages/Registration"
 import LoginPage from "./pages/Login"
 import ProfilePage from './pages/Profile'
+import {UserProvider}  from './pages/UserContext'
 
 
 import {
@@ -23,6 +24,7 @@ function App() {
   return (
     <div className = "App">
       <BrowserRouter>
+      <UserProvider>
       <Routes>
 
       <Route path="/" element={<LoginPage/>}/>
@@ -43,6 +45,7 @@ function App() {
       <Route path="/books/update/:id" element={<UpdateBook/>}/>
 
       </Routes>
+      </UserProvider>
       </BrowserRouter>
     </div>
   );
