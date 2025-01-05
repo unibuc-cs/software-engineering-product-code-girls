@@ -17,6 +17,7 @@ const HomePage = () => {
                 <div className="meniu">
                     <button className="toCategories"><Link to = {`/categories`}>Categories</Link></button>
                     <button className="toBooks"><Link to = {`/books`}>Books</Link></button>
+                    <button className="toProfile"><Link to = {`/profile`}>Profile</Link></button>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
         </>

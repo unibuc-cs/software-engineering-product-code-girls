@@ -10,6 +10,7 @@ import ShowCategory from "./pages/ShowCategory"
 import HomePage from "./pages/HomePage"
 import RegistrationPage from "./pages/Registration"
 import LoginPage from "./pages/Login"
+import ProfilePage from './pages/Profile'
 
 
 import {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/" element={<LoginPage/>}/>
 
       <Route path="/registration" element={<RegistrationPage/>}/>
+      <Route path="/profile" element={<ProfilePage/>}/>
 
       <Route path="/homepage" element={<HomePage/>}/>
       

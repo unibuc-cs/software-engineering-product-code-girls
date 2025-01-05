@@ -44,6 +44,15 @@ const createUsersTable = () => {
 }
 
 createUsersTable()
+const addColumnToUsersTable = () => {
+    const sql = `
+        ALTER TABLE users
+        ADD COLUMN profile_picture TEXT NULL;
+    `;
+    db.prepare(sql).run();
+}
+
+addColumnToUsersTable();
 
 const createUserBooksTable = () => {
     const sql = `
