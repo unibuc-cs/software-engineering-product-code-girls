@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
         id: null,
         name: '',
         email: '',
-        profile_picture: '',
+        profile_picture: ''
     });
 
     UserProvider.propTypes = {

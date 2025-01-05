@@ -33,6 +33,10 @@ const ProfilePage = () => {
                 <p>No profile picture set</p>
             )}
               <button className="AddPicture"><Link to = {`/picture`}>Update Picture</Link></button>
+              <div className="meniu">
+                    <button className="ToRead"><Link to = {`/toread`}>Carti de citit</Link></button>
+                    <button className="Read"><Link to = {`/read`}>Carti citite</Link></button>  
+              </div>
         </div>
     );
 };

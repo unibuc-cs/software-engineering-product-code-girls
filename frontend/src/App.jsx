@@ -13,6 +13,8 @@ import LoginPage from "./pages/Login"
 import ProfilePage from './pages/Profile'
 import {UserProvider}  from './pages/UserContext'
 import ProfilePicture from './pages/AddProfilePicture'
+import BooksToRead from './pages/ToRead'
+import BooksRead from './pages/Read'
 
 
 import {
@@ -45,6 +47,9 @@ function App() {
       <Route path="/books/:id" element={<ShowBook/>}/>
       <Route path="/books/add" element={<AddBook/>}/>
       <Route path="/books/update/:id" element={<UpdateBook/>}/>
+
+      <Route path="/toread" element={<BooksToRead/>}/>
+      <Route path="/read" element={<BooksRead/>}/>
 
       </Routes>
       </UserProvider>
