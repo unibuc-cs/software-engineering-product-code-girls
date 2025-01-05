@@ -1,6 +1,7 @@
 import {useEffect,useState}  from 'react'
 import axios from 'axios';
 import { useUser } from './UserContext';
+import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
     const { user } = useUser();  // Obține întregul obiect user din context
@@ -31,6 +32,7 @@ const ProfilePage = () => {
             ) : (
                 <p>No profile picture set</p>
             )}
+              <button className="AddPicture"><Link to = {`/picture`}>Update Picture</Link></button>
         </div>
     );
 };

@@ -12,6 +12,7 @@ import RegistrationPage from "./pages/Registration"
 import LoginPage from "./pages/Login"
 import ProfilePage from './pages/Profile'
 import {UserProvider}  from './pages/UserContext'
+import ProfilePicture from './pages/AddProfilePicture'
 
 
 import {
@@ -31,6 +32,7 @@ function App() {
 
       <Route path="/registration" element={<RegistrationPage/>}/>
       <Route path="/profile" element={<ProfilePage/>}/>
+      <Route path="/picture" element={<ProfilePicture/>}/>
 
       <Route path="/homepage" element={<HomePage/>}/>
       

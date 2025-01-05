@@ -5,12 +5,12 @@ import userRoutes from "./routes/authentification.js"
 import roleRoutes from "./routes/userRole.js"
 import cors from "cors"
 import dotenv from 'dotenv';
+import updateProfileRouter from "./routes/profile-picture.js";
+import multer from "multer"
 
 dotenv.config();
 const app = express();
-const multer = require('multer');
-const path = require('path');
-const mysql = require('mysql');
+//const path = require('path');
 
 app.use(express.json());
 app.use(cors())
@@ -22,6 +22,9 @@ app.use("/categories", categoryRoutes);
 app.use("/users", userRoutes);
 
 app.use("/userrole", roleRoutes);
+
+app.use("/api", updateProfileRouter);
+
 
 /*
 // Configurare MySQL
@@ -57,6 +60,7 @@ app.post('/update-profile-picture', upload.single('profilePicture'), (req, res) 
 
 // Servirea imaginilor din folderul uploads
 app.use('/uploads', express.static('uploads'));
+
 app.get('/user/:id', (req, res) => {
     const userId = req.params.id;
 
