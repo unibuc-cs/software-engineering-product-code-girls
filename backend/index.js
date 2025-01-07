@@ -7,6 +7,13 @@ import cors from "cors"
 import dotenv from 'dotenv';
 import updateProfileRouter from "./routes/profile-picture.js";
 import multer from "multer"
+import path from "path"
+import fs from "fs"
+import Database from "better-sqlite3"
+import { resolve } from "path";
+
+const dbPath = resolve("database/database.db");
+const db = new Database(dbPath);
 
 dotenv.config();
 const app = express();
@@ -50,12 +57,17 @@ const upload = multer({ storage });
 app.post('/update-profile-picture', upload.single('profilePicture'), (req, res) => {
     const userId = req.body.userId;
     const profilePicturePath = `/uploads/${req.file.filename}`;
-
     const query = 'UPDATE users SET profile_picture = ? WHERE id = ?';
-    db.query(query, [profilePicturePath, userId], (err, result) => {
-        if (err) return res.status(500).send(err);
-        res.json({ message: 'Profile picture updated successfully', profilePicture: profilePicturePath });
-    });
+    try {
+        const result = db.prepare(query).run(profilePicturePath, userId);
+        if (result.changes > 0) {
+            res.json({ message: 'Profile picture updated successfully', profilePicture: profilePicturePath });
+        } else {
+            res.status(404).send('User not found');
+        }
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 // Servirea imaginilor din folderul uploads
@@ -70,6 +82,11 @@ app.get('/user/:id', (req, res) => {
         res.json(results[0]);
     });
 });
+
+const uploadsDir = path.resolve('./uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
 
 app.listen(8081, () => {
     console.log("Connected to backend!")
