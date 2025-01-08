@@ -22,6 +22,7 @@ const Login = () => {
     try {
       const response = await login(user);
       if (response) {
+        localStorage.setItem('userId', response.id);
         navigate("/homepage");
       }
     } catch (error) {
