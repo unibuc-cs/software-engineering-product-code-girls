@@ -11,7 +11,39 @@ const Update= () => {
         description:"",
     });
 
-    const navigate = useNavigate()
+    const [isAdmin, setIsAdmin] = useState(false); 
+    const [errorMessage, setErrorMessage] = useState("");
+    useEffect(() => {
+        const fetchUserRole = async () => {
+          const token = localStorage.getItem("accessToken");
+          if (!token) {
+            setErrorMessage("You must be logged in to edit a book.");
+            return;
+          }
+    
+          try {
+            const res = await axios.get("http://localhost:8081/userrole", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            if (res.data.role === 1) {
+              setIsAdmin(true);
+            } else {
+              setErrorMessage(
+                "You do not have permission to edit books. Only admins can do that."
+              );
+            }
+          } catch (error) {
+            console.error("Error fetching user role:", error);
+            setErrorMessage("An error occurred while verifying your role.");
+          }
+        };
+    
+        fetchUserRole();
+      }, []);
+
+    const navigate = useNavigate();
 
     const {id} = useParams()
 
@@ -44,7 +76,12 @@ const Update= () => {
             console.log(error)
         }
     }
-
+    if (errorMessage) { 
+        return <h1>{errorMessage}</h1>;
+    }
+    if (!isAdmin) {
+        return <h1>You do not have permission to edit the book. Only admins can do that.</h1>;
+    }
     return (
         <div>
         <h1>Update the book!</h1>

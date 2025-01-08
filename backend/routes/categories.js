@@ -1,12 +1,24 @@
 import express from 'express'
 import Database from 'better-sqlite3'
 import {resolve} from 'path'
+import { verifyToken } from "./authentification.js";
 
 const router = express.Router();
 const dbPath = resolve('database/database.db')
 
 const db = new Database(dbPath)
 
+function isAdmin(req, res, next) {
+    const userId = req.user.id; 
+    const query = "SELECT role_id FROM userroles WHERE user_id = ?";
+    const userRole = db.prepare(query).get(userId);
+  
+    if (userRole && userRole.role_id === 1) { 
+      return next();
+    } else {
+      return res.status(403).json({ success: false, message: "Access denied. Admins only." });
+    }
+  }
 router.get("/", (req,res) => {
     const q = "SELECT * FROM categories";
     try{
@@ -37,7 +49,7 @@ router.get("/:id", (req,res) => {
     }
 });
 
-router.post("/", (req,res) => {
+router.post("/", verifyToken, isAdmin, (req,res) => {
     const {name} = req.body;
     if(!name) {
         return res.status(400).send("All the fields must be completed!");
@@ -53,7 +65,7 @@ router.post("/", (req,res) => {
     }
 });
 
-router.put("/:id", (req,res) => {
+router.put("/:id", verifyToken, isAdmin, (req,res) => {
     const categoryId = req.params.id;
     const {name} = req.body;
     const q = "UPDATE categories SET name = ? WHERE id = ?";
@@ -73,7 +85,7 @@ router.put("/:id", (req,res) => {
     }
 });
 
-router.delete("/:id", (req,res) => {
+router.delete("/:id", verifyToken, isAdmin, (req,res) => {
     const categoryId = req.params.id;
     const q = "DELETE FROM categories WHERE id = ?";
     try{

@@ -3,9 +3,10 @@ import Database from 'better-sqlite3'
 
 const db = new Database('database.db')
 
+
 const createBooksTable = () => {
     const sql = `
-                    CREATE TABLE books(
+                    CREATE TABLE IF NOT EXISTS books(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     category_id INTEGER,
                     title TEXT NOT NULL,
@@ -21,7 +22,7 @@ createBooksTable()
 
 const createCategoriesTable = () => {
     const sql = `
-                    CREATE TABLE categories(
+                    CREATE TABLE IF NOT EXISTS categories(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL
                     )
@@ -33,7 +34,7 @@ createCategoriesTable()
 
 const createUsersTable = () => {
     const sql = `
-                    CREATE TABLE users(
+                    CREATE TABLE IF NOT EXISTS users(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     password TEXT NOT NULL
@@ -46,7 +47,7 @@ createUsersTable()
 
 const createUserBooksTable = () => {
     const sql = `
-                    CREATE TABLE userbooks(
+                    CREATE TABLE IF NOT EXISTS userbooks(
                     user_id INTEGER NOT NULL,
                     book_id INTEGER NOT NULL,
                     FOREIGN KEY (user_id) REFERENCES users,
@@ -60,7 +61,7 @@ createUserBooksTable()
 
 const createCommentsTable = () => {
     const sql = `
-                    CREATE TABLE comments(
+                    CREATE TABLE IF NOT EXISTS comments(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     book_id INTEGER,
@@ -76,7 +77,7 @@ createCommentsTable()
 
 const createReviewsTable = () => {
     const sql = `
-                    CREATE TABLE reviews(
+                    CREATE TABLE IF NOT EXISTS reviews(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     book_id INTEGER,
@@ -92,7 +93,7 @@ createReviewsTable()
 
 const createRolesTable = () => {
     const sql = `
-                    CREATE TABLE roles(
+                    CREATE TABLE IF NOT EXISTS roles(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL
                     )
@@ -104,7 +105,7 @@ createRolesTable()
 
 const createUserRolesTable = () => {
     const sql = `
-                    CREATE TABLE userroles(
+                    CREATE TABLE IF NOT EXISTS userroles(
                     user_id INTEGER,
                     role_id INTEGER,
                     FOREIGN KEY (user_id) REFERENCES users,
@@ -115,3 +116,17 @@ const createUserRolesTable = () => {
 }
 
 createUserRolesTable()
+
+
+const createRefreshTokensTable = () => {
+    const sql = `
+                CREATE TABLE IF NOT EXISTS refresh_tokens (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    token TEXT NOT NULL UNIQUE
+                )
+            `
+    db.prepare(sql).run();
+  };
+  
+createRefreshTokensTable()
+  

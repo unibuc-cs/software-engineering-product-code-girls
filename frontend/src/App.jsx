@@ -8,6 +8,8 @@ import AddCategory from "./pages/AddCategory"
 import UpdateCategory from "./pages/UpdateCategory"
 import ShowCategory from "./pages/ShowCategory"
 import HomePage from "./pages/HomePage"
+import RegistrationPage from "./pages/Registration"
+import LoginPage from "./pages/Login"
 
 
 import {
@@ -22,7 +24,11 @@ function App() {
       <BrowserRouter>
       <Routes>
 
-      <Route path="/" element={<HomePage/>}/>
+      <Route path="/" element={<LoginPage/>}/>
+
+      <Route path="/registration" element={<RegistrationPage/>}/>
+
+      <Route path="/homepage" element={<HomePage/>}/>
       
       <Route path="/categories" element={<AllCategories/>}/>
       <Route path="/categories/add" element={<AddCategory/>}/>
