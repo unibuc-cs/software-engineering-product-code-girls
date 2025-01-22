@@ -60,7 +60,8 @@ const Add = () => {
             },
             });
 
-            navigate("/users/login");
+            //navigate("/users/login");
+            navigate("/");
         } catch (error) {
             if (error.response && error.response.status === 403) {
             setErrorMessage("You do not have permission to add books. Only admins can do that.");
