@@ -15,7 +15,7 @@ const ProfilePage = () => {
         // `http://localhost:8081/users/${user.id}`
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/Users/${user.id}`);
+                const response = await axios.get(`http://localhost:8081/member/${user.id}`);
                 setUser(response.data);
             } catch (error) {
                 console.error('Error fetching user:', error);
