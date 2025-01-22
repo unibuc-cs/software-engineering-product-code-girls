@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {useUser} from './UserContext'
+import { login } from '../auth/authService';
+import {useState} from 'react'
 
 const Add = () => {
-    const [user, setUser] = useState({
-        name: "",
-        password: "",
-    });
+    const { user, updateUser } = useUser();
+   
 
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        updateUser({ [e.target.name]: e.target.value });
     };
+
 
     const handleClick = async (e) => {
         e.preventDefault();
         try {
             if (user.name && user.password) {
-                const response = await axios.post("http://localhost:8081/users/register", user);
+                await axios.post("http://localhost:8081/users/register", user)
+                const response = await login(user);
+                updateUser({ id: response.id, name: user.name, profile_picture: response.profile_picture });
+           
                 const savedUser = response.data; 
                 localStorage.setItem("user", JSON.stringify(savedUser));
                 navigate("/homepage");
+                console.log('Login Response:', response);
             } else {
                 setError("Fields cannot be empty!");
             }
