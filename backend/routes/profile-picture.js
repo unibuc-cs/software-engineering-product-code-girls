@@ -24,7 +24,7 @@ const upload = multer({ storage });
 router.post("/update-profile-picture", verifyToken, upload.single("profilePicture"), (req, res) => {
   const userId = req.user.id; // ID-ul utilizatorului obținut din tokenul de autentificare
   const profilePicturePath = `/uploads/${req.file.filename}`; // Calea imaginii încărcate
-
+  console.log('profilePicturePath:', profilePicturePath);
   if (!userId || !req.file) {
     return res.status(400).send("User ID and profile picture are required.");
   }

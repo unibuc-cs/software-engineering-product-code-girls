@@ -159,4 +159,26 @@ const createRefreshTokensTable = () => {
   };
   
 createRefreshTokensTable()
+
+const createPersonalLibraryTable = () => {
+    const sql = `
+                CREATE TABLE IF NOT EXISTS library (
+                    user_id INTEGER,
+                    book_id INTEGER,
+                    readit BOOLEAN,
+                    FOREIGN KEY (user_id) REFERENCES users,
+                    FOREIGN KEY (book_id) REFERENCES books
+                )
+            `
+    db.prepare(sql).run();
+  };
   
+createPersonalLibraryTable();
+
+const deletefromlibrary = (id) => {
+    const delete1 = `DELETE FROM library WHERE book_id = ?;`;
+    db.prepare(delete1).run(id);
+
+};
+// for (let i = 2; i <= 6; i++)
+//     deleteUserWithReferences(i);

@@ -12,6 +12,7 @@ import Users from "./routes/users.js";
 import cors from "cors"
 import dotenv from 'dotenv';
 import updateProfileRouter from "./routes/profile-picture.js";
+import libraryRoutes from "./routes/library.js";
 
 
 
@@ -35,51 +36,55 @@ app.use("/comments", commentRoutes);
 
 app.use("/reviews", reviewRoutes);
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './uploads'); // Folderul unde se salvează imaginile
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Nume unic pentru fiecare fișier
-    }
-});
+app.use("/api", updateProfileRouter);
 
-const upload = multer({ storage });
+app.use("/library", libraryRoutes);
 
-// Endpoint pentru actualizarea imaginii de profil
-app.post('/update-profile-picture', upload.single('profilePicture'), (req, res) => {
-    const userId = req.body.userId;
-    const profilePicturePath = `/uploads/${req.file.filename}`;
-    const query = 'UPDATE users SET profile_picture = ? WHERE id = ?';
-    try {
-        const result = db.prepare(query).run(profilePicturePath, userId);
-        if (result.changes > 0) {
-            res.json({ message: 'Profile picture updated successfully', profilePicture: profilePicturePath });
-        } else {
-            res.status(404).send('User not found');
-        }
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, './uploads'); // Folderul unde se salvează imaginile
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + path.extname(file.originalname)); // Nume unic pentru fiecare fișier
+//     }
+// });
 
-// Servirea imaginilor din folderul uploads
-app.use('/uploads', express.static('uploads'));
+// const upload = multer({ storage });
 
-app.get('/user/:id', (req, res) => {
-    const userId = req.params.id;
+// // Endpoint pentru actualizarea imaginii de profil
+// app.post('/update-profile-picture', upload.single('profilePicture'), (req, res) => {
+//     const userId = req.body.userId;
+//     const profilePicturePath = `/uploads/${req.file.filename}`;
+//     const query = 'UPDATE users SET profile_picture = ? WHERE id = ?';
+//     try {
+//         const result = db.prepare(query).run(profilePicturePath, userId);
+//         if (result.changes > 0) {
+//             res.json({ message: 'Profile picture updated successfully', profilePicture: profilePicturePath });
+//         } else {
+//             res.status(404).send('User not found');
+//         }
+//     } catch (err) {
+//         res.status(500).send(err.message);
+//     }
+// });
 
-    const query = 'SELECT name, profile_picture FROM users WHERE id = ?';
-    db.query(query, [userId], (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.json(results[0]);
-    });
-});
+// // Servirea imaginilor din folderul uploads
+// app.use('/uploads', express.static('uploads'));
 
-const uploadsDir = path.resolve('./uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
+// app.get('/user/:id', (req, res) => {
+//     const userId = req.params.id;
+
+//     const query = 'SELECT name, profile_picture FROM users WHERE id = ?';
+//     db.query(query, [userId], (err, results) => {
+//         if (err) return res.status(500).send(err);
+//         res.json(results[0]);
+//     });
+// });
+
+// const uploadsDir = path.resolve('./uploads');
+// if (!fs.existsSync(uploadsDir)) {
+//   fs.mkdirSync(uploadsDir);
+// }
 
 app.listen(8081, () => {
     console.log("Connected to backend!")
