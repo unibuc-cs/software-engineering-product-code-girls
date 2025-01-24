@@ -52,8 +52,8 @@ router.get("/:user_id/:book_id", (req, res) => {
     const q = "SELECT * FROM library WHERE user_id = ? AND book_id = ?";
 
     try {
-        if(!user_id || !book_id) {
-            return res.status(400).send("Invalid user or book id.");
+        if( !book_id) {
+            return res.status(440).send("Invalid user or book id.");
         }
         // Execută interogarea
         const book = db.prepare(q).get(user_id, book_id);
@@ -62,7 +62,7 @@ router.get("/:user_id/:book_id", (req, res) => {
             // Returnează cartea găsită
             res.json(book);
         } else {
-            return res.status(400).send("The book is not in your library.");
+            return res.status(450).send("The book is not in your library.");
      }
     } catch (error) {
         // Tratează erorile interne
@@ -75,16 +75,16 @@ router.get("/:user_id/:book_id", (req, res) => {
 //verifyToken
 router.post("/add", async (req, res) => {
     const { user_id, book_id } = req.body; // Destructurează valorile din body
-    const checkQuery = "SELECT * FROM library WHERE user_id = ? ";
+    //const checkQuery = "SELECT * FROM library WHERE user_id = ? ";
     const insertQuery = "INSERT INTO library(`user_id`, `book_id`) VALUES (?, ?)";
 
     try {
-        // Verifică dacă cartea există deja în bibliotecă
-         const [existingEntries] = await db.prepare(checkQuery).all(user_id);
-        console.log( existingEntries);
-         if (existingEntries.length > 0) {
-             return res.status(400).json({ message: "The book is already in your library." });
-         }
+        // // Verifică dacă cartea există deja în bibliotecă
+        //  const [existingEntries] = await db.prepare(checkQuery).all(user_id);
+        // console.log( existingEntries);
+        //  if (existingEntries.length > 0) {
+        //      return res.status(400).json({ message: "The book is already in your library." });
+        //  }
 
         // Adaugă cartea în tabel
         db.prepare(insertQuery).run(user_id, book_id);

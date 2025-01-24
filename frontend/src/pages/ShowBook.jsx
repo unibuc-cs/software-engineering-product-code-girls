@@ -41,31 +41,33 @@ const Show = () => {
         try {
             console.log('User id:', user.id);
             console.log('Book id:', id);
-            const verif = await axios.get(`http://localhost:8081/library/${user.id}/${id}`);
-            console.log('Verif: ',verif);
-
-            const response = await axios.post(`http://localhost:8081/library/add`, {
-                user_id: user.id,
-                book_id: id,
-            });
-    
-            const message = response?.data?.message || 'The book was added to your library!';
-            alert(message);
+            await axios.get(`http://localhost:8081/library/${user.id}/${id}`);
+            alert('The book is already in your library.');
         } catch (error) {
-            if(error.response.status == 400 || error.response.status == 404) {
-                alert('The book is already in your library.');
-                return;
+           
+            if(error.response.status == 450)
+            {
+                try
+                {
+                    console.log('User id:', user.id);
+                    console.log('Book id:', id);
+                    const response = await axios.post(`http://localhost:8081/library/add`, {
+                        user_id: user.id,
+                        book_id: id,
+                    });
+            
+                    const message = response?.data?.message || 'The book was added to your library!';
+                    alert(message);
+                }
+                catch (error)
+                {
+                    console.error('Error adding the book to the library:', error);
+                    alert('An error occurred while adding the book to your library. Please try again.');
+                }
+               
             }
-            if (error.response) {
-                console.error('Server responded with an error:', error.response.status, error.response.data);
-                alert(error.response.data.message || 'An error occurred!');
-
-            } else if (error.request) {
-                console.error('No response from server:', error.request);
-                alert('The server is not responding. Please try again later.');
-                
-            } else {
-                console.error('Error in request setup:', error.message);
+             else {
+                console.error('Error in request setup:',error.status , error.message);
                 alert('An unexpected error occurred. Please try again.');
             }
         }
