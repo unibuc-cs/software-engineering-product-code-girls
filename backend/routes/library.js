@@ -113,20 +113,20 @@ router.post("/add", async (req, res) => {
 //   }
 // });
 
-// router.delete("/:id", verifyToken, isAdmin, (req, res) => {
-//   const bookId = req.params.id;
-//   const q = "DELETE FROM books WHERE id = ?";
-//   try {
-//     const result = db.prepare(q).run(bookId);
-//     if (result.changes > 0) {
-//       res.send("The book was removed from the database!");
-//     } else {
-//       res.status(404).send("The book was not found!");
-//     }
-//   } catch (error) {
-//     console.error("There occurred an error in the process of deleting the book: ", error.message);
-//     return res.status(500).send("There occurred an error in the process of deleting the book!");
-//   }
-// });
+router.delete("/delete/:id", (req, res) => {
+  const bookId = req.params.id;
+  const q = "DELETE FROM library WHERE book_id = ?";
+  try {
+    const result = db.prepare(q).run(bookId);
+    if (result.changes > 0) {
+      res.send("The book was removed from your library!");
+    } else {
+      res.status(404).send("The book was not found in your library!");
+    }
+  } catch (error) {
+    console.error("There occurred an error in the process of deleting the book: ", error.message);
+    return res.status(500).send("There occurred an error in the process of deleting the book!");
+  }
+});
 
 export default router;

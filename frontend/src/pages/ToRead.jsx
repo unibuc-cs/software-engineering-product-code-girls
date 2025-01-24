@@ -45,7 +45,17 @@ const ToRead = () => {
       fetchAllBooks()
   }, [user.id])
 
-  const handleClick1 = async () => {
+  const handleClick1 = async (bookId) => {
+    try
+    {
+      await axios.delete(`http://localhost:8081/library/delete/${bookId}`);
+      const newBooks = books.filter(book => book.id !== bookId);
+      setBooks(newBooks);
+
+    }
+    catch(error){
+      console.error('Error deleting book:', error);
+    }
   }
 
   const handleClick2 = async () => {
@@ -66,7 +76,7 @@ const ToRead = () => {
               <h2>{book.title}</h2>
               <p>{book.author}</p>
               <p>{book.description}</p>
-              <button onClick={handleClick1}>Delete from your library</button>
+              <button onClick={() => handleClick1(book.id)}>Delete from your library</button>
               <button onClick={handleClick2}>Done to read</button>
             </div>
           ))
