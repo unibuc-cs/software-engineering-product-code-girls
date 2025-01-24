@@ -9,3 +9,4 @@ drop table categories
 
 insert into roles (name) values ('admin'), ('user')
 select * from roles
+

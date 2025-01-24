@@ -10,6 +10,13 @@ import ShowCategory from "./pages/ShowCategory";
 import HomePage from "./pages/HomePage";
 import RegistrationPage from "./pages/Registration";
 import LoginPage from "./pages/Login";
+
+import ProfilePage from './pages/Profile';
+import ProfilePicture from './pages/AddProfilePicture'
+import {UserProvider}  from './pages/UserContext';
+import BooksToRead from './pages/ToRead'
+import BooksRead from './pages/Read'
+
 import ShowReviews from "./pages/ShowReviews";
 import AddReview from "./pages/AddReview";
 import UpdateReview from "./pages/UpdateReview";
@@ -27,9 +34,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
+        <UserProvider>
+         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/profile" element={<ProfilePage/>}/>
+          <Route path="/picture" element={<ProfilePicture/>}/>
+      
           <Route path="/homepage" element={<HomePage />} />
           
           <Route path="/categories" element={<AllCategories />} />
@@ -49,7 +60,13 @@ function App() {
           <Route path="/comments/:id" element={<ShowComments />} />
           <Route path="/comments/add" element={<AddComment />} />
           <Route path="/comment/update/:id" element={<UpdateComment />} />
-        </Routes>
+       
+          <Route path="/toread" element={<BooksToRead/>}/>
+           <Route path="/read" element={<BooksRead/>}/>
+
+       
+          </Routes>
+        </UserProvider>
       </BrowserRouter>
     </div>
   );

@@ -45,6 +45,36 @@ const createUsersTable = () => {
 
 createUsersTable()
 
+// const addColumnToUsersTable = () => {
+//     const sql2 = `
+//         ALTER TABLE users
+//         ADD COLUMN email TEXT NULL;
+//     `;
+//     db.prepare(sql2).run();
+// };
+
+// addColumnToUsersTable();
+
+const deleteUserWithReferences = (id) => {
+    const delete1 = `DELETE FROM comments WHERE user_id = ?;`;
+    db.prepare(delete1).run(id);
+
+    const delete2 = `DELETE FROM reviews WHERE user_id = ?;`;
+    db.prepare(delete2).run(id);
+
+    const delete3 = `DELETE FROM userbooks WHERE user_id = ?;`;
+    db.prepare(delete3).run(id);
+
+    const delete4 = `DELETE FROM userroles WHERE user_id = ?;`;
+    db.prepare(delete4).run(id);
+
+    const delete5 = `DELETE FROM users WHERE id = ?;`;
+    db.prepare(delete5).run(id);
+};
+// for (let i = 2; i <= 6; i++)
+//     deleteUserWithReferences(i);
+
+
 const createUserBooksTable = () => {
     const sql = `
                     CREATE TABLE IF NOT EXISTS userbooks(
@@ -129,4 +159,26 @@ const createRefreshTokensTable = () => {
   };
   
 createRefreshTokensTable()
+
+const createPersonalLibraryTable = () => {
+    const sql = `
+                CREATE TABLE IF NOT EXISTS library (
+                    user_id INTEGER,
+                    book_id INTEGER,
+                    readit BOOLEAN,
+                    FOREIGN KEY (user_id) REFERENCES users,
+                    FOREIGN KEY (book_id) REFERENCES books
+                )
+            `
+    db.prepare(sql).run();
+  };
   
+createPersonalLibraryTable();
+
+const deletefromlibrary = (id) => {
+    const delete1 = `DELETE FROM library WHERE book_id = ?;`;
+    db.prepare(delete1).run(id);
+
+};
+// for (let i = 2; i <= 6; i++)
+//     deleteUserWithReferences(i);
