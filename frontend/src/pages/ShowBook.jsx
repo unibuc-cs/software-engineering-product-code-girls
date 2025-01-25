@@ -9,6 +9,7 @@ const Show = () => {
         title: "",
         author: "",
         description: "",
+        cover_image: "", // Adăugat
     });
     const { user } = useUser();
 
@@ -19,7 +20,7 @@ const Show = () => {
             try {
                 const res = await axios.get(`http://localhost:8081/books/${id}`);
                 setBook(res.data); 
-                localStorage.setItem('bookId', res.data.id); // Correct reference to res.data.id
+                localStorage.setItem('bookId', res.data.id);
                 console.log('Your book id is '+book.id);
             } catch (error) {
                 console.error("Error fetching the book details:", error);
@@ -77,6 +78,15 @@ const Show = () => {
     return (
         <div>
             <h1>{book.category_id}</h1>
+            {book.cover_image && (
+                <div>
+                    <img
+                        src={book.cover_image}
+                        alt={`${book.title} cover`}
+                        style={{ maxWidth: "200px", height: "auto", marginBottom: "20px" }}
+                    />
+                </div>
+            )}
             <p><strong>Title:</strong> {book.title}</p>
             <p><strong>Author:</strong> {book.author}</p>
             <p><strong>Description:</strong> {book.description}</p>

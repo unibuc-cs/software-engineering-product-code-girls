@@ -1,7 +1,6 @@
 import Database from 'better-sqlite3'
 
-
-const db = new Database('database.db')
+const db = new Database('./database/database.db');
 
 
 const createBooksTable = () => {
@@ -19,6 +18,22 @@ const createBooksTable = () => {
 }
 
 createBooksTable()
+
+const addCoverImageColumnToBooks = () => {
+    const sql = `
+        ALTER TABLE books ADD COLUMN cover_image TEXT;
+    `;
+    try {
+        db.prepare(sql).run();
+        console.log("Coloana 'cover_image' a fost adăugată în tabelul 'books'.");
+    } catch (error) {
+        console.log("Coloana 'cover_image' există deja sau a apărut o eroare:", error.message);
+    }
+};
+
+addCoverImageColumnToBooks();
+
+
 
 const createCategoriesTable = () => {
     const sql = `
