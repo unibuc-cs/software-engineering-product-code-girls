@@ -1,7 +1,5 @@
 .App{
     height: 100vh;
-    padding: 0px 100px;
-    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -51,4 +49,149 @@ input{
     padding: 10px;
     background-color: lightcoral;
     color: white;
+}
+
+/* Stilizare generală pentru navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e3ac9d; /* Culoare de fundal */
+  padding: 15px 20px;
+  border-bottom: 2px solid #da9784;
+}
+
+/* Linkuri din navbar */
+.nav-link {
+  text-decoration: none; /* Eliminăm sublinierea */
+  color: #b23b4d;
+  margin-right: 15px;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #90303f; /* Culoare pe hover */
+}
+
+/* Grupare pentru partea stângă și dreaptă a navbar-ului */
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Logout button */
+.logout-button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #ff3333;
+}
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrare pe orizontală */
+    justify-content: center; /* Centrare pe verticală */
+    height: 100vh; /* Înălțimea ecranului */
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column; /* Elemente în coloană */
+    gap: 15px; /* Spațiere între elemente */
+    width: 300px; /* Lățime fixă pentru formular */
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 93%; 
+  }
+  
+  .l_button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #a14948f0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .l_button:hover {
+    background-color: #9c3d37f0;
+  }
+  
+  .link {
+    text-align: center;
+    color: #6d211bf0;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    color: #6d211bf0;
+  }
+  
+
+  /* Container pentru toate categoriile */
+.categories-container {
+  display: grid; /* Folosim un grid pentru aranjare uniformă */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Categoriile se redimensionează */
+  gap: 20px; /* Spațiu între categorii */
+  padding: 20px;
+}
+
+/* Box pentru fiecare categorie */
+.category-box {
+  background-color: #f3d1c7; /* Fundal deschis */
+  border: 1px solid rgb(209, 154, 154)1c7; /* Bordură gri deschis */
+  border-radius: 8px; /* Colțuri rotunjite */
+  padding: 15px;
+  text-align: center; /* Aliniere centrală */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră pentru efect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animație pe hover */
+}
+
+/* Hover pentru box */
+.category-box:hover {
+  transform: scale(1.02); /* Mărește ușor box-ul */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Umbră mai puternică pe hover */
+}
+
+/* Stilizare pentru butoane */
+.category-box button {
+  margin: 10px 5px; /* Spațiere între butoane */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #db8d80; /* Albastru pentru butoane */
+  color: white;
+}
+
+.category-box button:hover {
+  background-color: #ce6061; /* Albastru mai închis pe hover */
+}
+
+/* Linkurile din butoane */
+.category-box a {
+  color: white;
+  text-decoration: none;
+}
+
+.category-box a:hover {
+  text-decoration: underline;
 }
