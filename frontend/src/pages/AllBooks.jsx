@@ -84,7 +84,7 @@ const Books = () => {
                 ))}
             </div>
             {isAdmin && (
-                <button style={{margin: "20px"}}><Link to="/books/add">Add new book</Link></button>
+                <button style={{marginTop:"35px"}}><Link to="/books/add" style={{fontSize: "large"}}>Add new book</Link></button>
             )}
             <div style={{padding: "20px"}}></div>
         </>

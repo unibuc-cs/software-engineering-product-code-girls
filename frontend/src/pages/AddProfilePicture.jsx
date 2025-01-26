@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useUser } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateProfilePicture = () => {
     const { user } = useUser(); 
     const [file, setFile] = useState(null);
+    const navigate = useNavigate(); // Hook pentru navigare
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -19,7 +21,7 @@ const UpdateProfilePicture = () => {
         const formData = new FormData();
         formData.append('profilePicture', file);
         formData.append('userId', user.id);
-
+        console.log('User token:', user.token);
         try {
             await axios.post('http://localhost:8081/api/update-profile-picture', formData, {
                 headers: {
@@ -27,6 +29,7 @@ const UpdateProfilePicture = () => {
                 }
             });
             alert('Profile picture updated successfully!');
+            navigate('/profile'); // Navighează înapoi la pagina de profil
         } catch (error) {
             console.error('Error uploading profile picture:', error);
             alert(`Error uploading profile picture: ${error.response?.status} ${error.response?.statusText}`);

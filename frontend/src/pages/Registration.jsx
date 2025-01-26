@@ -10,22 +10,44 @@ const Registration = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    updateUser({ [e.target.name]: e.target.value });
+    updateUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      if (user.name && user.password) {
-        await axios.post("http://localhost:8081/users/register", user);
-        const response = await login(user);
-        updateUser({ id: response.id, name: user.name, profile_picture: response.profile_picture });
-        localStorage.setItem("user", JSON.stringify(response.data));
-        navigate("/homepage");
-      } else {
+      // Validare câmpuri
+      if (!user.name || !user.password) {
         setError("Fields cannot be empty!");
+        return;
       }
+
+      console.log("User data sent to register:", user); // Debugging
+
+      // Înregistrează utilizatorul
+      const registrationResponse = await axios.post("http://localhost:8081/users/register", {
+        name: user.name,
+        password: user.password,
+      });
+
+      console.log("Registration response:", registrationResponse.data); // Debugging
+
+      // Autentifică utilizatorul după înregistrare
+      const response = await login({ name: user.name, password: user.password });
+
+      console.log("Login response after registration:", response); // Debugging
+
+      // Actualizează contextul utilizatorului
+      updateUser({
+        id: response.id,
+        name: response.name,
+        profile_picture: response.profile_picture,
+      });
+
+      localStorage.setItem("user", JSON.stringify(response));
+      navigate("/homepage");
     } catch (error) {
+      console.error("Error during registration or login:", error.response?.data || error.message);
       setError(error.response?.data?.message || "An unexpected error occurred!");
     }
   };

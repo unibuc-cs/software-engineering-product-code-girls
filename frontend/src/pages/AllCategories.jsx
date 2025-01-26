@@ -90,7 +90,7 @@ const Categories = () => {
         ))}
         {isAdmin && (
           <button>
-            <Link to="/categories/add">Add new category!</Link>
+            <Link to="/categories/add" style={{fontSize: "large"}}>Add new category!</Link>
           </button>
         )}
       </div>

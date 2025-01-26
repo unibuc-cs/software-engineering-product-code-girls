@@ -96,7 +96,7 @@ input{
     flex-direction: column;
     align-items: center; /* Centrare pe orizontală */
     justify-content: center; /* Centrare pe verticală */
-    height: 100vh; /* Înălțimea ecranului */
+    height: 85vh; /* Înălțimea ecranului */
   }
   
   .login-form {

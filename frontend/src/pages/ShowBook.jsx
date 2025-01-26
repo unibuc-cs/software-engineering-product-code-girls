@@ -18,8 +18,11 @@ const ShowBook = () => {
     const [averageRating, setAverageRating] = useState(0);
     const { user } = useUser();
     const { id } = useParams();
-    const loggedInUserId = localStorage.getItem("userId");
-
+    const loggedInUserId = user?.id || localStorage.getItem("userId");
+    console.log("Logged-in user ID:", loggedInUserId);
+comments.forEach((comment) => {
+    console.log(`Comment ID: ${comment.id}, User ID: ${comment.user_id}, Content: ${comment.content}`);
+});
     // Fetch book details
     useEffect(() => {
         const fetchBook = async () => {
@@ -216,10 +219,10 @@ const ShowBook = () => {
                 </div>
             </div>
 
-            <button onClick={handleClick}>Add to your personal library</button>
+            <button onClick={handleClick} style={{fontSize: "large"}}>Add to your personal library</button>
 
             <div className="comments-section">
-                <h1 style={{ fontSize: "30px" }}>Comments</h1>
+                <h1 style={{ fontSize: "30px", marginTop:"2px" }}>Comments</h1>
                 {comments.length === 0 ? (
                     <p>No comments found.</p>
                 ) : (
@@ -227,7 +230,7 @@ const ShowBook = () => {
                         <div className="comment-box" key={comment.id}>
                             <p><strong>User:</strong> {comment.user_name}</p>
                             <p><strong>Comment:</strong> {comment.content}</p>
-                            {loggedInUserId === String(comment.user_id) && (
+                            {String(loggedInUserId) === String(comment.user_id) && (
                                 <div className="review-actions">
                                     <button onClick={() => handleUpdateComment(comment.id)}>Update</button>
                                     <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>

@@ -51,5 +51,32 @@ router.get("/:id", (req, res) => {
 //     return res.status(500).send("There occurred an error in the process of deleting the user!");
 //   }
 // });
+router.post("/register", (req, res) => {
+  const { name, password } = req.body;
+
+  if (!name || !password) {
+    return res.status(400).send("Name and password are required!");
+  }
+
+  try {
+    const existingUser = db.prepare("SELECT * FROM users WHERE name = ?").get(name);
+
+    if (existingUser) {
+      return res.status(400).send("User already exists!");
+    }
+
+    const query = "INSERT INTO users (name, password) VALUES (?, ?)";
+    const result = db.prepare(query).run(name, password);
+
+    res.status(201).json({
+      id: result.lastInsertRowid,
+      name,
+      profile_picture: "", // Default profile picture
+    });
+  } catch (error) {
+    console.error("Error registering user:", error.message);
+    res.status(500).send("Error registering user!");
+  }
+});
 
 export default router;

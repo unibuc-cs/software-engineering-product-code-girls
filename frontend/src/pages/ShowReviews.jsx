@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useUser } from './UserContext';
 
 const ShowReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
-    const loggedInUserId = localStorage.getItem("userId");
+    const { user } = useUser(); // Utilizează UserContext pentru utilizatorul logat
+    const loggedInUserId = user?.id || localStorage.getItem("userId");
 
     // Fetch reviews
     useEffect(() => {
@@ -26,28 +28,28 @@ const ShowReviews = () => {
     const handleDelete = async (reviewId) => {
         try {
             console.log("Deleting review with ID:", reviewId);
-    
+
             const token = localStorage.getItem("accessToken");
             if (!token) {
                 console.error("No token found. User must be logged in.");
                 alert("You must be logged in to delete a review.");
                 return;
             }
-    
+
             await axios.delete(`http://localhost:8081/reviews/${reviewId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-    
+
             const updatedReviews = reviews.filter((review) => review.id !== reviewId);
             setReviews(updatedReviews);
-    
+
             console.log("Review deleted successfully:", updatedReviews);
             alert("Review deleted successfully!");
         } catch (error) {
             console.error("Error deleting review:", error);
-    
+
             if (error.response?.status === 403) {
                 alert("You do not have permission to delete this review.");
             } else {
@@ -55,7 +57,6 @@ const ShowReviews = () => {
             }
         }
     };
-    
 
     // Handle update review
     const handleUpdate = async (reviewId) => {
@@ -113,7 +114,7 @@ const ShowReviews = () => {
                     <div className="review-box" key={review.id}>
                         <p><strong>Rating:</strong> {renderStars(review.rating)}</p>
                         <p><strong>Reviewed by:</strong> {review.user_name}</p>
-                        {loggedInUserId === String(review.user_id) && (
+                        {String(loggedInUserId) === String(review.user_id) && (
                             <div className="review-actions">
                                 <button onClick={() => handleUpdate(review.id)}>Update</button>
                                 <button onClick={() => handleDelete(review.id)}>Delete</button>
