@@ -1,18 +1,17 @@
-import {useEffect,useState}  from 'react'
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useUser } from './UserContext';
 import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
-    const { user } = useUser();  // Obține întregul obiect user din context
+    const { user } = useUser(); // Obține întregul obiect user din context
     const [userData, setUser] = useState(null);
-    
-    console.log('Your id is '+user.id);
-    
+
+    console.log('Your id is ' + user.id);
+
     useEffect(() => {
-        if (!user.id) return; 
-        
-        // `http://localhost:8081/users/${user.id}`
+        if (!user.id) return;
+
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/member/${user.id}`);
@@ -27,20 +26,30 @@ const ProfilePage = () => {
     if (!userData) return <p>Loading...</p>;
 
     return (
-        <div>
+        <div className="profile-page">
             <h1>Welcome, {user.name}!</h1>
             {user.profile_picture ? (
-                <img src={`http://localhost:8081${user.profile_picture}`} alt="Profile" />
+                <img
+                    src={`http://localhost:8081${user.profile_picture}`}
+                    alt="Profile"
+                    className="profile-picture"
+                />
             ) : (
                 <p>No profile picture set</p>
             )}
-              <button className="AddPicture"><Link to = {`/picture`}>Update Picture</Link></button>
-              <div className="meniu">
-                    <button className="ToRead"><Link to = {`/toread`}>Carti de citit</Link></button>
-                    <button className="Read"><Link to = {`/read`}>Carti citite</Link></button>  
-              </div>
+             <button>
+                    <Link to={`/picture`}>Update Picture</Link>
+                </button>
+            <div className="buttons-container">
+                <button>
+                    <Link to={`/toread`}>To-read books</Link>
+                </button>
+                <button>
+                    <Link to={`/read`}>Read books</Link>
+                </button>
+            </div>
         </div>
     );
 };
 
-export default ProfilePage
+export default ProfilePage;

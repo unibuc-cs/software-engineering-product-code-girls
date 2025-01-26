@@ -9,11 +9,27 @@ const AddComment = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const checkLoginStatus = () => {
-            const userId = localStorage.getItem("userId");
-            if (userId) {
-                setIsLoggedIn(true);
-            } else {
+        const checkLoginStatus = async () => {
+            const token = localStorage.getItem("accessToken");
+            console.log("Token from localStorage:", token);
+            if (!token) {
+                setErrorMessage("You must be logged in to add a comment.");
+                return;
+            }
+
+            try {
+                const res = await axios.get("http://localhost:8081/auth/verify-token", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (res.status === 200) {
+                    setIsLoggedIn(true);
+                } else {
+                    setErrorMessage("You must be logged in to add a comment.");
+                }
+            } catch (error) {
+                console.error("Error verifying login status:", error);
                 setErrorMessage("You must be logged in to add a comment.");
             }
         };
@@ -29,7 +45,7 @@ const AddComment = () => {
         e.preventDefault();
 
         if (!content.trim()) {
-            setErrorMessage("Content cannot be empty.");
+            alert("Content cannot be empty.");
             return;
         }
 
@@ -38,13 +54,18 @@ const AddComment = () => {
             return;
         }
 
-        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("accessToken");
         const bookId = localStorage.getItem("bookId");
 
         try {
             const response = await axios.post(
                 "http://localhost:8081/comments",
-                { user_id: userId, book_id: bookId, content: content.trim() }
+                { book_id: bookId, content: content.trim() },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             if (response.status === 201) {

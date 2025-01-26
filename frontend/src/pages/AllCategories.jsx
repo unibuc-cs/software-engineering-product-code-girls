@@ -45,10 +45,20 @@ const Categories = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:8081/categories/" + id);
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        console.error("No token found. Please log in.");
+        return;
+      }
+
+      await axios.delete(`http://localhost:8081/categories/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       window.location.reload();
     } catch (error) {
-      console.log(error);
+      console.error("Error deleting category:", error);
     }
   };
 
@@ -62,19 +72,18 @@ const Categories = () => {
             {isAdmin && (
               <>
                 <button
-                  className="delete"
                   onClick={() => {
                     handleDelete(category.id);
                   }}
                 >
                   Delete
                 </button>
-                <button className="update">
+                <button>
                   <Link to={`/categories/update/${category.id}`}>Update</Link>
                 </button>
               </>
             )}
-            <button className="details">
+            <button>
               <Link to={`/categories/${category.id}`}>Details</Link>
             </button>
           </div>

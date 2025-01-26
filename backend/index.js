@@ -1,10 +1,10 @@
 import multer from "multer";
 import path from 'path';
 import fs from 'fs';
-import express from "express"
-import bookRoutes from "./routes/books.js"
-import categoryRoutes from "./routes/categories.js"
-import userRoutes from "./routes/authentification.js"
+import express from "express";
+import bookRoutes from "./routes/books.js";
+import categoryRoutes from "./routes/categories.js";
+import userRoutes from "./routes/authentification.js";
 import roleRoutes from "./routes/userRole.js"
 import reviewRoutes from "./routes/reviews.js";
 import commentRoutes from "./routes/comments.js"; 
@@ -29,6 +29,8 @@ app.use("/categories", categoryRoutes);
 app.use("/users", userRoutes);
 
 app.use("/member", Users);
+
+app.use("/auth", userRoutes);
 
 app.use("/userrole", roleRoutes);
 

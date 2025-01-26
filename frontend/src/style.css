@@ -26,19 +26,6 @@ html {
     align-items: center;
 }
 
-.delete{
-    border: none;
-    padding: 3px 6px;
-    background-color: red;
-    cursor:pointer;
-}
-
-.update{
-    border: none;
-    padding: 3px 6px;
-    background-color: green;
-    cursor:pointer;
-}
 
 .form{
     display:flex;

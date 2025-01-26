@@ -39,7 +39,7 @@ const Read = () => {
 
   return (
     <div>
-      <h1>Carti citite</h1>
+      <h1>Read books</h1>
       <div className="items-container">
         {books.length === 0 ? (
           <p>No books available.</p>

@@ -1,9 +1,9 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Books = () => {
-    const [books, setBooks] = useState([])
+    const [books, setBooks] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
@@ -32,23 +32,33 @@ const Books = () => {
     useEffect(() => {
         const fetchAllBooks = async () => {
             try {
-                const res = await axios.get("http://localhost:8081/books")
-                setBooks(res.data)
+                const res = await axios.get("http://localhost:8081/books");
+                setBooks(res.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
-        fetchAllBooks()
-    }, [])
+        };
+        fetchAllBooks();
+    }, []);
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete("http://localhost:8081/books/" + id)
-            window.location.reload()
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                console.error("No token found. Please log in.");
+                return;
+            }
+
+            await axios.delete(`http://localhost:8081/books/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            window.location.reload();
         } catch (error) {
-            console.log(error)
+            console.error("Error deleting book:", error);
         }
-    }
+    };
 
     return (
         <>
@@ -74,10 +84,11 @@ const Books = () => {
                 ))}
             </div>
             {isAdmin && (
-                <button><Link to="/books/add">Add new book</Link></button>
+                <button style={{margin: "20px"}}><Link to="/books/add">Add new book</Link></button>
             )}
+            <div style={{padding: "10px"}}></div>
         </>
-    )
-}
+    );
+};
 
 export default Books;

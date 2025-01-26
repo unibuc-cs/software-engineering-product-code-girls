@@ -59,7 +59,7 @@ const ToRead = () => {
 
   return (
     <>
-      <h1>Carti de citit</h1>
+      <h1>To-read books</h1>
       <br />
       <div className="items-container">
         {books.length === 0 ? (
