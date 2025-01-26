@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -64,14 +64,20 @@ const AddComment = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Add a Comment</h1>
-            <textarea
-                placeholder="Write your comment here..."
-                onChange={handleChange}
-                value={content}
-            ></textarea>
-            <button onClick={handleClick}>Add Comment</button>
+            <form className="login-form">
+                <textarea
+                    placeholder="Write your comment here..."
+                    onChange={handleChange}
+                    value={content}
+                    rows="5"
+                    style={{ resize: "none" }}
+                ></textarea>
+                <div className="l_button" onClick={handleClick}>
+                    Add Comment
+                </div>
+            </form>
         </div>
     );
 };

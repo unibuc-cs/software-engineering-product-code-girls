@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -65,15 +65,19 @@ const AddReview = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Add a Review</h1>
-            <input
-                type="number"
-                placeholder="Rating (1-5)"
-                onChange={handleRatingChange}
-                value={rating}
-            />
-            <button onClick={handleClick}>Add Review</button>
+            <form className="login-form">
+                <input
+                    type="number"
+                    placeholder="Rating (1-5)"
+                    onChange={handleRatingChange}
+                    value={rating}
+                />
+                <div className="l_button" onClick={handleClick}>
+                    Add Review
+                </div>
+            </form>
         </div>
     );
 };

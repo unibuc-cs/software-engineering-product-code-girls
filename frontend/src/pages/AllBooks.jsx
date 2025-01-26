@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
 const Books = () => {
@@ -53,16 +53,16 @@ const Books = () => {
     return (
         <>
             <h1>Books</h1>
-            <br></br>
-            <div className="books">
+            <br />
+            <div className="items-container">
                 {books.map(book => (
-                    <div className="book" key={book.id}>
-                        <br></br>
-                        <h2>{book.category_id}</h2>
+                    <div className="item-box" key={book.id}>
+                        {book.cover_image && (
+                            <img src={book.cover_image} alt={book.title} style={{ maxWidth: "250px", height: "auto" }} />
+                        )}
                         <h2>{book.title}</h2>
-                        <h2>{book.author}</h2>
+                        <h3>{book.author}</h3>
                         <p>{book.description}</p>
-                        {book.cover_image && <img src={book.cover_image} alt={book.title} style={{ maxWidth: "200px", height: "auto" }} />} {/* Adăugat */}
                         {isAdmin && (
                             <>
                                 <button className="delete" onClick={() => { handleDelete(book.id) }}>Delete</button>
@@ -70,7 +70,6 @@ const Books = () => {
                             </>
                         )}
                         <button className="details"><Link to={`/books/${book.id}`}>Details</Link></button>
-                        <br></br>
                     </div>
                 ))}
             </div>

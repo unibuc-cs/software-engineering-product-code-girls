@@ -19,20 +19,14 @@ const UpdateProfilePicture = () => {
         const formData = new FormData();
         formData.append('profilePicture', file);
         formData.append('userId', user.id);
-        
-        console.log('file:', file);
-        console.log('user.id:', user.id);
-        console.log('formData:', formData);
 
         try {
             await axios.post('http://localhost:8081/api/update-profile-picture', formData, {
                 headers: {
-                    //'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${user.token}` // Adaugă header-ul de autorizare
+                    'Authorization': `Bearer ${user.token}` 
                 }
             });
             alert('Profile picture updated successfully!');
-            console.log('Profile picture updated successfully!');
         } catch (error) {
             console.error('Error uploading profile picture:', error);
             alert(`Error uploading profile picture: ${error.response?.status} ${error.response?.statusText}`);
@@ -40,10 +34,14 @@ const UpdateProfilePicture = () => {
     };
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Update Profile Picture</h1>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload</button>
+            <form className="login-form">
+                <input type="file" onChange={handleFileChange} />
+                <div className="l_button" onClick={handleUpload}>
+                    Upload
+                </div>
+            </form>
         </div>
     );
 };

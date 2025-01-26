@@ -1,7 +1,6 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Update = () => {
     const [book, setBook] = useState({
@@ -9,10 +8,10 @@ const Update = () => {
         title: "",
         author: "",
         description: "",
-        cover_image: "", 
+        cover_image: "",
     });
 
-    const [isAdmin, setIsAdmin] = useState(false); 
+    const [isAdmin, setIsAdmin] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
@@ -32,9 +31,7 @@ const Update = () => {
                 if (res.data.role === 1) {
                     setIsAdmin(true);
                 } else {
-                    setErrorMessage(
-                        "You do not have permission to edit books. Only admins can do that."
-                    );
+                    setErrorMessage("You do not have permission to edit books. Only admins can do that.");
                 }
             } catch (error) {
                 console.error("Error fetching user role:", error);
@@ -46,7 +43,6 @@ const Update = () => {
     }, []);
 
     const navigate = useNavigate();
-
     const { id } = useParams();
 
     useEffect(() => {
@@ -94,48 +90,50 @@ const Update = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Update the book!</h1>
-            <input
-                type="number"
-                placeholder="category_id"
-                value={book.category_id}
-                onChange={handleChange}
-                name="category_id"
-            />
-            <input
-                type="text"
-                placeholder="title"
-                value={book.title}
-                onChange={handleChange}
-                name="title"
-            />
-            <input
-                type="text"
-                placeholder="author"
-                value={book.author}
-                onChange={handleChange}
-                name="author"
-            />
-            <input
-                type="text"
-                placeholder="description"
-                value={book.description}
-                onChange={handleChange}
-                name="description"
-            />
-            <input
-                type="text"
-                placeholder="cover image URL"
-                value={book.cover_image}
-                onChange={handleChange}
-                name="cover_image"
-            /> 
-            <button className="formButton" onClick={handleClick}>
-                Update
-            </button>
+            <form className="login-form">
+                <input
+                    type="number"
+                    placeholder="Category ID"
+                    value={book.category_id}
+                    onChange={handleChange}
+                    name="category_id"
+                />
+                <input
+                    type="text"
+                    placeholder="Title"
+                    value={book.title}
+                    onChange={handleChange}
+                    name="title"
+                />
+                <input
+                    type="text"
+                    placeholder="Author"
+                    value={book.author}
+                    onChange={handleChange}
+                    name="author"
+                />
+                <input
+                    type="text"
+                    placeholder="Description"
+                    value={book.description}
+                    onChange={handleChange}
+                    name="description"
+                />
+                <input
+                    type="text"
+                    placeholder="Cover Image URL"
+                    value={book.cover_image}
+                    onChange={handleChange}
+                    name="cover_image"
+                />
+                <div className="l_button" onClick={handleClick}>
+                    Update
+                </div>
+            </form>
         </div>
     );
-}
+};
 
 export default Update;

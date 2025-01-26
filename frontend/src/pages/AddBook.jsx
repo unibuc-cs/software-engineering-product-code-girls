@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react'
-import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
     const [book, setBook] = useState({
@@ -8,35 +8,35 @@ const Add = () => {
         title: "",
         author: "",
         description: "",
-        cover_image: "", // Adăugat
+        cover_image: "",
     });
     const [isAdmin, setIsAdmin] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
-      const fetchUserRole = async () => {
-        const token = localStorage.getItem("accessToken");
-        if (!token) {
-          setErrorMessage("You must be logged in to add a book.");
-          return;
-        }
-        try {
-          const res = await axios.get("http://localhost:8081/userrole", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (res.data.role === 1) {
-            setIsAdmin(true);
-          } else {
-            setErrorMessage("You do not have permission to add books. Only admins can do that.");
-          }
-        } catch (error) {
-          console.error("Error fetching user role:", error);
-          setErrorMessage("An error occurred while verifying your role.");
-        }
-      };
-      fetchUserRole();
+        const fetchUserRole = async () => {
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                setErrorMessage("You must be logged in to add a book.");
+                return;
+            }
+            try {
+                const res = await axios.get("http://localhost:8081/userrole", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (res.data.role === 1) {
+                    setIsAdmin(true);
+                } else {
+                    setErrorMessage("You do not have permission to add books. Only admins can do that.");
+                }
+            } catch (error) {
+                console.error("Error fetching user role:", error);
+                setErrorMessage("An error occurred while verifying your role.");
+            }
+        };
+        fetchUserRole();
     }, []);
 
     const navigate = useNavigate();
@@ -76,16 +76,45 @@ const Add = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Add a new book!</h1>
-            <input type="number" placeholder="category_id" onChange={handleChange} name="category_id" />
-            <input type="text" placeholder='title' onChange={handleChange} name="title" />
-            <input type="text" placeholder='author' onChange={handleChange} name="author" />
-            <input type="text" placeholder='description' onChange={handleChange} name="description" />
-            <input type="text" placeholder='cover image URL' onChange={handleChange} name="cover_image" /> {/* Adăugat */}
-            <button onClick={handleClick}>Add book</button>
+            <form className="login-form">
+                <input
+                    type="number"
+                    placeholder="Category ID"
+                    onChange={handleChange}
+                    name="category_id"
+                />
+                <input
+                    type="text"
+                    placeholder="Title"
+                    onChange={handleChange}
+                    name="title"
+                />
+                <input
+                    type="text"
+                    placeholder="Author"
+                    onChange={handleChange}
+                    name="author"
+                />
+                <input
+                    type="text"
+                    placeholder="Description"
+                    onChange={handleChange}
+                    name="description"
+                />
+                <input
+                    type="text"
+                    placeholder="Cover Image URL"
+                    onChange={handleChange}
+                    name="cover_image"
+                />
+                <div className="l_button" onClick={handleClick}>
+                    Add book
+                </div>
+            </form>
         </div>
     );
-}
+};
 
 export default Add;

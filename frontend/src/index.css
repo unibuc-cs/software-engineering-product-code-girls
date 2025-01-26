@@ -73,16 +73,12 @@ a:hover {
 }
 
 body {
-  background-image: url('./src/assets/gr_background.png'); 
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-position: center; 
   margin: 0;
   padding: 0;
   font-family: "Merriweather"; 
   position: relative;
   box-sizing: border-box; 
-  width: 100vw; 
+  min-width: 100vw; 
   overflow-x: hidden; 
   overflow-y: auto;
   min-height: 100vh;
@@ -151,4 +147,62 @@ button:focus-visible {
   button {
     background-color: #f5dede;
   }
+}
+
+
+/* Container pentru toate elementele (cărți, categorii etc.) */
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aranjare în grilă */
+  gap: 20px; /* Spațiu între box-uri */
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+/* Box pentru fiecare item */
+.item-box {
+  background-color: #f3d1c7; /* Fundal deschis */
+  border: 1px solid #d19a9a; /* Bordură */
+  border-radius: 8px; /* Colțuri rotunjite */
+  padding: 15px;
+  text-align: center; /* Aliniere centrală */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră pentru efect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animație la hover */
+}
+
+/* Hover pentru box */
+.item-box:hover {
+  transform: scale(1.02); /* Mărește ușor box-ul */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Umbră mai accentuată */
+}
+
+/* Stilizare pentru imagini din box */
+.item-box img {
+  border-radius: 5px; /* Rotunjire pentru imagini */
+  margin: 10px 0;
+}
+
+/* Stilizare pentru butoane */
+.item-box button {
+  margin: 10px 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #db8d80; /* Culoare pentru butoane */
+  color: white;
+}
+
+.item-box button:hover {
+  background-color: #ce6061;
+}
+
+/* Linkuri din butoane */
+.item-box a {
+  color: white;
+  text-decoration: none;
+}
+
+.item-box a:hover {
+  text-decoration: underline;
 }
