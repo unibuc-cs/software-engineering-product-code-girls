@@ -129,4 +129,28 @@ router.delete("/delete/:id", (req, res) => {
   }
 });
 
+
+router.put("/mark-as-read/:user_id/:book_id", (req, res) => {
+  const { user_id, book_id } = req.params;
+
+  try {
+      const sql = `
+          UPDATE library
+          SET readit = 1
+          WHERE user_id = ? AND book_id = ?;
+      `;
+      const result = db.prepare(sql).run(user_id, book_id);
+
+      if (result.changes > 0) {
+          res.status(200).json({ message: "Book marked as read successfully!" });
+      } else {
+          res.status(404).json({ error: "Book not found in your library or already marked as read." });
+      }
+  } catch (error) {
+      console.error("Error marking book as read:", error.message);
+      res.status(500).json({ error: "An error occurred while marking the book as read." });
+  }
+});
+
+
 export default router;
