@@ -5,7 +5,7 @@ import { useUser } from './UserContext';
 import { useState } from 'react';
 
 const Login = () => {
-  const { user, updateUser } = useUser(); // Obține utilizatorul și funcția de actualizare din context
+  const { user, updateUser } = useUser(); 
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -18,6 +18,7 @@ const Login = () => {
     try {
       const response = await login(user);
       if (response) {
+        localStorage.setItem("userId", response.id);
         updateUser({ id: response.id, name: user.name, profile_picture: response.profile_picture });
         navigate("/homepage");
       }

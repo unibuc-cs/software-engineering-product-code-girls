@@ -58,6 +58,7 @@ const Show = () => {
                     <p>No books available for this category.</p>
                 )}
             </div>
+            <div style={{padding: "20px"}}></div>
         </div>
     );
 };

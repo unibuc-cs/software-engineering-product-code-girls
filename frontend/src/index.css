@@ -126,6 +126,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #a94f50;
+  color:#f0e0db;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -151,7 +152,7 @@ button:focus-visible {
 /* Container pentru toate elementele (cărți, categorii etc.) */
 .items-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aranjare în grilă */
+  grid-template-columns: repeat(3, 1fr); /* Aranjare în grilă */
   gap: 20px; /* Spațiu între box-uri */
   padding-left: 60px;
   padding-right: 60px;
@@ -211,4 +212,124 @@ button:focus-visible {
   justify-content: center;
   gap: 15px; 
   margin-top: 6px;
+}
+
+
+
+
+/* Stilizare pentru secțiunea de comentarii */
+.comments-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comment-box {
+  background-color: #f3d1c7;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-right: 300px;
+  margin-left: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.comment-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.comment-actions button:hover {
+  background-color: #0056b3;
+}
+
+/* Eliminare spațiu alb sub buton */
+.primary-button {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #a94f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background-color: #a94f50;
+}
+
+
+
+/* Secțiune pentru reviews */
+.reviews-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Box pentru fiecare review */
+.review-box {
+  background-color: #f3d1c7;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-right: 300px;
+  margin-left: 300px;
+  border-radius: 8px;
+  color: #723939;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container pentru acțiuni */
+.review-actions {
+  margin-top: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Butoane pentru update și delete */
+.review-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #c4595a;
+  color: white;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.review-actions button:hover {
+  background-color: #c4595a;
+}
+
+/* Text din review */
+.review-box p {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 200;
+  color: #792929;
+}
+
+
+.stars {
+  font-size: 2rem;
+  color: #f8a362; /* Culoare pentru steluțe pline */
+}
+
+.stars .empty {
+  color: #575353; /* Culoare pentru steluțe goale */
 }

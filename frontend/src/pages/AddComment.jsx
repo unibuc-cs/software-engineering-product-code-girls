@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddComment = () => {
+    const { bookId } = useParams(); // Obține ID-ul cărții din URL
     const [content, setContent] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -11,7 +12,6 @@ const AddComment = () => {
     useEffect(() => {
         const checkLoginStatus = async () => {
             const token = localStorage.getItem("accessToken");
-            console.log("Token from localStorage:", token);
             if (!token) {
                 setErrorMessage("You must be logged in to add a comment.");
                 return;
@@ -55,12 +55,11 @@ const AddComment = () => {
         }
 
         const token = localStorage.getItem("accessToken");
-        const bookId = localStorage.getItem("bookId");
 
         try {
             const response = await axios.post(
                 "http://localhost:8081/comments",
-                { book_id: bookId, content: content.trim() },
+                { book_id: bookId, content: content.trim() }, // Folosim bookId din useParams
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -70,7 +69,7 @@ const AddComment = () => {
 
             if (response.status === 201) {
                 alert("Comment added successfully!");
-                navigate(`/comments/${bookId}`);
+                navigate(`/books/${bookId}`); // Redirecționare către ShowBook
             } else {
                 setErrorMessage("Failed to add comment.");
             }

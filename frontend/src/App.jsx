@@ -56,11 +56,11 @@ function App() {
           <Route path="/books/update/:id" element={<UpdateBook />} />
 
           <Route path="/reviews/:id" element={<ShowReviews />} />
-          <Route path="/reviews/add" element={<AddReview />} />
+          <Route path="/reviews/add/:bookId" element={<AddReview />} />
           <Route path="/review/update/:id" element={<UpdateReview />} />
 
           <Route path="/comments/:id" element={<ShowComments />} />
-          <Route path="/comments/add" element={<AddComment />} />
+          <Route path="/comments/add/:bookId" element={<AddComment />} />
           <Route path="/comment/update/:id" element={<UpdateComment />} />
        
           <Route path="/toread" element={<BooksToRead/>}/>

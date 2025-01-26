@@ -56,6 +56,7 @@ const Read = () => {
           ))
         )}
       </div>
+      <div style={{padding: "20px"}}></div>
     </div>
   );
 };

@@ -86,7 +86,7 @@ const Books = () => {
             {isAdmin && (
                 <button style={{margin: "20px"}}><Link to="/books/add">Add new book</Link></button>
             )}
-            <div style={{padding: "10px"}}></div>
+            <div style={{padding: "20px"}}></div>
         </>
     );
 };
