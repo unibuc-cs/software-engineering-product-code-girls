@@ -1,16 +1,12 @@
-//import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../auth/authService';
 import { Link } from 'react-router-dom';
 import { useUser } from './UserContext';
-import  { useState } from 'react';
+import { useState } from 'react';
 
 const Login = () => {
-  const { user, updateUser } = useUser();  // Obții utilizatorul și funcția de actualizare din context
- 
-
+  const { user, updateUser } = useUser(); // Obține utilizatorul și funcția de actualizare din context
   const [errorMessage, setErrorMessage] = useState('');
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,26 +16,44 @@ const Login = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await login(user);
-      
-      if (response) {
-        console.log('Login Response:', response);
-        updateUser({ id: response.id, name: user.name, profile_picture: response.profile_picture });
-        navigate("/homepage");
-        console.log('User id=' + user.id);
-      }
+        const response = await login(user); // login returnează token-ul
+        if (response) {
+            localStorage.setItem("accessToken", response.accessToken); // Setează token-ul în localStorage
+            updateUser({
+                id: response.id,
+                name: response.name,
+                token: response.accessToken,
+                profile_picture: response.profile_picture,
+            });
+            navigate("/homepage");
+        }
     } catch (error) {
-        setErrorMessage(error.response?.data?.message || "An unexpected error occurred!")
+        setErrorMessage(error.response?.data?.message || "An unexpected error occurred!");
     }
-  };
+};
+
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Login!</h1>
-      <input type="text" placeholder="name" onChange={handleChange} name="name" />
-      <input type="password" placeholder="password" onChange={handleChange} name="password" />
-      <button onClick={handleClick}>Login!</button>
-      <button><Link to="/registration">Don`t you already have an account?</Link></button>
+      <form className="login-form">
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={handleChange}
+          name="name"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={handleChange}
+          name="password"
+        />
+        <div className='l_button' onClick={handleClick}>Login</div>
+        <Link to="/registration" className="link">
+          Don’t have an account?
+        </Link>
+      </form>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </div>
   );

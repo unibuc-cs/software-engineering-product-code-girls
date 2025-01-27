@@ -1,19 +1,35 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddComment = () => {
+    const { bookId } = useParams(); // Obține ID-ul cărții din URL
     const [content, setContent] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
-        const checkLoginStatus = () => {
-            const userId = localStorage.getItem("userId");
-            if (userId) {
-                setIsLoggedIn(true);
-            } else {
+        const checkLoginStatus = async () => {
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                setErrorMessage("You must be logged in to add a comment.");
+                return;
+            }
+
+            try {
+                const res = await axios.get("http://localhost:8081/auth/verify-token", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (res.status === 200) {
+                    setIsLoggedIn(true);
+                } else {
+                    setErrorMessage("You must be logged in to add a comment.");
+                }
+            } catch (error) {
+                console.error("Error verifying login status:", error);
                 setErrorMessage("You must be logged in to add a comment.");
             }
         };
@@ -29,7 +45,7 @@ const AddComment = () => {
         e.preventDefault();
 
         if (!content.trim()) {
-            setErrorMessage("Content cannot be empty.");
+            alert("Content cannot be empty.");
             return;
         }
 
@@ -38,18 +54,22 @@ const AddComment = () => {
             return;
         }
 
-        const userId = localStorage.getItem("userId");
-        const bookId = localStorage.getItem("bookId");
+        const token = localStorage.getItem("accessToken");
 
         try {
             const response = await axios.post(
                 "http://localhost:8081/comments",
-                { user_id: userId, book_id: bookId, content: content.trim() }
+                { book_id: bookId, content: content.trim() }, // Folosim bookId din useParams
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             if (response.status === 201) {
                 alert("Comment added successfully!");
-                navigate(`/comments/${bookId}`);
+                navigate(`/books/${bookId}`); // Redirecționare către ShowBook
             } else {
                 setErrorMessage("Failed to add comment.");
             }
@@ -64,14 +84,20 @@ const AddComment = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Add a Comment</h1>
-            <textarea
-                placeholder="Write your comment here..."
-                onChange={handleChange}
-                value={content}
-            ></textarea>
-            <button onClick={handleClick}>Add Comment</button>
+            <form className="login-form">
+                <textarea
+                    placeholder="Write your comment here..."
+                    onChange={handleChange}
+                    value={content}
+                    rows="5"
+                    style={{ resize: "none" }}
+                ></textarea>
+                <div className="l_button" onClick={handleClick}>
+                    Add Comment
+                </div>
+            </form>
         </div>
     );
 };

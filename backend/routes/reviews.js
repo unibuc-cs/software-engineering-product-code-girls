@@ -1,12 +1,11 @@
-
 import express from 'express';
 import Database from 'better-sqlite3';
 import { resolve } from 'path';
+import { verifyToken } from './authentification.js'; // Asigură-te că ai middleware-ul `verifyToken`
 
 const router = express.Router();
 const dbPath = resolve('database/database.db');
 const db = new Database(dbPath);
-
 
 router.get('/:id', (req, res) => {
     const bookId = req.params.id;
@@ -17,7 +16,7 @@ router.get('/:id', (req, res) => {
         WHERE reviews.book_id = ?`;
 
     try {
-        const reviews = db.prepare(q).all(bookId); 
+        const reviews = db.prepare(q).all(bookId);
 
         if (reviews.length > 0) {
             return res.json(reviews);
@@ -30,16 +29,34 @@ router.get('/:id', (req, res) => {
     }
 });
 
+router.post('/', verifyToken, (req, res) => {
+    const { book_id, rating } = req.body;
+    const user_id = req.user.id; // Obține `user_id` din token
 
-
-router.post('/', (req, res) => {
-    const { user_id, book_id, rating } = req.body;
-    if (!user_id || !book_id || !rating) {
+    if (!book_id || !rating) {
         return res.status(400).send('All fields are required!');
     }
-    const q = 'INSERT INTO reviews (user_id, book_id, rating) VALUES (?, ?, ?)';
+
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+        return res.status(400).send('Rating must be a number between 1 and 5.');
+    }
+
+    const checkDuplicateQuery = `
+        SELECT * FROM reviews WHERE user_id = ? AND book_id = ?;
+    `;
+    const insertQuery = `
+        INSERT INTO reviews (user_id, book_id, rating) VALUES (?, ?, ?);
+    `;
+
     try {
-        db.prepare(q).run(user_id, book_id, rating);
+        // Verifică dacă utilizatorul a adăugat deja o recenzie pentru această carte
+        const existingReview = db.prepare(checkDuplicateQuery).get(user_id, book_id);
+        if (existingReview) {
+            return res.status(400).send('You have already added a review for this book.');
+        }
+
+        // Adaugă recenzia
+        db.prepare(insertQuery).run(user_id, book_id, rating);
         return res.status(201).send('Review added successfully!');
     } catch (error) {
         console.error('Error adding review: ', error.message);
@@ -47,15 +64,19 @@ router.post('/', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
-    const reviewId = req.params.id; 
-    const { rating } = req.body; 
-    
+router.put('/:id', verifyToken, (req, res) => {
+    const reviewId = req.params.id;
+    const { rating } = req.body;
+
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+        return res.status(400).send('Rating must be a number between 1 and 5.');
+    }
+
     const q = 'UPDATE reviews SET rating = ? WHERE id = ?';
-    
+
     try {
         const result = db.prepare(q).run(rating, reviewId);
-        
+
         if (result.changes > 0) {
             return res.send('Review updated successfully!');
         } else {
@@ -67,9 +88,7 @@ router.put('/:id', (req, res) => {
     }
 });
 
-
-
-router.delete('/:id', (req, res) => {
+router.delete('/:id', verifyToken, (req, res) => {
     const reviewId = req.params.id;
     const q = 'DELETE FROM reviews WHERE id = ?';
     try {

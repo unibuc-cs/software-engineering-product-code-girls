@@ -202,4 +202,8 @@ router.post("/logout", (req, res) => {
   }
 });
 
+router.get("/verify-token", verifyToken, (req, res) => {
+  return res.status(200).json({ success: true, message: "Token is valid." });
+});
+
 export default router;

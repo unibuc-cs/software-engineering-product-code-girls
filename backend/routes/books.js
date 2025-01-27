@@ -47,13 +47,13 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", verifyToken, isAdmin, (req, res) => {
-  const { category_id, title, author, description } = req.body;
+  const { category_id, title, author, description, cover_image } = req.body;
   if (!category_id || !title || !author || !description) {
     return res.status(400).send("All the fields must be completed!");
   }
-  const q = "INSERT INTO books(`category_id`, `title`, `author`, `description`) VALUES (?,?,?,?)";
+  const q = "INSERT INTO books(`category_id`, `title`, `author`, `description`, `cover_image`) VALUES (?,?,?,?,?)";
   try {
-    db.prepare(q).run(category_id, title, author, description);
+    db.prepare(q).run(category_id, title, author, description, cover_image || null);
     return res.status(200).send("The book was added to the database!");
   } catch (error) {
     console.error("There occurred an error in the process of adding the book: ", error.message);
@@ -63,10 +63,10 @@ router.post("/", verifyToken, isAdmin, (req, res) => {
 
 router.put("/:id", verifyToken, isAdmin, (req, res) => {
   const bookId = req.params.id;
-  const { category_id, title, author, description } = req.body;
-  const q = "UPDATE books SET category_id = ?, title = ?, author = ?, description = ? WHERE id = ?";
+  const { category_id, title, author, description, cover_image } = req.body;
+  const q = "UPDATE books SET category_id = ?, title = ?, author = ?, description = ?, cover_image = ? WHERE id = ?";
   try {
-    const result = db.prepare(q).run(category_id, title, author, description, bookId);
+    const result = db.prepare(q).run(category_id, title, author, description, cover_image || null, bookId);
     if (result.changes > 0) {
       res.send("The book was updated!");
     } else {

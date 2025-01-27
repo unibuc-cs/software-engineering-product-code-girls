@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import RegistrationPage from "./pages/Registration";
 import LoginPage from "./pages/Login";
 
+import Layout from './pages/Layout';
 import ProfilePage from './pages/Profile';
 import ProfilePicture from './pages/AddProfilePicture'
 import {UserProvider}  from './pages/UserContext';
@@ -38,6 +39,7 @@ function App() {
          <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
+      <Route element={<Layout />}>
           <Route path="/profile" element={<ProfilePage/>}/>
           <Route path="/picture" element={<ProfilePicture/>}/>
       
@@ -54,16 +56,16 @@ function App() {
           <Route path="/books/update/:id" element={<UpdateBook />} />
 
           <Route path="/reviews/:id" element={<ShowReviews />} />
-          <Route path="/reviews/add" element={<AddReview />} />
+          <Route path="/reviews/add/:bookId" element={<AddReview />} />
           <Route path="/review/update/:id" element={<UpdateReview />} />
 
           <Route path="/comments/:id" element={<ShowComments />} />
-          <Route path="/comments/add" element={<AddComment />} />
+          <Route path="/comments/add/:bookId" element={<AddComment />} />
           <Route path="/comment/update/:id" element={<UpdateComment />} />
        
           <Route path="/toread" element={<BooksToRead/>}/>
            <Route path="/read" element={<BooksRead/>}/>
-
+      </Route>
        
           </Routes>
         </UserProvider>

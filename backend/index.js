@@ -1,19 +1,22 @@
 import multer from "multer";
 import path from 'path';
 import fs from 'fs';
-import express from "express"
-import bookRoutes from "./routes/books.js"
-import categoryRoutes from "./routes/categories.js"
-import userRoutes from "./routes/authentification.js"
+import express from "express";
+import bookRoutes from "./routes/books.js";
+import categoryRoutes from "./routes/categories.js";
+import userRoutes from "./routes/authentification.js";
 import roleRoutes from "./routes/userRole.js"
 import reviewRoutes from "./routes/reviews.js";
 import commentRoutes from "./routes/comments.js"; 
 import Users from "./routes/users.js";
 import cors from "cors"
 import dotenv from 'dotenv';
-import updateProfileRouter from "./routes/profile-picture.js";
+import updateProfileRouter from './routes/profile-picture.js';
 import libraryRoutes from "./routes/library.js";
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 dotenv.config();
@@ -30,15 +33,19 @@ app.use("/users", userRoutes);
 
 app.use("/member", Users);
 
+app.use("/auth", userRoutes);
+
 app.use("/userrole", roleRoutes);
 
 app.use("/comments", commentRoutes);
 
 app.use("/reviews", reviewRoutes);
 
-app.use("/api", updateProfileRouter);
+app.use('/api', updateProfileRouter);
 
 app.use("/library", libraryRoutes);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {

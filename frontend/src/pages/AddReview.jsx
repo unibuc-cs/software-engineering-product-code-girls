@@ -1,20 +1,38 @@
-import  { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddReview = () => {
-    const [rating, setRating] = useState("");  
-    const [isLoggedIn, setIsLoggedIn] = useState(false);  
-    const [errorMessage, setErrorMessage] = useState("");  
-    const navigate = useNavigate();  
+    const { bookId } = useParams(); // Obține ID-ul cărții din URL
+    const [rating, setRating] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const checkLoginStatus = () => {
-            const userId = localStorage.getItem("userId");
-            if (userId) {
-                setIsLoggedIn(true);  
-            } else {
-                setErrorMessage("You must be logged in to add a review.");  
+        const checkLoginStatus = async () => {
+            const token = localStorage.getItem("accessToken");
+            console.log("Token from localStorage:", token);
+            if (!token) {
+                setErrorMessage("You must be logged in to add a review.");
+                return;
+            }
+
+            try {
+                const res = await axios.get("http://localhost:8081/auth/verify-token", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log("Token verification response:", res.data);
+                if (res.status === 200) {
+                    setIsLoggedIn(true);
+                } else {
+                    setErrorMessage("You must be logged in to add a review.");
+                }
+            } catch (error) {
+                console.error("Error verifying login status:", error.response || error.message);
+                setErrorMessage("You must be logged in to add a review.");
             }
         };
 
@@ -22,41 +40,60 @@ const AddReview = () => {
     }, []);
 
     const handleRatingChange = (e) => {
-        setRating(e.target.value);  
+        setRating(e.target.value);
+        console.log("Rating changed to:", e.target.value);
     };
 
     const handleClick = async (e) => {
         e.preventDefault();
+
+        console.log("Add Review button clicked");
 
         if (!rating || isNaN(rating) || rating < 1 || rating > 5) {
             alert("Please provide a valid rating between 1 and 5.");
             return;
         }
 
-        if (!isLoggedIn) {
+        const token = localStorage.getItem("accessToken");
+        if (!token) {
             setErrorMessage("You must be logged in to add a review.");
             return;
         }
 
-        const userId = localStorage.getItem("userId");
-        const bookId = localStorage.getItem("bookId");
+        console.log("Token found for adding review:", token);
+
+        if (!bookId) {
+            alert("No book selected. Please try again.");
+            return;
+        }
+
+        console.log("Book ID from useParams:", bookId);
 
         try {
-            const response = await axios.post("http://localhost:8081/reviews", {
-                book_id: bookId,
-                user_id: userId,
-                rating: parseFloat(rating), 
-            });
+            const response = await axios.post(
+                "http://localhost:8081/reviews",
+                {
+                    book_id: bookId,
+                    rating: parseFloat(rating),
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            console.log("Response from adding review:", response.data);
 
             if (response.status === 201) {
-                alert("Review added successfully!");  
-                navigate(`/reviews/${bookId}`); 
+                alert("Review added successfully!");
+                navigate(`/reviews/${bookId}`);
             } else {
-                setErrorMessage("Failed to add review.");
+                setErrorMessage("Failed to add review. Server response was not successful.");
             }
         } catch (error) {
-            console.error("Error adding review: ", error);
-            setErrorMessage("An error occurred while adding the review.");
+            console.error("Error adding review:", error.response?.data || error.message);
+            setErrorMessage(error.response?.data?.message || "An error occurred while adding the review.");
         }
     };
 
@@ -65,15 +102,19 @@ const AddReview = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1>Add a Review</h1>
-            <input
-                type="number"
-                placeholder="Rating (1-5)"
-                onChange={handleRatingChange}
-                value={rating}
-            />
-            <button onClick={handleClick}>Add Review</button>
+            <form className="login-form">
+                <input
+                    type="number"
+                    placeholder="Rating (1-5)"
+                    onChange={handleRatingChange}
+                    value={rating}
+                />
+                <div className="l_button" onClick={handleClick}>
+                    Add Review
+                </div>
+            </form>
         </div>
     );
 };

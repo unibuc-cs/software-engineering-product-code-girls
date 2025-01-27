@@ -13,41 +13,126 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.merriweather-black {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.merriweather-light-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.merriweather-regular-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.merriweather-bold-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.merriweather-black-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: rgba(247, 236, 236, 0.87);
   text-decoration: inherit;
+  font-size: medium;
 }
 a:hover {
-  color: #535bf2;
+  color: #8e424d;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  font-family: "Merriweather"; 
+  position: relative;
+  box-sizing: border-box; 
+  min-width: 100vw; 
+  overflow-x: hidden; 
+  overflow-y: auto;
   min-height: 100vh;
 }
 
+
 h1 {
-  font-size: 3.2em;
+  font-size: 3em;
   line-height: 1.1;
+  margin-top: 3rem;
+  color:rgba(247, 236, 236, 0.87);
+  text-align: center;
 }
+
+h2 {
+  color:#8e424d;
+  text-align: center;
+}
+
+
+
+.title{
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 11rem;
+  color:rgba(247, 236, 236, 0.87);
+}
+
+.subtitle{
+  font-size: 1.7em;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 1rem;
+  color:rgba(247, 236, 236, 0.87);
+}
+
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: medium;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #a94f50;
+  color:#f0e0db;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #964744;
+  text-decoration: underline;
 }
 button:focus,
 button:focus-visible {
@@ -56,13 +141,201 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #723939;
   }
   a:hover {
-    color: #747bff;
+    color: #fdeae8;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+
+/* Container pentru toate elementele (cărți, categorii etc.) */
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Aranjare în grilă */
+  gap: 20px; /* Spațiu între box-uri */
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+/* Box pentru fiecare item */
+.item-box {
+  background-color: #f3d1c7; /* Fundal deschis */
+  border: 1px solid #d19a9a; /* Bordură */
+  border-radius: 8px; /* Colțuri rotunjite */
+  padding: 15px;
+  text-align: center; /* Aliniere centrală */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră pentru efect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animație la hover */
+}
+
+/* Hover pentru box */
+.item-box:hover {
+  transform: scale(1.02); /* Mărește ușor box-ul */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Umbră mai accentuată */
+}
+
+/* Stilizare pentru imagini din box */
+.item-box img {
+  border-radius: 5px; /* Rotunjire pentru imagini */
+  margin: 10px 0;
+}
+
+/* Stilizare pentru butoane */
+.item-box button {
+  margin: 10px 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #db8d80; /* Culoare pentru butoane */
+  color: white;
+}
+
+.item-box button:hover {
+  background-color: #ce6061;
+}
+
+/* Linkuri din butoane */
+.item-box a {
+  color: white;
+  text-decoration: none;
+}
+
+.item-box a:hover {
+  text-decoration: underline;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; 
+  margin-top: 6px;
+}
+
+
+
+
+/* Stilizare pentru secțiunea de comentarii */
+.comments-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comment-box {
+  background-color: #f3d1c7;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-right: 300px;
+  margin-left: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.comment-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.comment-actions button:hover {
+  background-color: #0056b3;
+}
+
+/* Eliminare spațiu alb sub buton */
+.primary-button {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #a94f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background-color: #a94f50;
+}
+
+
+
+/* Secțiune pentru reviews */
+.reviews-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Box pentru fiecare review */
+.review-box {
+  background-color: #f3d1c7;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-right: 300px;
+  margin-left: 300px;
+  border-radius: 8px;
+  color: #723939;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container pentru acțiuni */
+.review-actions {
+  margin-top: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Butoane pentru update și delete */
+.review-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #c4595a;
+  color: white;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.review-actions button:hover {
+  background-color: #c4595a;
+}
+
+/* Text din review */
+.review-box p {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 200;
+  color: #792929;
+}
+
+
+.stars {
+  font-size: 2rem;
+  color: #f8a362; /* Culoare pentru steluțe pline */
+}
+
+.stars .empty {
+  color: #575353; /* Culoare pentru steluțe goale */
+}
+
+
+.b_books{
+  margin-top: auto;
+  margin-bottom: 1px;
 }
