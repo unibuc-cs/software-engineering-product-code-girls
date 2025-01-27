@@ -73,8 +73,8 @@ const ToRead = () => {
               <h2>{book.title}</h2>
               <p><strong>Author:</strong> {book.author}</p>
               <p>{book.description}</p>
-              <button className="delete" onClick={() => handleClick1(book.id)}>Delete from your library</button>
-              <button className="update" onClick={() => handleClick2(book.id)}>Done to read</button>
+              <button className="b_books" onClick={() => handleClick1(book.id)}>Delete from your library</button>
+              <button className="b_books" onClick={() => handleClick2(book.id)}>Done to read</button>
             </div>
           ))
         )}

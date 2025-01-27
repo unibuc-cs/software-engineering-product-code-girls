@@ -333,3 +333,9 @@ button:focus-visible {
 .stars .empty {
   color: #575353; /* Culoare pentru steluțe goale */
 }
+
+
+.b_books{
+  margin-top: auto;
+  margin-bottom: 1px;
+}
