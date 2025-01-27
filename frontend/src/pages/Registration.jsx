@@ -16,28 +16,24 @@ const Registration = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      // Validare câmpuri
       if (!user.name || !user.password) {
         setError("Fields cannot be empty!");
         return;
       }
 
-      console.log("User data sent to register:", user); // Debugging
+      console.log("User data sent to register:", user);
 
-      // Înregistrează utilizatorul
       const registrationResponse = await axios.post("http://localhost:8081/users/register", {
         name: user.name,
         password: user.password,
       });
 
-      console.log("Registration response:", registrationResponse.data); // Debugging
+      console.log("Registration response:", registrationResponse.data); 
 
-      // Autentifică utilizatorul după înregistrare
       const response = await login({ name: user.name, password: user.password });
 
-      console.log("Login response after registration:", response); // Debugging
+      console.log("Login response after registration:", response); 
 
-      // Actualizează contextul utilizatorului
       updateUser({
         id: response.id,
         name: response.name,

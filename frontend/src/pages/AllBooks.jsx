@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Books = () => {
     const [books, setBooks] = useState([]);
+    const [filteredBooks, setFilteredBooks] = useState([]); 
+    const [searchTerm, setSearchTerm] = useState(""); 
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
@@ -34,12 +36,21 @@ const Books = () => {
             try {
                 const res = await axios.get("http://localhost:8081/books");
                 setBooks(res.data);
+                setFilteredBooks(res.data); 
             } catch (error) {
                 console.log(error);
             }
         };
         fetchAllBooks();
     }, []);
+
+    const handleSearch = () => {
+        const term = searchTerm.toLowerCase();
+        const filtered = books.filter((book) =>
+            book.title.toLowerCase().includes(term)
+        );
+        setFilteredBooks(filtered);
+    };
 
     const handleDelete = async (id) => {
         try {
@@ -54,7 +65,8 @@ const Books = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            window.location.reload();
+            setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+            setFilteredBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
         } catch (error) {
             console.error("Error deleting book:", error);
         }
@@ -62,10 +74,22 @@ const Books = () => {
 
     return (
         <>
-            <h1>Books</h1>
+            <h1 style={{marginBottom: "8px"}}>Books</h1>
             <br />
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search books by title..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+                <button className="search-button" onClick={handleSearch}>
+                    🔍
+                </button>
+            </div>
             <div className="items-container">
-                {books.map(book => (
+                {filteredBooks.map(book => (
                     <div className="item-box" key={book.id}>
                         {book.cover_image && (
                             <img src={book.cover_image} alt={book.title} style={{ maxWidth: "250px", height: "auto" }} />

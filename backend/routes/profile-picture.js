@@ -9,22 +9,20 @@ const router = express.Router();
 const dbPath = resolve('database/database.db');
 const db = new Database(dbPath);
 
-// Configurare Multer pentru încărcare fișiere
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads'); // Folderul unde se salvează imaginile
+    cb(null, './uploads'); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Nume unic pentru fiecare fișier
+    cb(null, Date.now() + path.extname(file.originalname)); 
   }
 });
 
 const upload = multer({ storage });
 
-// Ruta pentru actualizarea imaginii de profil
 router.post('/update-profile-picture', verifyToken, upload.single('profilePicture'), (req, res) => {
-  const userId = req.user.id; // ID-ul utilizatorului obținut din tokenul de autentificare
-  const profilePicturePath = `/uploads/${req.file.filename}`; // Calea imaginii încărcate
+  const userId = req.user.id; 
+  const profilePicturePath = `/uploads/${req.file.filename}`; 
 
   if (!userId || !req.file) {
     return res.status(400).send('User ID and profile picture are required.');
@@ -48,7 +46,6 @@ router.post('/update-profile-picture', verifyToken, upload.single('profilePictur
   }
 });
 
-// Servirea imaginilor din folderul "uploads"
 router.use('/uploads', express.static('uploads'));
 
 export default router;

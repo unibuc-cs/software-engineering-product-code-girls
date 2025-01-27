@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AddComment = () => {
-    const { bookId } = useParams(); // Obține ID-ul cărții din URL
+    const { bookId } = useParams();
     const [content, setContent] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +59,7 @@ const AddComment = () => {
         try {
             const response = await axios.post(
                 "http://localhost:8081/comments",
-                { book_id: bookId, content: content.trim() }, // Folosim bookId din useParams
+                { book_id: bookId, content: content.trim() }, 
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ const AddComment = () => {
 
             if (response.status === 201) {
                 alert("Comment added successfully!");
-                navigate(`/books/${bookId}`); // Redirecționare către ShowBook
+                navigate(`/books/${bookId}`); 
             } else {
                 setErrorMessage("Failed to add comment.");
             }

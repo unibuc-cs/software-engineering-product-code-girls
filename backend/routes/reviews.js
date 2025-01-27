@@ -1,7 +1,7 @@
 import express from 'express';
 import Database from 'better-sqlite3';
 import { resolve } from 'path';
-import { verifyToken } from './authentification.js'; // Asigură-te că ai middleware-ul `verifyToken`
+import { verifyToken } from './authentification.js'; 
 
 const router = express.Router();
 const dbPath = resolve('database/database.db');
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', verifyToken, (req, res) => {
     const { book_id, rating } = req.body;
-    const user_id = req.user.id; // Obține `user_id` din token
+    const user_id = req.user.id; 
 
     if (!book_id || !rating) {
         return res.status(400).send('All fields are required!');
@@ -49,13 +49,11 @@ router.post('/', verifyToken, (req, res) => {
     `;
 
     try {
-        // Verifică dacă utilizatorul a adăugat deja o recenzie pentru această carte
         const existingReview = db.prepare(checkDuplicateQuery).get(user_id, book_id);
         if (existingReview) {
             return res.status(400).send('You have already added a review for this book.');
         }
 
-        // Adaugă recenzia
         db.prepare(insertQuery).run(user_id, book_id, rating);
         return res.status(201).send('Review added successfully!');
     } catch (error) {

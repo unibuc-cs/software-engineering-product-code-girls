@@ -20,61 +20,55 @@ router.get("/", (req, res) => {
 });
 
 router.get("/id/:user_id", (req, res) => {
-    const { user_id } = req.params; // Extrage valoarea direct
+    const { user_id } = req.params; 
     const q = "SELECT * FROM library WHERE user_id = ?";
 
     try {
-        // Validare pentru user_id
+
         if (!user_id) {
             console.error("Invalid user id provided.");
             return res.status(400).send("Invalid user ID.");
         }
 
-        // Execută interogarea
+
         const book = db.prepare(q).all(user_id);
 
         if (book) {
-            // Returnează cartea găsită
             return res.json(book);
         } else {
-            // Niciun rezultat găsit
+
             res.status(404).send(`No books found for user with ID ${user_id}.`);
         }
     } catch (error) {
-        // Gestionarea erorilor
         console.error("There is an error in get userid: ", error.message);
         res.status(500).send("There is an error processing your request.");
     }
 });
 
 router.get("/:user_id/:book_id", (req, res) => {
-    const { user_id, book_id } = req.params; // Extrage parametrii din URL
+    const { user_id, book_id } = req.params;
     const q = "SELECT * FROM library WHERE user_id = ? AND book_id = ?";
 
     try {
         if( !book_id) {
             return res.status(440).send("Invalid user or book id.");
         }
-        // Execută interogarea
         const book = db.prepare(q).get(user_id, book_id);
 
         if (book) {
-            // Returnează cartea găsită
             res.json(book);
         } else {
             return res.status(450).send("The book is not in your library.");
      }
     } catch (error) {
-        // Tratează erorile interne
         console.error("There is an error in userid+bookid : ", error.message);
         res.status(500).send("There is an error processing your request.");
     }
 });
 
 
-//verifyToken
 router.post("/add", async (req, res) => {
-    const { user_id, book_id } = req.body; // Destructurează valorile din body
+    const { user_id, book_id } = req.body; 
     //const checkQuery = "SELECT * FROM library WHERE user_id = ? ";
     const insertQuery = "INSERT INTO library(`user_id`, `book_id`) VALUES (?, ?)";
 
@@ -86,7 +80,6 @@ router.post("/add", async (req, res) => {
         //      return res.status(400).json({ message: "The book is already in your library." });
         //  }
 
-        // Adaugă cartea în tabel
         db.prepare(insertQuery).run(user_id, book_id);
         return res.status(200).json({ message: "The book was added to your library!" });
     } catch (error) {

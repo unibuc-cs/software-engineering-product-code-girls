@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([]); 
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -36,12 +38,21 @@ const Categories = () => {
       try {
         const res = await axios.get("http://localhost:8081/categories");
         setCategories(res.data);
+        setFilteredCategories(res.data); 
       } catch (error) {
         console.log(error);
       }
     };
     fetchAllCategories();
   }, []);
+
+  const handleSearch = () => {
+    const term = searchTerm.toLowerCase();
+    const filtered = categories.filter((category) =>
+      category.name.toLowerCase().includes(term)
+    );
+    setFilteredCategories(filtered);
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -56,7 +67,12 @@ const Categories = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      window.location.reload();
+      setCategories((prevCategories) =>
+        prevCategories.filter((category) => category.id !== id)
+      );
+      setFilteredCategories((prevCategories) =>
+        prevCategories.filter((category) => category.id !== id)
+      );
     } catch (error) {
       console.error("Error deleting category:", error);
     }
@@ -65,8 +81,20 @@ const Categories = () => {
   return (
     <>
       <h1>Categories</h1>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search categories by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <button className="search-button" onClick={handleSearch}>
+          🔍
+        </button>
+      </div>
       <div className="categories-container">
-        {categories.map((category) => (
+        {filteredCategories.map((category) => (
           <div className="category-box" key={category.id}>
             <h2>{category.name}</h2>
             {isAdmin && (
@@ -90,7 +118,9 @@ const Categories = () => {
         ))}
         {isAdmin && (
           <button>
-            <Link to="/categories/add" style={{fontSize: "large"}}>Add new category!</Link>
+            <Link to="/categories/add" style={{ fontSize: "large" }}>
+              Add new category!
+            </Link>
           </button>
         )}
       </div>

@@ -1,13 +1,12 @@
 import express from 'express';
 import Database from 'better-sqlite3';
 import { resolve } from 'path';
-import { verifyToken } from './authentification.js'; // Middleware-ul pentru autentificare
+import { verifyToken } from './authentification.js'; 
 
 const router = express.Router();
 const dbPath = resolve('database/database.db');
 const db = new Database(dbPath);
 
-// Obține toate comentariile pentru o carte specifică
 router.get('/:id', (req, res) => {
     const bookId = req.params.id;
     const q = `
@@ -30,10 +29,10 @@ router.get('/:id', (req, res) => {
     }
 });
 
-// Adaugă un comentariu (necesită autentificare)
+
 router.post('/', verifyToken, (req, res) => {
     const { book_id, content } = req.body;
-    const user_id = req.user.id; // Obține `user_id` din token
+    const user_id = req.user.id; 
 
     if (!book_id || !content) {
         return res.status(400).send('All fields are required!');
@@ -49,7 +48,7 @@ router.post('/', verifyToken, (req, res) => {
     }
 });
 
-// Actualizează un comentariu (necesită autentificare)
+
 router.put('/:id', verifyToken, (req, res) => {
     const commentId = req.params.id;
     const { content } = req.body;
@@ -77,7 +76,7 @@ router.put('/:id', verifyToken, (req, res) => {
     }
 });
 
-// Șterge un comentariu (necesită autentificare)
+
 router.delete('/:id', verifyToken, (req, res) => {
     const commentId = req.params.id;
 

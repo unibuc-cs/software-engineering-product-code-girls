@@ -12,7 +12,7 @@ const ShowBook = () => {
         cover_image: "",
     });
 
-    const [categoryName, setCategoryName] = useState(""); // Nume categorie
+    const [categoryName, setCategoryName] = useState(""); 
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
@@ -23,7 +23,6 @@ const ShowBook = () => {
 comments.forEach((comment) => {
     console.log(`Comment ID: ${comment.id}, User ID: ${comment.user_id}, Content: ${comment.content}`);
 });
-    // Fetch book details
     useEffect(() => {
         const fetchBook = async () => {
             try {
@@ -37,13 +36,13 @@ comments.forEach((comment) => {
         fetchBook();
     }, [id]);
 
-    // Fetch category name
+
     useEffect(() => {
         if (book.category_id) {
             const fetchCategory = async () => {
                 try {
                     const res = await axios.get(`http://localhost:8081/categories/${book.category_id}`);
-                    setCategoryName(res.data.name); // Presupunem că răspunsul conține numele categoriei sub `name`
+                    setCategoryName(res.data.name);
                 } catch (error) {
                     console.error("Error fetching the category name:", error);
                 }
@@ -53,7 +52,7 @@ comments.forEach((comment) => {
         }
     }, [book.category_id]);
 
-    // Fetch comments
+
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -67,7 +66,7 @@ comments.forEach((comment) => {
         fetchComments();
     }, [id]);
 
-    // Fetch reviews and calculate the average rating
+
     useEffect(() => {
         const fetchReviews = async () => {
             try {

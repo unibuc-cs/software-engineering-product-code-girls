@@ -5,8 +5,7 @@ import axios from 'axios';
 const ShowComments = () => {
     const [comments, setComments] = useState([]);
     const { id } = useParams();
-    const loggedInUserId = localStorage.getItem("userId"); // Retrieve logged-in user ID
-
+    const loggedInUserId = localStorage.getItem("userId"); 
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -30,11 +29,9 @@ const ShowComments = () => {
     };
 
     const handleUpdate = async (commentId) => {
-        // Find the comment that is being updated
         const commentToUpdate = comments.find(comment => comment.id === commentId);
     
         if (commentToUpdate) {
-            // Check if the logged-in user is the owner of the comment
             if (loggedInUserId === String(commentToUpdate.user_id)) {
                 const newContent = prompt("Enter the new content for the comment:");
                 if (newContent) {
@@ -51,7 +48,6 @@ const ShowComments = () => {
                     }
                 }
             } else {
-                // If the user is not authorized to update, show an error message
                 alert("You are not authorized to update this comment.");
             }
         }

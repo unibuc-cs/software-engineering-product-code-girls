@@ -71,7 +71,7 @@ router.post("/register", (req, res) => {
     res.status(201).json({
       id: result.lastInsertRowid,
       name,
-      profile_picture: "", // Default profile picture
+      profile_picture: "", 
     });
   } catch (error) {
     console.error("Error registering user:", error.message);

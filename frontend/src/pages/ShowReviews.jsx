@@ -6,10 +6,9 @@ import { useUser } from './UserContext';
 const ShowReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
-    const { user } = useUser(); // Utilizează UserContext pentru utilizatorul logat
+    const { user } = useUser(); 
     const loggedInUserId = user?.id || localStorage.getItem("userId");
 
-    // Fetch reviews
     useEffect(() => {
         const fetchReviews = async () => {
             try {

@@ -11,7 +11,7 @@ const Read = () => {
       try {
         const response = await axios.get(`http://localhost:8081/library/id/${user.id}`);
         const bookIds = response.data
-          .filter(book => book.readit === 1) // Preia doar cărțile citite
+          .filter(book => book.readit === 1) 
           .map(book => book.book_id);
 
         const fetchedBooks = [];

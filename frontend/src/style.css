@@ -46,19 +46,18 @@ input{
     color: white;
 }
 
-/* Stilizare generală pentru navbar */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e3ac9d; /* Culoare de fundal */
+  background-color: #e3ac9d; 
   padding: 15px 20px;
   border-bottom: 2px solid #da9784;
 }
 
-/* Linkuri din navbar */
 .nav-link {
-  text-decoration: none; /* Eliminăm sublinierea */
+  text-decoration: none; 
   color: #b23b4d;
   margin-right: 15px;
   font-size: 19px;
@@ -66,16 +65,16 @@ input{
 }
 
 .nav-link:hover {
-  color: #90303f; /* Culoare pe hover */
+  color: #90303f; 
 }
 
-/* Grupare pentru partea stângă și dreaptă a navbar-ului */
+
 .navbar-left, .navbar-right {
   display: flex;
   align-items: center;
 }
 
-/* Logout button */
+
 .logout-button {
   background-color: #ff4d4d;
   border: none;
@@ -94,16 +93,16 @@ input{
 .login-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrare pe orizontală */
-    justify-content: center; /* Centrare pe verticală */
-    height: 85vh; /* Înălțimea ecranului */
+    align-items: center; 
+    justify-content: center; 
+    height: 85vh;
   }
   
   .login-form {
     display: flex;
-    flex-direction: column; /* Elemente în coloană */
-    gap: 15px; /* Spațiere între elemente */
-    width: 300px; /* Lățime fixă pentru formular */
+    flex-direction: column;
+    gap: 15px; 
+    width: 300px; 
   }
   
   input {
@@ -141,47 +140,46 @@ input{
   }
   
 
-  /* Container pentru toate categoriile */
 .categories-container {
-  display: grid; /* Folosim un grid pentru aranjare uniformă */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Categoriile se redimensionează */
-  gap: 20px; /* Spațiu între categorii */
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; 
   padding: 20px;
 }
 
-/* Box pentru fiecare categorie */
+
 .category-box {
-  background-color: #f3d1c7; /* Fundal deschis */
-  border: 1px solid rgb(209, 154, 154)1c7; /* Bordură gri deschis */
-  border-radius: 8px; /* Colțuri rotunjite */
+  background-color: #f3d1c7; 
+  border: 1px solid rgb(209, 154, 154)1c7;
+  border-radius: 8px; 
   padding: 15px;
-  text-align: center; /* Aliniere centrală */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră pentru efect */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animație pe hover */
+  text-align: center; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
-/* Hover pentru box */
+
 .category-box:hover {
-  transform: scale(1.02); /* Mărește ușor box-ul */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Umbră mai puternică pe hover */
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
 }
 
-/* Stilizare pentru butoane */
+
 .category-box button {
-  margin: 10px 5px; /* Spațiere între butoane */
+  margin: 10px 5px; 
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #db8d80; /* Albastru pentru butoane */
+  background-color: #db8d80; 
   color: white;
 }
 
 .category-box button:hover {
-  background-color: #ce6061; /* Albastru mai închis pe hover */
+  background-color: #ce6061; 
 }
 
-/* Linkurile din butoane */
+
 .category-box a {
   color: white;
   text-decoration: none;
