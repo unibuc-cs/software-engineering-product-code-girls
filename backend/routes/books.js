@@ -80,9 +80,23 @@ router.put("/:id", verifyToken, isAdmin, (req, res) => {
 
 router.delete("/:id", verifyToken, isAdmin, (req, res) => {
   const bookId = req.params.id;
-  const q = "DELETE FROM books WHERE id = ?";
+
   try {
-    const result = db.prepare(q).run(bookId);
+    const deleteReviews = db.prepare("DELETE FROM reviews WHERE book_id = ?");
+    deleteReviews.run(bookId);
+
+    const deleteComments = db.prepare("DELETE FROM comments WHERE book_id = ?");
+    deleteComments.run(bookId);
+
+    const deleteLibrary = db.prepare("DELETE FROM library WHERE book_id = ?");
+    deleteLibrary.run(bookId);
+
+    const deleteUserBooks = db.prepare("DELETE FROM userbooks WHERE book_id = ?");
+    deleteUserBooks.run(bookId);
+
+    const deleteBook = db.prepare("DELETE FROM books WHERE id = ?");
+    const result = deleteBook.run(bookId);
+
     if (result.changes > 0) {
       res.send("The book was removed from the database!");
     } else {
@@ -93,5 +107,6 @@ router.delete("/:id", verifyToken, isAdmin, (req, res) => {
     return res.status(500).send("There occurred an error in the process of deleting the book!");
   }
 });
+
 
 export default router;

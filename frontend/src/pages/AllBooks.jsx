@@ -57,24 +57,31 @@ const Books = () => {
             const token = localStorage.getItem("accessToken");
             if (!token) {
                 console.error("No token found. Please log in.");
+                alert("You must be logged in to perform this action.");
                 return;
             }
-
+    
             await axios.delete(`http://localhost:8081/books/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`, 
                 },
             });
-            setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
-            setFilteredBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+            window.location.reload();
         } catch (error) {
             console.error("Error deleting book:", error);
+    
+            if (error.response?.status === 403) {
+                alert("You do not have permission to delete this book.");
+            } else {
+                alert("Failed to delete the book. Please try again.");
+            }
         }
     };
+    
 
     return (
         <>
-            <h1 style={{marginBottom: "8px"}}>Books</h1>
+            <h1>Books</h1>
             <br />
             <div className="search-container">
                 <input
@@ -88,25 +95,25 @@ const Books = () => {
                     🔍
                 </button>
             </div>
-            <div className="items-container">
-                {filteredBooks.map(book => (
-                    <div className="item-box" key={book.id}>
-                        {book.cover_image && (
-                            <img src={book.cover_image} alt={book.title} style={{ maxWidth: "250px", height: "auto" }} />
-                        )}
-                        <h2>{book.title}</h2>
-                        <h3>{book.author}</h3>
-                        <p>{book.description}</p>
-                        {isAdmin && (
-                            <>
-                                <button className="delete" onClick={() => { handleDelete(book.id) }}>Delete</button>
-                                <button className="update"><Link to={`/books/update/${book.id}`}>Update</Link></button>
-                            </>
-                        )}
-                        <button className="details"><Link to={`/books/${book.id}`}>Details</Link></button>
-                    </div>
-                ))}
-            </div>
+             <div className="items-container">
+                    {filteredBooks.map(book => (
+                        <div className="item-box" key={book.id}>
+                            {book.cover_image && (
+                                    <img src={book.cover_image} alt={book.title} style={{ maxWidth: "250px", height: "auto" }} />
+                            )}
+                             <h2>{book.title}</h2>
+                            <h3>{book.author}</h3>
+                            <p>{book.description}</p>
+                            {isAdmin && (
+                                <>
+                                    <button className="delete" onClick={() => { handleDelete(book.id) }}>Delete</button>
+                                    <button className="update"><Link to={`/books/update/${book.id}`}>Update</Link></button>
+                                </>
+                            )}
+                           <button className="details"><Link to={`/books/${book.id}`}>Details</Link></button>
+                        </div>
+                    ))}
+                </div>
             {isAdmin && (
                 <button style={{marginTop:"35px"}}><Link to="/books/add" style={{fontSize: "large"}}>Add new book</Link></button>
             )}
