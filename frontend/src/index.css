@@ -148,47 +148,43 @@ button:focus-visible {
   }
 }
 
-
-/* Container pentru toate elementele (cărți, categorii etc.) */
 .items-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Aranjare în grilă */
-  gap: 20px; /* Spațiu între box-uri */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
   padding-left: 60px;
   padding-right: 60px;
 }
 
-/* Box pentru fiecare item */
 .item-box {
-  background-color: #f3d1c7; /* Fundal deschis */
-  border: 1px solid #d19a9a; /* Bordură */
-  border-radius: 8px; /* Colțuri rotunjite */
+  background-color: #f3d1c7; 
+  border: 1px solid #d19a9a; 
+  border-radius: 8px; 
   padding: 15px;
-  text-align: center; /* Aliniere centrală */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră pentru efect */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animație la hover */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
-/* Hover pentru box */
 .item-box:hover {
-  transform: scale(1.02); /* Mărește ușor box-ul */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Umbră mai accentuată */
+  transform: scale(1.02); 
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
 }
 
-/* Stilizare pentru imagini din box */
+
 .item-box img {
-  border-radius: 5px; /* Rotunjire pentru imagini */
+  border-radius: 5px; 
   margin: 10px 0;
 }
 
-/* Stilizare pentru butoane */
+
 .item-box button {
   margin: 10px 5px;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #db8d80; /* Culoare pentru butoane */
+  background-color: #db8d80; 
   color: white;
 }
 
@@ -196,7 +192,6 @@ button:focus-visible {
   background-color: #ce6061;
 }
 
-/* Linkuri din butoane */
 .item-box a {
   color: white;
   text-decoration: none;
@@ -215,9 +210,6 @@ button:focus-visible {
 }
 
 
-
-
-/* Stilizare pentru secțiunea de comentarii */
 .comments-section {
   margin-top: 30px;
   padding: 20px;
@@ -256,7 +248,6 @@ button:focus-visible {
   background-color: #0056b3;
 }
 
-/* Eliminare spațiu alb sub buton */
 .primary-button {
   display: block;
   margin: 20px auto 0 auto;
@@ -273,15 +264,12 @@ button:focus-visible {
 }
 
 
-
-/* Secțiune pentru reviews */
 .reviews-section {
   margin-top: 30px;
   padding: 20px;
   border-radius: 10px;
 }
 
-/* Box pentru fiecare review */
 .review-box {
   background-color: #f3d1c7;
   padding: 15px;
@@ -293,14 +281,13 @@ button:focus-visible {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Container pentru acțiuni */
 .review-actions {
   margin-top: 10px;
   align-items: center;
   gap: 10px;
 }
 
-/* Butoane pentru update și delete */
+
 .review-actions button {
   padding: 5px 10px;
   border: none;
@@ -316,7 +303,6 @@ button:focus-visible {
   background-color: #c4595a;
 }
 
-/* Text din review */
 .review-box p {
   margin: 5px 0;
   font-size: 18px;
@@ -327,15 +313,54 @@ button:focus-visible {
 
 .stars {
   font-size: 2rem;
-  color: #f8a362; /* Culoare pentru steluțe pline */
+  color: #f8a362; 
 }
 
 .stars .empty {
-  color: #575353; /* Culoare pentru steluțe goale */
+  color: #575353; 
 }
 
 
 .b_books{
   margin-top: auto;
   margin-bottom: 1px;
+}
+
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 12px;
+  width: 40%;
+  border: 2px solid #f7b5b5;
+  border-radius: 5px;
+  border-radius:10px;
+  font-size: 16px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #da5151;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.search-button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #f9bcbc;
+  color: white;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #f38484;
 }

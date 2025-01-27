@@ -5,7 +5,7 @@ import { useUser } from './UserContext';
 import { useState } from 'react';
 
 const Login = () => {
-  const { user, updateUser } = useUser(); // Obține utilizatorul și funcția de actualizare din context
+  const { user, updateUser } = useUser(); 
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -16,9 +16,9 @@ const Login = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-        const response = await login(user); // login returnează token-ul
+        const response = await login(user); 
         if (response) {
-            localStorage.setItem("accessToken", response.accessToken); // Setează token-ul în localStorage
+            localStorage.setItem("accessToken", response.accessToken); 
             updateUser({
                 id: response.id,
                 name: response.name,

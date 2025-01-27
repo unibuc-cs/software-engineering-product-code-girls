@@ -4,7 +4,7 @@ import { useUser } from './UserContext';
 import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
-    const { user } = useUser(); // Obține întregul obiect user din context
+    const { user } = useUser(); 
     const [userData, setUser] = useState(null);
 
     console.log('Your id is ' + user.id);

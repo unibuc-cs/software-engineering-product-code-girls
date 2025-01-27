@@ -1,15 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// Crearea contextului pentru utilizator
 const UserContext = createContext();
 
-// Hook personalizat pentru a obține și actualiza datele utilizatorului
 export const useUser = () => {
-    return useContext(UserContext);  // Acesta va returna valorile din context
+    return useContext(UserContext);  
 };
 
-// Componenta care va învălui întreaga aplicație cu contextul
 // export const UserProvider = ({ children }) => {
 //     const [user, setUser] = useState({
 //         id: null,
@@ -18,26 +15,23 @@ export const useUser = () => {
 //         profile_picture: ''
 //     });
     export const UserProvider = ({ children }) => {
-    // Inițializează utilizatorul din sessionStorage (dacă există)
     const [user, setUser] = useState(() => {
         const storedUser = sessionStorage.getItem('user');
         return storedUser ? JSON.parse(storedUser) : { id: null, name: '', email: '', profile_picture: '' };
     });
 
-    // Salvează utilizatorul în sessionStorage la fiecare actualizare
     useEffect(() => {
         if (user && user.id) {
             sessionStorage.setItem('user', JSON.stringify(user));
         } else {
-            sessionStorage.removeItem('user'); // Șterge datele dacă utilizatorul nu este autentificat
+            sessionStorage.removeItem('user'); 
         }
     }, [user]);
 
     UserProvider.propTypes = {
-        children: PropTypes.node.isRequired, // 'children' este de tip 'node' și este necesar
+        children: PropTypes.node.isRequired, 
       };
 
-    // Actualizează datele utilizatorului
     const updateUser = (userData) => {
         setUser(prev => ({
             ...prev,
@@ -55,5 +49,5 @@ export const useUser = () => {
 };
 
 UserProvider.propTypes = {
-    children: PropTypes.node.isRequired, // 'children' este de tip 'node' și este necesar
+    children: PropTypes.node.isRequired, 
 };
