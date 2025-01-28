@@ -1,0 +1,49 @@
+@startuml
+set separator none
+title Software System - Containers
+
+left to right direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<SoftwareSystem.DatabaseSchema>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<User>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<SoftwareSystem.WebApplication>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam rectangle<<SoftwareSystem>> {
+  BorderColor #9a9a9a
+  FontColor #9a9a9a
+  shadowing false
+}
+
+rectangle "==User\n<size:10>[Person]</size>" <<User>> as User
+
+rectangle "Software System\n<size:10>[Software System]</size>" <<SoftwareSystem>> {
+  rectangle "==Web Application\n<size:10>[Container]</size>" <<SoftwareSystem.WebApplication>> as SoftwareSystem.WebApplication
+  rectangle "==Database Schema\n<size:10>[Container]</size>" <<SoftwareSystem.DatabaseSchema>> as SoftwareSystem.DatabaseSchema
+}
+
+User .[#707070,thickness=2].> SoftwareSystem.WebApplication : "<color:#707070>Uses"
+SoftwareSystem.WebApplication .[#707070,thickness=2].> SoftwareSystem.DatabaseSchema : "<color:#707070>Reads from and writes to"
+@enduml

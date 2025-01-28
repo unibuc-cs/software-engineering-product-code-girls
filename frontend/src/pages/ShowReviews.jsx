@@ -23,7 +23,6 @@ const ShowReviews = () => {
         fetchReviews();
     }, [id]);
 
-    // Handle delete review
     const handleDelete = async (reviewId) => {
         try {
             console.log("Deleting review with ID:", reviewId);
@@ -57,7 +56,6 @@ const ShowReviews = () => {
         }
     };
 
-    // Handle update review
     const handleUpdate = async (reviewId) => {
         console.log("Updating review with ID:", reviewId);
         const newRating = prompt("Enter the new rating (1-5):");
@@ -76,7 +74,6 @@ const ShowReviews = () => {
                     }
                 );
 
-                // Fetch updated reviews after update
                 const res = await axios.get(`http://localhost:8081/reviews/${id}`);
                 setReviews(res.data);
 
@@ -91,7 +88,7 @@ const ShowReviews = () => {
         }
     };
 
-    // Generate stars based on rating
+
     const renderStars = (rating) => {
         const fullStars = Math.floor(rating);
         const emptyStars = 5 - fullStars;
