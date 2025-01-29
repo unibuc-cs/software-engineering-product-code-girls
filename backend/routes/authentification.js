@@ -79,12 +79,6 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { name, password } = req.body;
-  if (!name || name.length < 3 || name.length > 20) {
-    return res.status(400).json({ success: false, message: "Username must be between 3 and 20 characters." });
-  }
-  if (!password || password.length < 5 || password.length > 20) {
-    return res.status(400).json({ success: false, message: "Password must be between 5 and 20 characters." });
-  }
   try {
     const query = "SELECT * FROM users WHERE name = ?";
     const user = db.prepare(query).get(name);
