@@ -71,7 +71,7 @@ Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pa
 Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
 
 # Class Diagram
-![class_diagr](https://github.com/user-attachments/assets/928c33e4-849b-482e-ab81-70a2bdd1714d)
+![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/UML.jpeg)
 
 
 # Use Case Diagram
