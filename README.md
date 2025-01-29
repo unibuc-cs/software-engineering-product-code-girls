@@ -62,7 +62,7 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 
 # Use Case Diagram
 
-![use_case_diagr](https://github.com/user-attachments/assets/0b961695-35f6-4f81-b0d8-d523db33e6b6)
+![use_case_diagr](Decision tree.png)
 
 
 
