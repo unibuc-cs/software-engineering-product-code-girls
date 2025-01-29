@@ -109,6 +109,7 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Descriere**: Testarea funcționalității componentelor backend la nivel de unitate, în mod izolat
    - **Scop**:Verificarea integrării și interacțiunilor dintre diferite părți ale aplicației, pentru a asigura un comportament consistent și corect pe întregul proces
    - **Rezultat**:
+     
      ![Rezultat](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/jest_results.png)
 
    **Comandă pentru rularea testelor unitare**:
@@ -128,6 +129,7 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Descriere**: Testarea performanței aplicației pentru a evalua viteza de încărcare a paginilor, eficiența resurselor și performanța generală. Lighthouse este un instrument automatizat care oferă evaluări pentru performanță, accesibilitate, SEO și bune practici.
    - **Scop**: Identificarea posibilelor îmbunătățiri pentru viteza de încărcare și optimizarea aplicației, în scopul de a îmbunătăți experiența utilizatorilor și de a minimiza timpii de încărcare ai paginilor.
    - **Rezultat**:
+
      ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/performance_results.png) 
 
 
