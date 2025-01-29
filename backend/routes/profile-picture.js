@@ -1,13 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { resolve } from 'path';
-import Database from 'better-sqlite3';
+import { db } from '../.config.js';
 import { verifyToken } from './authentification.js';
 
 const router = express.Router();
-const dbPath = resolve('database/database.db');
-const db = new Database(dbPath);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

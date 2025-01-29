@@ -1,6 +1,6 @@
-import multer from "multer";
+import dotenv from 'dotenv';
 import path from 'path';
-import fs from 'fs';
+import Database from 'better-sqlite3';
 import express from "express";
 import bookRoutes from "./routes/books.js";
 import categoryRoutes from "./routes/categories.js";
@@ -10,7 +10,6 @@ import reviewRoutes from "./routes/reviews.js";
 import commentRoutes from "./routes/comments.js"; 
 import Users from "./routes/users.js";
 import cors from "cors"
-import dotenv from 'dotenv';
 import updateProfileRouter from './routes/profile-picture.js';
 import libraryRoutes from "./routes/library.js";
 import { fileURLToPath } from 'url';
@@ -18,8 +17,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-dotenv.config();
 const app = express();
 
 app.use(express.json());

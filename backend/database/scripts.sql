@@ -7,6 +7,13 @@ CREATE TABLE books(
 
 drop table categories
 
-insert into roles (name) values ('admin'), ('user')
-select * from comments;
+insert into categories(name) values ('Classics'), ('Fiction')
+
+INSERT INTO users (name, password) VALUES ('Admin', '$2b$10$TlHTlxeIKCM7EBnxyLEwh.XW5T385majvPbjvIPw5kFQbi.pVxqBC');
+
+select * from categories;
+SELECT * from profile_picture;
+
+insert into userroles (user_id,role_id) values (6,1)
+
 
