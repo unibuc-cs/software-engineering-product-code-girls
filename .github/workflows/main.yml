@@ -57,9 +57,9 @@ jobs:
       # 8. Check if React app is running
       - name: Check if React app is running
         run: |
-          curl --fail http://localhost:3000 || exit 1
+          curl --fail http://localhost:5173 || exit 1
 
       # 9. Display URL for React App (Optional)
       - name: Display URL for React App
         run: |
-          echo "React app should be running at: http://localhost:3000"
+          echo "React app should be running at: http://localhost:5173"
