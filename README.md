@@ -113,14 +113,20 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
      ![Rezultat](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/jest_results.png)
 
    **Comandă pentru rularea testelor unitare**:
+   
    npm test
 ### 2. **Testarea End-to-End (E2E)** - **Cypress**
    - **Descriere**: Testarea completă a fluxurilor de utilizatori din aplicație, asigurându-se că toate interacțiunile și funcționalitățile critice se comportă așa cum se așteaptă în scenariile reale.
    - **Scop**: Verificarea corectitudinii fiecărei părți a aplicației
    - **Exemplu**:
      - User Flow: Add Book to ReadMe, Comment, and Mark as Read: Acesta testează un flux complet pentru un utilizator care se conectează, adaugă o carte la lista de citit, adaugă un comentariu și marchează cartea ca citită
-     - Rezultat:
-     ![](path_to_your_image.png)
+     - Rezultate:
+       
+     ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/e2e_3.png)
+
+     ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/e2e_1.png)
+
+     ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/e2e_2.png)
 
    **Comandă pentru rularea testelor E2E**:
    npx cypress open
