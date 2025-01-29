@@ -88,7 +88,7 @@ Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe po
 
 ![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.png)
 
-# Planul de testare
+# QA
 ## Obiectivele Testării
 1. **Testarea Unităților**:
    - Testarea funcțiilor backend pentru a ne asigura că fiecare unitate de cod funcționează corect în mod izolat
