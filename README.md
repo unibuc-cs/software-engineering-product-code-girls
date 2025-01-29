@@ -110,8 +110,7 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Scop**:Verificarea integrării și interacțiunilor dintre diferite părți ale aplicației, pentru a asigura un comportament consistent și corect pe întregul proces
    - **Exemplu**:
      - Testarea tuturor funcțiilor din backend pentru a valida comportamentele de procesare a datelor
-     - Rezultat:
-     ![](path_to_your_image.png)
+     ![Rezultat](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/jest_results.png)
 
    **Comandă pentru rularea testelor unitare**:
    npm test
