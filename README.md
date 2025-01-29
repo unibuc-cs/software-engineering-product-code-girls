@@ -129,6 +129,7 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
      ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/e2e_2.png)
 
    **Comandă pentru rularea testelor E2E**:
+   
    npx cypress open
 
 ### 3. **Testarea Performanței** - **Chrome Lighthouse**
@@ -136,7 +137,9 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Scop**: Identificarea posibilelor îmbunătățiri pentru viteza de încărcare și optimizarea aplicației, în scopul de a îmbunătăți experiența utilizatorilor și de a minimiza timpii de încărcare ai paginilor.
    - **Rezultat**:
 
-     ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/performance_results.png) 
+     ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/performance_results.png)
+
+   - **Observatii**: Performanța paginii este  mai slabă (scor 55), afectată de timpi mari de încărcare și un Speed Index ridicat. Deși interactivitatea și stabilitatea vizuală sunt acceptabile, pagina necesită optimizări precum reducerea dimensiunii resurselor, îmbunătățirea caching-ului.
 
 
  
