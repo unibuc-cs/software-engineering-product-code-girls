@@ -1,0 +1,64 @@
+name: Deploy Node.js + React App with Vite
+
+on:
+  push:
+    branches:
+      - setupENV
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production  # Specify that this is the production environment
+
+    steps:
+      # 1. Checkout the code from your repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'v20.18.0' 
+
+      # 3. Install dependencies for both frontend (React with Vite) and backend (Node.js)
+      - name: Install dependencies
+        run: |
+          cd frontend  
+          npm install
+          cd ../backend  
+          npm install
+
+      # 4. Set environment variables using GitHub Secrets for Production
+      - name: Set environment variables (Production)
+        run: |
+            echo "ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }}" >> $GITHUB_ENV
+            echo "REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }}" >> $GITHUB_ENV
+            echo "DB_PATH=${{ secrets.DB_PATH }}" >> $GITHUB_ENV
+
+      # 5. Run the Node.js backend server (in the background)
+      - name: Start Node.js Server (Backend)
+        run: |
+          cd backend
+          nohup ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }} REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }} DB_PATH=${{ secrets.DB_PATH }} npm run start:prod &
+
+      # 6. Run the React app with Vite (Frontend) (in the background)
+      - name: Start React App (Frontend)
+        run: |
+          cd frontend
+          nohup npm run dev &
+
+      # 7. Wait for apps to start
+      - name: Wait for apps to start
+        run: |
+          sleep 20  # Increased wait time to ensure the apps have time to start
+
+      # 8. Check if React app is running
+      - name: Check if React app is running
+        run: |
+          curl --fail http://localhost:3000 || exit 1
+
+      # 9. Display URL for React App (Optional)
+      - name: Display URL for React App
+        run: |
+          echo "React app should be running at: http://localhost:3000"
