@@ -88,5 +88,53 @@ Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe po
 
 ![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.png)
 
+# Planul de testare
+## Obiectivele Testării
+1. **Testarea Unităților**:
+   - Testarea funcțiilor backend pentru a ne asigura că fiecare unitate de cod funcționează corect în mod izolat
+   - Asigurarea că datele sunt procesate corect la nivelul fiecărei componente sau funcții
+
+2. **Testarea End-to-End (E2E)**:
+   - Testarea completă a fluxurilor de utilizator
+   - Simularea acțiunilor utilizatorilor reali pentru a valida comportamentele aplicației în scenarii de utilizare reală
+
+3. **Testarea Performanței**:
+   - Evaluarea timpilor de încărcare a aplicației pentru a asigura o experiență rapidă și eficientă a utilizatorului
+  
+## Metodele Testării
+
+Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura că aplicația funcționează conform așteptărilor:
+
+### 1. **Testarea Unitară (Unit Testing)** - **Jest**
+   - **Descriere**: Testarea funcționalității componentelor backend la nivel de unitate, în mod izolat
+   - **Scop**:Verificarea integrării și interacțiunilor dintre diferite părți ale aplicației, pentru a asigura un comportament consistent și corect pe întregul proces
+   - **Exemplu**:
+     - Testarea tuturor funcțiilor din backend pentru a valida comportamentele de procesare a datelor
+     - Rezultat:
+     ![](path_to_your_image.png)
+
+   **Comandă pentru rularea testelor unitare**:
+   npm test
+### 2. **Testarea End-to-End (E2E)** - **Cypress**
+   - **Descriere**: Testarea completă a fluxurilor de utilizatori din aplicație, asigurându-se că toate interacțiunile și funcționalitățile critice se comportă așa cum se așteaptă în scenariile reale.
+   - **Scop**: Verificarea corectitudinii fiecărei părți a aplicației
+   - **Exemplu**:
+     - User Flow: Add Book to ReadMe, Comment, and Mark as Read: Acesta testează un flux complet pentru un utilizator care se conectează, adaugă o carte la lista de citit, adaugă un comentariu și marchează cartea ca citită
+     - Rezultat:
+     ![](path_to_your_image.png)
+
+   **Comandă pentru rularea testelor E2E**:
+   npx cypress open
+
+### 3. **Testarea Performanței** - **Chrome Lighthouse**
+   - **Descriere**: Testarea performanței aplicației pentru a evalua viteza de încărcare a paginilor, eficiența resurselor și performanța generală. Lighthouse este un instrument automatizat care oferă evaluări pentru performanță, accesibilitate, SEO și bune practici.
+   - **Scop**: Identificarea posibilelor îmbunătățiri pentru viteza de încărcare și optimizarea aplicației, în scopul de a îmbunătăți experiența utilizatorilor și de a minimiza timpii de încărcare ai paginilor.
+   - **Exemplu**:
+     ![](path_to_your_image.png) 
+
+
+ 
+
+
 
 
