@@ -8,7 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production  # Specify that this is the production environment
+    environment: production
+    workflow_dispatch: 
 
     steps:
       # 1. Checkout the code from your repository
