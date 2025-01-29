@@ -56,6 +56,20 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 14. Ca Administrator, vreau să creez, să actualizez și să șterg categorii de cărți (ex: ficțiune, știință, mister) astfel încât utilizatorii să poată găsi ușor cărțile după gen.
 15. Ca Utilizator, vreau să navighez cărțile după categorii (ex: ficțiune, mister) pentru a găsi genuri care îmi plac.
 
+# User Personas 
+
+## Andreea - Manager de proiect
+Andreea, în vârstă de 30 de ani, este manager de proiect într-o corporație. În timpul liber este pasionată de lectură și își dorește să descopere cărți de calitate și recenzii relevante care să o ajute în alegerea lecturilor. Ea citește atât ficțiune, cât și cărți de dezvoltare personală. Uneori, consideră că recenziile disponibile sunt subiective sau insuficient argumentate, ceea ce îngreunează procesul de selecție. Andreea este un utilizator activ de aplicații web și mobile și se descurcă foarte bine cu platformele digitale.
+
+## Maria - Elev
+Maria, în vârstă de 14 ani, este elevă în clasa a opta. Ea își dorește să țină o evidență a tuturor cărților pe care vrea să le citească în viitor, deoarece în prezent nu are atât de mult timp liber. În plus, vrea să găsească recomandări de cărți potrivite pentru vârsta și interesele ei. Găsește uneori dificil să aleagă cărți potrivite și este influențată de recenziile și sugestiile de carte de pe rețelele sociale. Se descurcă foarte bine în utilizarea aplicațiilor web și mobile și este obișnuită cu platformele digitale.
+
+## Ioana - Părinte
+Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pasionată de lectură și își dorește să poată discuta despre cărțile citite cu alte persoane. De asemenea, este interesată să descopere cărți potrivite pentru copilul său, astfel încât să îl încurajeze să citească mai mult. Uneori, găsește dificil să aleagă cărți de calitate și nu are mereu acces la o comunitate de cititori activi. Folosește aplicații web și mobile, dar preferă platformele intuitive și ușor de utilizat.
+
+## Mihai - Inginer software
+Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
+
 # Class Diagram
 ![class_diagr](https://github.com/user-attachments/assets/928c33e4-849b-482e-ab81-70a2bdd1714d)
 
