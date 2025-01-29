@@ -1,11 +1,9 @@
 import express from 'express';
-import Database from 'better-sqlite3';
-import { resolve } from 'path';
+import { db } from '../.config.js';
 import { verifyToken } from './authentification.js'; 
 
 const router = express.Router();
-const dbPath = resolve('database/database.db');
-const db = new Database(dbPath);
+
 
 router.get('/:id', (req, res) => {
     const bookId = req.params.id;

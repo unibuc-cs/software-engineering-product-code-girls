@@ -1,10 +1,6 @@
 import express from "express";
-import Database from 'better-sqlite3';
-import { resolve } from 'path';
-
 const router = express.Router();
-const dbPath = resolve('database/database.db');
-const db = new Database(dbPath);
+import { db } from '../.config.js';
 
 
 router.get("/", (req, res) => {
