@@ -73,6 +73,16 @@ Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe po
 # Class Diagram
 ![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/UML.jpeg)
 
+# C4 Diagram
+
+## System Context
+![System_Context](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-System_Context.png)
+
+## Containers
+![Containers](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-Containers.png)
+
+## Components
+![Components](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-Backend_Components.png)
 
 # Use Case Diagram
 
