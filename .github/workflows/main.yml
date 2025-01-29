@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - setupENV
+  workflow_dispatch: 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: production
-    workflow_dispatch: 
 
     steps:
       # 1. Checkout the code from your repository
