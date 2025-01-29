@@ -2,7 +2,6 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { db } from '../.config.js';
-import Database from 'better-sqlite3';
 import { verifyToken } from './authentification.js';
 
 const router = express.Router();
