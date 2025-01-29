@@ -120,7 +120,7 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Scop**: Verificarea corectitudinii fiecărei părți a aplicației
    - **Exemplu**:
      - User Flow: Add Book to ReadMe, Comment, and Mark as Read: Acesta testează un flux complet pentru un utilizator care se conectează, adaugă o carte la lista de citit, adaugă un comentariu și marchează cartea ca citită
-     - Rezultate:
+     - **Rezultate**:
        
      ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/e2e_3.png)
 
