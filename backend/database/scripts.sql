@@ -8,5 +8,5 @@ CREATE TABLE books(
 drop table categories
 
 insert into roles (name) values ('admin'), ('user')
-select * from books;
+select * from comments;
 
