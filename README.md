@@ -62,7 +62,7 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 
 # Use Case Diagram
 
-![use_case_diagr](Decision tree.png)
+![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.png)
 
 
 
