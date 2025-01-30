@@ -27,7 +27,11 @@ jobs:
           cd ../backend
           npm install
           npm rebuild better-sqlite3
-          npm run install-bcrypt
+          
+      - name: Rebuild bcrypt package
+        run: |
+            cd backend
+            npm rebuild bcrypt
 
       - name: Install pm2
         run: |
