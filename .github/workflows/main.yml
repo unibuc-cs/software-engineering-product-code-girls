@@ -31,7 +31,7 @@ jobs:
       - name: Rebuild bcrypt package
         run: |
             cd backend
-            npm rebuild bcrypt
+            npm install bcryptjs
 
       - name: Install pm2
         run: |
