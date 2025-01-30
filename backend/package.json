@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "start:prod": "cross-env NODE_ENV=production node index.js"
+    "start:prod": "start:prod": "set NODE_ENV=production && node index.js"
+"
   },
   "keywords": [],
   "author": "",
