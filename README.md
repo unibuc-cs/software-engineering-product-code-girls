@@ -167,6 +167,10 @@ Mediul de producție este utilizat pentru aplicația finală, care este disponib
 - **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.envProduction`, care conține setările pentru conexiunea la baza de date 
 - **Comandă pentru rularea aplicatiei finale**: npm run start:prod
 
+## CI/CD pipeline
+Am folosit un pipeline CI utilizând GitHub Actions pentru a automatiza procesul de validare al aplicației, pentru a fi ulterior pornit un job de deploy. Pipeline-ul se declanșează automat la fiecare push pe ramura `main`.
+
+
 
  
 
