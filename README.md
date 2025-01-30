@@ -226,7 +226,7 @@ Mediul de dezvoltare este folosit pentru a lucra la noile funcționalități și
 - **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.env`, care conține setările pentru conexiunea la baza de date 
 - **Comandă pentru rularea aplicatiei de dezvoltare**: npm start
 
-### 2.Production
+### 2. Production
 Mediul de producție este utilizat pentru aplicația finală, care este disponibilă pentru utilizatori. Aplicația rulează local.
 
 - **Baza de date**: Se utilizează baza de date de producție, care conține date reale și critice.
@@ -234,7 +234,9 @@ Mediul de producție este utilizat pentru aplicația finală, care este disponib
 - **Comandă pentru rularea aplicatiei finale**: npm run start:prod
 
 ## CI/CD pipeline
-Am folosit un pipeline CI utilizând GitHub Actions pentru a automatiza procesul de validare al aplicației, pentru a fi ulterior pornit un job de deploy. Pipeline-ul se declanșează automat la fiecare push pe ramura `main`.
+Am folosit ramuri separate pentru dezvoltarea noilor funcționalități și pentru corectarea bug-urilor. Fiecare ramură de feature a fost creată pe baza ramurii main, iar după finalizarea modificărilor, am realizat un merge în ramura principală.
+
+După trecerea testelor, am încercat să facem deploy-ul în producție pe o platformă specializată. Pipeline-ul, care se declanșează automat la fiecare push pe ramura main, a fost creat utilizând GitHub Actions și validează funcționarea aplicației, însă nu a încărcat nimic în mediul de producție.
 
 
 
