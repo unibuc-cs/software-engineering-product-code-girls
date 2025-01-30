@@ -38,7 +38,7 @@ jobs:
       # 6. Start React App (Frontend) 
       - name: Start React App (Frontend)
         run: |
-          cd ../frontend
+          cd frontend
           npm run dev
 
       # 7. Wait for apps to start (longer wait time to ensure both are running)
