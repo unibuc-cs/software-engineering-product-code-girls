@@ -34,25 +34,24 @@ jobs:
       - name: Start Node.js Server (Backend) on port 8081
         run: |
           cd backend
-          nohup npm run start:prod &  # sau folosește comanda personalizată pentru a porni backend-ul
+          nohup npm run start:prod &  # or use a custom command to start the backend server
 
       - name: Start React App (Frontend) on port 5173
         run: |
           cd frontend
-          nohup npm run dev &
+          nohup npm run dev &  # Start React app on port 5173
 
       - name: Install ngrok
         run: |
           npm install -g ngrok
           ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
 
-      - name: Start ngrok Tunnel for Frontend (Port 5173)
+      - name: Start ngrok Tunnel (One Tunnel for Both Frontend and Backend)
         run: |
-          ngrok http 5173 --name frontend &
-
-      - name: Start ngrok Tunnel for Backend (Port 8081)
-        run: |
-          ngrok http 8081 --name backend &
+          # Expose frontend on port 5173
+          ngrok http 5173 --host-header=localhost:5173 &  # Frontend tunnel
+          # Expose backend on port 8081
+          ngrok http 8081 --host-header=localhost:8081 &  # Backend tunnel
 
       - name: Wait for apps to start
         run: |
@@ -62,15 +61,19 @@ jobs:
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      - name: Display URL for React App
+      - name: Get ngrok Tunnel URLs
         run: |
+          # Fetch ngrok tunnel URLs using the API
           ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
-          echo "Access React app at ngrok URL: $ngrok_url_frontend"
-
-      - name: Display URL for Backend
-        run: |
           ngrok_url_backend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[1].public_url)
-          echo "Access Backend at ngrok URL: $ngrok_url_backend"
+          
+          echo "Frontend is available at: $ngrok_url_frontend"
+          echo "Backend API is available at: $ngrok_url_backend"
+          
+      - name: Display URLs for React App and Backend
+        run: |
+          echo "Access React app at: $ngrok_url_frontend"
+          echo "Access Backend API at: $ngrok_url_backend"
 
       - name: Keep apps running for 600 seconds
         run: |
