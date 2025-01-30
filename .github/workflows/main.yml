@@ -51,7 +51,7 @@ jobs:
         run: |
           cd frontend
           # Expose frontend on port 5173 via ngrok (only frontend exposed)
-          ngrok http 5173 --host-header=localhost:5173 --log=stdout &
+          ngrok http 5173
 
       - name: Wait for ngrok tunnel to initialize
         run: |
