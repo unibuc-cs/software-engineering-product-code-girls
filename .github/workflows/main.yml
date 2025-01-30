@@ -47,33 +47,22 @@ jobs:
           cd frontend
           pm2 start npm --name "frontend" -- run dev
 
-      # 7. Expose the React App using ngrok
-      - name: Expose React App with ngrok
-        run: |
-          npm install -g ngrok
-          ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
-          nohup ngrok http 5173 &
-
-      # 8. Wait for apps to start (longer wait time to ensure ngrok is ready)
+      # 7. Wait for apps to start (longer wait time to ensure both are running)
       - name: Wait for apps to start
         run: |
           sleep 10
 
-      # 9. Check if React app is running
+      # 8. Check if React app is running on localhost
       - name: Check if React app is running
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      # 10. Fetch and Display the ngrok URL for React App
-      - name: Display URL for React App
+      # 9. Keep the process alive for 10 minutes
+      - name: Keep apps running for 10 minutes
         run: |
-          echo "React app should be running at: http://localhost:5173"
-          for i in {1..10}; do
-            ngrok_url=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
-            if [ "$ngrok_url" != "null" ]; then
-              break
-            fi
-            echo "Waiting for ngrok URL..."
-            sleep 5
-          done
-          echo "Access React app at ngrok URL: $ngrok_url"
+          sleep 600  # 600 seconds = 10 minutes
+
+      # 10. Stop pm2 processes after the test
+      - name: Stop pm2 processes
+        run: |
+          pm2 stop all
