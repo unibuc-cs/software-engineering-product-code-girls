@@ -3,15 +3,15 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main 
-  workflow_dispatch: 
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-        # 1. Checkout the code from your repository
+      # 1. Checkout the code from your repository
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -50,30 +50,23 @@ jobs:
       - name: Check if React app is running
         run: |
           curl --fail http://localhost:5173 || exit 1
-          
-  deploy:
-    needs: build  # Ensures deploy only runs if the build job is successful
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # deploy:
+  #   needs: build  # Ensures deploy only runs if the build job is successful
+  #   runs-on: ubuntu-latest
 
-      - name: Authenticate with Heroku
-        run: |
-           echo ${{ secrets.HEROKU_API_KEY }} | heroku auth:token > ~/.netrc
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
+  #     - name: Authenticate
+  #       run: |
 
-      # Deploy Frontend to Heroku
-      - name: Deploy Frontend to Heroku
-        run: |
-          cd frontend
-          git remote add heroku https://git.heroku.com/your-frontend-app.git
-          git push heroku main 
+  #     # Deploy Fronten
+  #     - name: Deploy Frontend 
+  #       run: | 
 
-      # Deploy Backend to Heroku
-      - name: Deploy Backend to Heroku
-        run: |
-          cd backend
-          git remote add heroku https://git.heroku.com/your-backend-app.git
-          git push heroku main  # Push to Heroku
+  #     # Deploy Backend 
+  #     - name: Deploy Backend 
+  #       run: |
+  #         cd backend
