@@ -47,4 +47,4 @@ jobs:
 
       - name: Keep apps running for 10 minutes
         run: |
-          sleep
+          sleep 600
