@@ -59,11 +59,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Login to Heroku
-      - name: Heroku Login
+      - name: Authenticate with Heroku
         run: |
-          curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
-          echo ${{ secrets.HEROKU_API_KEY }} | heroku auth:token  # Login to Heroku using the API key
+           echo ${{ secrets.HEROKU_API_KEY }} | heroku auth:token > ~/.netrc
+
 
       # Deploy Frontend to Heroku
       - name: Deploy Frontend to Heroku
