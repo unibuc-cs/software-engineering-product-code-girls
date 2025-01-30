@@ -146,6 +146,28 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
    - **Observatii**: Performanța paginii este  mai slabă (scor 55), afectată de timpi mari de încărcare și un Speed Index ridicat. Deși interactivitatea și stabilitatea vizuală sunt acceptabile, pagina necesită optimizări precum reducerea dimensiunii resurselor, îmbunătățirea caching-ului.
 
 
+# CI/CD
+## Environment-uri folosite
+Proiectul utilizează doua medii distincte:
+
+1. **Development**
+3. **Production**
+
+### 1. Development
+Mediul de dezvoltare este folosit pentru a lucra la noile funcționalități și pentru testarea acestora. Aplicația rulează local.
+
+- **Baza de date**: Folosim o bază de date separată de producție, specifică pentru dezvoltare, care poate fi resetată și modificată fără a afecta datele reale
+- **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.env`, care conține setările pentru conexiunea la baza de date 
+- **Comandă pentru rularea aplicatiei de dezvoltare**: npm start
+
+### 2.Production
+Mediul de producție este utilizat pentru aplicația finală, care este disponibilă pentru utilizatori. Aplicația rulează local.
+
+- **Baza de date**: Se utilizează baza de date de producție, care conține date reale și critice.
+- **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.envProduction`, care conține setările pentru conexiunea la baza de date 
+- **Comandă pentru rularea aplicatiei finale**: npm run start:prod
+
+
  
 
 
