@@ -53,20 +53,30 @@ jobs:
       - name: Expose React App with ngrok
         run: |
           npm install -g ngrok
+          ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
           nohup ngrok http 5173 > /dev/null &
 
-      # 8. Wait for apps to start
+      # 8. Wait for apps to start (longer wait time to ensure ngrok is ready)
       - name: Wait for apps to start
         run: |
-          sleep 20  # Increased wait time to ensure the apps have time to start
+          sleep 30  
 
       # 9. Check if React app is running
       - name: Check if React app is running
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      # 10. Display the ngrok URL for React App (Optional)
+      # 10. Fetch and Display the ngrok URL for React App
       - name: Display URL for React App
         run: |
           echo "React app should be running at: http://localhost:5173"
-          echo "Access React app at ngrok URL: $(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)"
+          # Wait until ngrok URL is available
+          for i in {1..10}; do
+            ngrok_url=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
+            if [ "$ngrok_url" != "null" ]; then
+              break
+            fi
+            echo "Waiting for ngrok URL..."
+            sleep 5
+          done
+          echo "Access React app at ngrok URL: $ngrok_url"
