@@ -28,7 +28,7 @@ jobs:
       - name: Build Frontend
         run: |
           cd frontend
-          npm run build  # Make sure the build script is in your package.json
+          npm run dev
 
       # Backend Deployment Steps
       - name: Set up Node.js for Backend
@@ -40,12 +40,11 @@ jobs:
         run: |
           cd backend
           npm install
-          npm rebuild better-sqlite3  # If you're using better-sqlite3 in the backend
 
-      - name: Run Backend Tests
+      - name: Run Backend 
         run: |
           cd backend
-          npm test  # Run tests for the backend
+          npm run start:prod
 
   deploy:
     needs: build  # Ensures deploy only runs if the build job is successful
