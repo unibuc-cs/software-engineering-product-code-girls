@@ -14,21 +14,21 @@ skinparam {
 hide stereotype
 
 skinparam person<<Administrator>> {
-  BackgroundColor #116611
+  BackgroundColor #b6f3a4
   FontColor #000000
-  BorderColor #0b470b
+  BorderColor #7faa72
   shadowing false
 }
 skinparam rectangle<<BookManagementSystem>> {
-  BackgroundColor #2d882d
+  BackgroundColor #a3d794
   FontColor #000000
-  BorderColor #1f5f1f
+  BorderColor #729667
   shadowing false
 }
 skinparam person<<EndUser>> {
-  BackgroundColor #116611
+  BackgroundColor #b6f3a4
   FontColor #000000
-  BorderColor #0b470b
+  BorderColor #7faa72
   shadowing false
 }
 

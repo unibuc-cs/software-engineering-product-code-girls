@@ -38,9 +38,9 @@ skinparam rectangle<<BookManagementSystem.APIApplication.CommentService>> {
   shadowing false
 }
 skinparam database<<BookManagementSystem.Database>> {
-  BackgroundColor #0066cc
+  BackgroundColor #93c6e5
   FontColor #000000
-  BorderColor #00478e
+  BorderColor #668aa0
   shadowing false
 }
 skinparam rectangle<<BookManagementSystem.APIApplication.ProfileService>> {
@@ -56,31 +56,31 @@ skinparam rectangle<<BookManagementSystem.APIApplication.ReviewService>> {
   shadowing false
 }
 skinparam rectangle<<BookManagementSystem.APIApplication>> {
-  BorderColor #3b763b
-  FontColor #3b763b
+  BorderColor #628c56
+  FontColor #628c56
   shadowing false
 }
 
-database "==Database\n<size:10>[Container: Stores books, categories, reviews, users, and tokens.]</size>\n\nSQLite" <<BookManagementSystem.Database>> as BookManagementSystem.Database
+database "==Database\n<size:10>[Container: Stores books, categories, reviews, comments, users, and tokens.]</size>\n\nSQLite" <<BookManagementSystem.Database>> as BookManagementSystem.Database
 
 rectangle "API Application\n<size:10>[Container: Node.js]</size>" <<BookManagementSystem.APIApplication>> {
-  rectangle "==Comment Service\n<size:10>[Component]</size>\n\nHandles user comments on books." <<BookManagementSystem.APIApplication.CommentService>> as BookManagementSystem.APIApplication.CommentService
-  rectangle "==Review Service\n<size:10>[Component]</size>\n\nHandles user reviews for books." <<BookManagementSystem.APIApplication.ReviewService>> as BookManagementSystem.APIApplication.ReviewService
-  rectangle "==Authentication Service\n<size:10>[Component]</size>\n\nHandles user login, logout, and token management." <<BookManagementSystem.APIApplication.AuthenticationService>> as BookManagementSystem.APIApplication.AuthenticationService
+  rectangle "==Comment Service\n<size:10>[Component]</size>\n\nHandles CRUD operations for comments on books." <<BookManagementSystem.APIApplication.CommentService>> as BookManagementSystem.APIApplication.CommentService
+  rectangle "==Review Service\n<size:10>[Component]</size>\n\nHandles CRUD operations book reviews." <<BookManagementSystem.APIApplication.ReviewService>> as BookManagementSystem.APIApplication.ReviewService
+  rectangle "==Authentication Service\n<size:10>[Component]</size>\n\nHandles user login, logout, creating an account and token management." <<BookManagementSystem.APIApplication.AuthenticationService>> as BookManagementSystem.APIApplication.AuthenticationService
   rectangle "==Book Service\n<size:10>[Component]</size>\n\nHandles CRUD operations for books." <<BookManagementSystem.APIApplication.BookService>> as BookManagementSystem.APIApplication.BookService
-  rectangle "==Profile Service\n<size:10>[Component]</size>\n\nManages user profile data (names, avatars, preferences)." <<BookManagementSystem.APIApplication.ProfileService>> as BookManagementSystem.APIApplication.ProfileService
-  rectangle "==Category Service\n<size:10>[Component]</size>\n\nManages categories of books." <<BookManagementSystem.APIApplication.CategoryService>> as BookManagementSystem.APIApplication.CategoryService
+  rectangle "==Profile Service\n<size:10>[Component]</size>\n\nManages user profile data (name, profile picture, list of books that were read / will be read)." <<BookManagementSystem.APIApplication.ProfileService>> as BookManagementSystem.APIApplication.ProfileService
+  rectangle "==Category Service\n<size:10>[Component]</size>\n\nHandles CRUD operations for book categories." <<BookManagementSystem.APIApplication.CategoryService>> as BookManagementSystem.APIApplication.CategoryService
 }
 
 BookManagementSystem.APIApplication.AuthenticationService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Validates users and stores tokens"
-BookManagementSystem.APIApplication.BookService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>CRUD operations on books"
+BookManagementSystem.APIApplication.BookService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Manages books"
 BookManagementSystem.APIApplication.ProfileService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Manages user profiles"
 BookManagementSystem.APIApplication.CategoryService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Manages categories of books"
 BookManagementSystem.APIApplication.CommentService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Manages comments on books"
 BookManagementSystem.APIApplication.ReviewService .[#707070,thickness=2].> BookManagementSystem.Database : "<color:#707070>Manages reviews on books"
 BookManagementSystem.APIApplication.AuthenticationService .[#707070,thickness=2].> BookManagementSystem.APIApplication.BookService : "<color:#707070>Authorizes access to book operations"
 BookManagementSystem.APIApplication.AuthenticationService .[#707070,thickness=2].> BookManagementSystem.APIApplication.ProfileService : "<color:#707070>Validates access to profile data"
-BookManagementSystem.APIApplication.ProfileService .[#707070,thickness=2].> BookManagementSystem.APIApplication.BookService : "<color:#707070>Fetches user-specific book preferences"
+BookManagementSystem.APIApplication.ProfileService .[#707070,thickness=2].> BookManagementSystem.APIApplication.BookService : "<color:#707070>Fetches user-specific books for their Read / To Read lists"
 BookManagementSystem.APIApplication.BookService .[#707070,thickness=2].> BookManagementSystem.APIApplication.CategoryService : "<color:#707070>Uses categories for organizing books"
 BookManagementSystem.APIApplication.BookService .[#707070,thickness=2].> BookManagementSystem.APIApplication.CommentService : "<color:#707070>Fetches comments for books"
 BookManagementSystem.APIApplication.BookService .[#707070,thickness=2].> BookManagementSystem.APIApplication.ReviewService : "<color:#707070>Fetches reviews for books"

@@ -20,7 +20,7 @@ workspace "Book Management Application" "Application for managing books, categor
             backend = container "API Application" "Handles application logic and exposes functionality via a JSON/HTTPS API." "Node.js" {
                 tags "Container"
 
-                authService = component "Authentication Service" "Handles user login, logout, and token management." {
+                authService = component "Authentication Service" "Handles user login, logout, creating an account and token management." {
                     tags "Component"
                 }
 
@@ -28,24 +28,24 @@ workspace "Book Management Application" "Application for managing books, categor
                     tags "Component"
                 }
 
-                profileService = component "Profile Service" "Manages user profile data (names, avatars, preferences)." {
+                profileService = component "Profile Service" "Manages user profile data (name, profile picture, list of books that were read / will be read)." {
                     tags "Component"
                 }
 
-                categoryService = component "Category Service" "Manages categories of books." {
+                categoryService = component "Category Service" "Handles CRUD operations for book categories." {
                     tags "Component"
                 }
 
-                commentService = component "Comment Service" "Handles user comments on books." {
+                commentService = component "Comment Service" "Handles CRUD operations for comments on books." {
                     tags "Component"
                 }
 
-                reviewService = component "Review Service" "Handles user reviews for books." {
+                reviewService = component "Review Service" "Handles CRUD operations book reviews." {
                     tags "Component"
                 }
             }
 
-            database = container "Database" "SQLite" "Stores books, categories, reviews, users, and tokens." {
+            database = container "Database" "SQLite" "Stores books, categories, reviews, comments, users, and tokens." {
                 tags "Database"
             }
         }
@@ -57,7 +57,7 @@ workspace "Book Management Application" "Application for managing books, categor
         bookApp.backend -> bookApp.database "Reads from and writes to"
 
         bookApp.backend.authService -> bookApp.database "Validates users and stores tokens"
-        bookApp.backend.bookService -> bookApp.database "CRUD operations on books"
+        bookApp.backend.bookService -> bookApp.database "Manages books"
         bookApp.backend.profileService -> bookApp.database "Manages user profiles"
         bookApp.backend.categoryService -> bookApp.database "Manages categories of books"
         bookApp.backend.commentService -> bookApp.database "Manages comments on books"
@@ -65,7 +65,7 @@ workspace "Book Management Application" "Application for managing books, categor
 
         bookApp.backend.authService -> bookApp.backend.bookService "Authorizes access to book operations"
         bookApp.backend.authService -> bookApp.backend.profileService "Validates access to profile data"
-        bookApp.backend.profileService -> bookApp.backend.bookService "Fetches user-specific book preferences"
+        bookApp.backend.profileService -> bookApp.backend.bookService "Fetches user-specific books for their Read / To Read lists"
         bookApp.backend.bookService -> bookApp.backend.categoryService "Uses categories for organizing books"
         bookApp.backend.bookService -> bookApp.backend.commentService "Fetches comments for books"
         bookApp.backend.bookService -> bookApp.backend.reviewService "Fetches reviews for books"
@@ -89,21 +89,21 @@ workspace "Book Management Application" "Application for managing books, categor
 
         styles {
             element "Person" {
-                background #116611
+                background #b6f3a4
                 shape person
             }
             element "Software System" {
-                background #2D882D
+                background #a3d794
             }
             element "Container" {
-                background #55aa55
+                background #8dc97c
             }
             element "Component" {
                 background #88cc88
             }
             element "Database" {
                 shape cylinder
-                background #0066cc
+                background #93c6e5
             }
         }
     }

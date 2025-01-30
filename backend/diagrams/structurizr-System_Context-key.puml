@@ -17,16 +17,16 @@ skinparam rectangle<<_transparent>> {
 }
 
 skinparam person<<1>> {
-  BackgroundColor #116611
+  BackgroundColor #b6f3a4
   FontColor #000000
-  BorderColor #0b470b
+  BorderColor #7faa72
 }
 person "==Person" <<1>>
 
 skinparam rectangle<<2>> {
-  BackgroundColor #2d882d
+  BackgroundColor #a3d794
   FontColor #000000
-  BorderColor #1f5f1f
+  BorderColor #729667
 }
 rectangle "==Software System" <<2>>
 

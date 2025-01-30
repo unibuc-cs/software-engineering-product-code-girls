@@ -17,23 +17,23 @@ skinparam rectangle<<_transparent>> {
 }
 
 skinparam rectangle<<1>> {
-  BackgroundColor #55aa55
+  BackgroundColor #8dc97c
   FontColor #000000
-  BorderColor #3b763b
+  BorderColor #628c56
 }
 rectangle "==Container" <<1>>
 
 skinparam database<<2>> {
-  BackgroundColor #0066cc
+  BackgroundColor #93c6e5
   FontColor #000000
-  BorderColor #00478e
+  BorderColor #668aa0
 }
 database "==Container, Database" <<2>>
 
 skinparam person<<3>> {
-  BackgroundColor #116611
+  BackgroundColor #b6f3a4
   FontColor #000000
-  BorderColor #0b470b
+  BorderColor #7faa72
 }
 person "==Person" <<3>>
 

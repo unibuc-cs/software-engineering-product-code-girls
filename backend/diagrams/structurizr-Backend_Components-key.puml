@@ -24,9 +24,9 @@ skinparam rectangle<<1>> {
 rectangle "==Component" <<1>>
 
 skinparam database<<2>> {
-  BackgroundColor #0066cc
+  BackgroundColor #93c6e5
   FontColor #000000
-  BorderColor #00478e
+  BorderColor #668aa0
 }
 database "==Container, Database" <<2>>
 
