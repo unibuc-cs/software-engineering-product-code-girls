@@ -60,6 +60,8 @@ https://youtu.be/xHe0NP-Zy64
 14. Ca Administrator, vreau să creez, să actualizez și să șterg categorii de cărți (ex: ficțiune, știință, mister) astfel încât utilizatorii să poată găsi ușor cărțile după gen.
 15. Ca Utilizator, vreau să navighez cărțile după categorii (ex: ficțiune, mister) pentru a găsi genuri care îmi plac.
 
+# Backlog
+Pentru gestionarea și urmărirea activităților din cadrul proiectului nostru, am utilizat **GitHub Projects**, reușind să ne organizăm task-urile într-un mod clar și accesibil, în funcție de prioritatea lor. Acesta poate fi accesat la acest link: https://github.com/orgs/unibuc-cs/projects/53/views/2
 # User Personas 
 
 ## Andreea - Manager de proiect
