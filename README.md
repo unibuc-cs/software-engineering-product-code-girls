@@ -204,7 +204,7 @@ Această aplicație web implementează un sistem de autentificare bazat pe **JWT
 - Putem sanitiza toate input-urile utilizatorilor utilizând **DOMPurify** sau o metodă similară.
 - Putem activa **Content Security Policy** (CSP) pentru a bloca execuția scripturilor inline.
 
-## 4. Securitatea Stocării și a Variabilelor de Mediu
+### 4. Securitatea Stocării
 
 **Probleme identificate**
 - Refresh token-urile sunt stocate în SQLite, ceea ce poate reprezenta un risc în cazul unui atac asupra bazei de date.
