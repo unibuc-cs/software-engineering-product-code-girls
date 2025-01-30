@@ -44,7 +44,7 @@ jobs:
       - name: Install ngrok
         run: |
           npm install -g ngrok
-          ngrok config add-authtoken YOUR_NGROK_AUTH_TOKEN
+          ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
 
       - name: Start ngrok Tunnel for Frontend (Port 5173)
         run: |
