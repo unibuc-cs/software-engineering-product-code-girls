@@ -11,34 +11,46 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+        # 1. Checkout the code from your repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Frontend Deployment Steps
-      - name: Set up Node.js for Frontend
+      # 2. Set up Node.js environment
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'v20.18.0'  # Use the Node.js version you need
+          node-version: 'v20.18.0'
 
-      - name: Install Frontend dependencies
+      # 3. Install dependencies for both frontend (React with Vite) and backend (Node.js)
+      - name: Install dependencies
         run: |
-          cd frontend
+          cd frontend  
+          npm install
+          cd ../backend  
           npm install
 
-      - name: Build Frontend
+      # 4. Start Node.js Server (Backend) using pm2
+      - name: Start Node.js Server (Backend)
         run: |
-          npm run dev
-
-
-      - name: Install Backend dependencies
-        run: |
-          cd ../backend
-          npm install
-
-      - name: Run Backend 
-        run: |
+          cd backend
           npm run start:prod
 
+      # 6. Start React App (Frontend) using pm2
+      - name: Start React App (Frontend)
+        run: |
+          cd frontend
+          npm run dev
+
+      # 7. Wait for apps to start (longer wait time to ensure both are running)
+      - name: Wait for apps to start
+        run: |
+          sleep 10
+
+      # 8. Check if React app is running on localhost
+      - name: Check if React app is running
+        run: |
+          curl --fail http://localhost:5173 || exit 1
+          
   deploy:
     needs: build  # Ensures deploy only runs if the build job is successful
     runs-on: ubuntu-latest
