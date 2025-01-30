@@ -6,6 +6,7 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 # Demo
 https://youtu.be/xHe0NP-Zy64
 
+
 # Requirements
 ## Functional Requirements
 1. Gestionare utilizatori
