@@ -43,7 +43,7 @@ Activitățile din fiecare sprint au fost organizate și gestionate prin **Trell
 ![Screenshot 2025-01-30 175223](https://github.com/user-attachments/assets/e97baf90-e433-4e6d-bc9e-98de227d28d0)
 
 ## Sprint 3: Testarea și Documentarea Proiectului
-**Activitățile principale**:
+**Obiective**:
 - Nu am reușit să implementăm sistemul de confirmare a înregistrării prin email și vizualizarea profilurilor altor utilizatori, așa cum ne-am propus în etapa intermediară 
 - Testarea și documentarea proiectului
 - Realizarea descrierii arhitecturale
