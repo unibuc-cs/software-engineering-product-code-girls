@@ -29,16 +29,16 @@ jobs:
           cd ../backend  
           npm install
 
-      # 4. Start Node.js Server (Backend) using pm2
+      # 4. Start Node.js Server (Backend)
       - name: Start Node.js Server (Backend)
         run: |
           cd backend
           npm run start:prod
 
-      # 6. Start React App (Frontend) using pm2
+      # 6. Start React App (Frontend) 
       - name: Start React App (Frontend)
         run: |
-          cd frontend
+          cd ../frontend
           npm run dev
 
       # 7. Wait for apps to start (longer wait time to ensure both are running)
