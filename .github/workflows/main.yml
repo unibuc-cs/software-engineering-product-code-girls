@@ -26,6 +26,7 @@ jobs:
           npm install
           cd ../backend
           npm install
+          npm rebuild better-sqlite3
 
       - name: Install pm2
         run: |
