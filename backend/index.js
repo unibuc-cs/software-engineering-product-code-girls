@@ -90,6 +90,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //   fs.mkdirSync(uploadsDir);
 // }
 
-app.listen(8081, () => {
+app.listen(8081, '0.0.0.0', () => {
     console.log("Connected to backend!")
 })
