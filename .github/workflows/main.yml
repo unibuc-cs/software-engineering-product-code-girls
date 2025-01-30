@@ -22,34 +22,37 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd frontend  
+          cd frontend
           npm install
-          cd ../backend  
+          cd ../backend
           npm install
 
       - name: Install pm2
         run: |
           npm install pm2 -g
 
-      - name: Start Node.js Server (Backend)
+      - name: Start Node.js Server (Backend) on port 8081
         run: |
           cd backend
-          npm run start:prod &
+          nohup npm run start:prod &  # sau folosește comanda personalizată pentru a porni backend-ul
 
-      - name: Start React App (Frontend)
+      - name: Start React App (Frontend) on port 5173
         run: |
           cd frontend
-          npm run dev &
+          nohup npm run dev &
 
       - name: Install ngrok
         run: |
           npm install -g ngrok
-          ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
+          ngrok config add-authtoken YOUR_NGROK_AUTH_TOKEN
 
-      - name: Start Ngrok Tunnels for Both Frontend and Backend
+      - name: Start ngrok Tunnel for Frontend (Port 5173)
         run: |
-          ngrok http 5173 --name frontend & 
-          ngrok http 5173 --name backend &
+          ngrok http 5173 --name frontend &
+
+      - name: Start ngrok Tunnel for Backend (Port 8081)
+        run: |
+          ngrok http 8081 --name backend &
 
       - name: Wait for apps to start
         run: |
@@ -59,21 +62,15 @@ jobs:
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      - name: Display URLs for React App and Backend API
+      - name: Display URL for React App
         run: |
-          echo "React app should be running at: http://localhost:5173"
-          echo "Backend API should be running at: http://localhost:3000"
-          for i in {1..10}; do
-            ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
-            ngrok_url_backend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[1].public_url)
-            if [ "$ngrok_url_frontend" != "null" ] && [ "$ngrok_url_backend" != "null" ]; then
-              break
-            fi
-            echo "Waiting for ngrok URLs..."
-            sleep 5
-          done
+          ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
           echo "Access React app at ngrok URL: $ngrok_url_frontend"
-          echo "Access Backend API at ngrok URL: $ngrok_url_backend"
+
+      - name: Display URL for Backend
+        run: |
+          ngrok_url_backend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[1].public_url)
+          echo "Access Backend at ngrok URL: $ngrok_url_backend"
 
       - name: Keep apps running for 600 seconds
         run: |
