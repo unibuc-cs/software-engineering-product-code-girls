@@ -27,23 +27,16 @@ jobs:
 
       - name: Build Frontend
         run: |
-          cd frontend
           npm run dev
 
-      # Backend Deployment Steps
-      - name: Set up Node.js for Backend
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'v20.18.0'
 
       - name: Install Backend dependencies
         run: |
-          cd backend
+          cd ../backend
           npm install
 
       - name: Run Backend 
         run: |
-          cd backend
           npm run start:prod
 
   deploy:
