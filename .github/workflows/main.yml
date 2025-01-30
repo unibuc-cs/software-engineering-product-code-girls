@@ -12,17 +12,14 @@ jobs:
     environment: Production
 
     steps:
-      # 1. Checkout the code from your repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 'v20.18.0'
 
-      # 3. Install dependencies for both frontend (React with Vite) and backend (Node.js)
       - name: Install dependencies
         run: |
           cd frontend  
@@ -30,39 +27,24 @@ jobs:
           cd ../backend  
           npm install
 
-      # 4. Install pm2 to keep the apps running
-      - name: Install pm2
-        run: |
-          npm install pm2 -g
-
-      # 5. Start Node.js Server (Backend) using pm2
       - name: Start Node.js Server (Backend)
         run: |
           cd backend
-          pm2 start npm --name "backend" -- run start:prod
+          npm run start:prod &
 
-      # 6. Start React App (Frontend) using pm2
       - name: Start React App (Frontend)
         run: |
           cd frontend
-          pm2 start npm --name "frontend" -- run dev
+          npm run dev &
 
-      # 7. Wait for apps to start (longer wait time to ensure both are running)
       - name: Wait for apps to start
         run: |
           sleep 10
 
-      # 8. Check if React app is running on localhost
       - name: Check if React app is running
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      # 9. Keep the process alive for 10 minutes
       - name: Keep apps running for 10 minutes
         run: |
-          sleep 600  # 600 seconds = 10 minutes
-
-      # 10. Stop pm2 processes after the test
-      - name: Stop pm2 processes
-        run: |
-          pm2 stop all
+          sleep
