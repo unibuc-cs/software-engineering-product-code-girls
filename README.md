@@ -3,6 +3,53 @@ Noi vom realiza o aplicație web inspirată de Goodreads, folosind React, Node.J
 Pentru administratori, aplicația oferă un sistem eficient de gestionare a catalogului de cărți, permițând adăugarea, editarea și ștergerea titlurilor și categoriilor, astfel încât biblioteca virtuală să fie mereu actualizată și relevantă. Cu funcții de căutare avansată, organizare pe categorii și acces la profiluri publice ale utilizatorilor, aplicația încurajează descoperirea de noi lecturi și facilitează schimbul de opinii și recomandări între utilizatori. <br/> <br/>
 Obiectivul final este de a crea o experiență digitală captivantă și interactivă care să susțină și să amplifice pasiunea pentru lectură și să ofere un spațiu personalizat pentru fiecare utilizator, fie că este un cititor ocazional sau un avid consumator de cărți.
 
+# Demo
+https://youtu.be/xHe0NP-Zy64
+
+# Organizare
+## Membrii Echipei
+* Berca Teodora
+* Cochiorca Oana-Maria
+* Horga Daria
+* Ruști Emilia
+* Silaghi Mara
+
+## Organizarea pe Sprint-uri
+Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-uri. Înaintea fiecărui sprint, am organizat o ședință online pe Google Meet pentru a stabili obiectivele și prioritățile.
+
+**Perioada Sprint-urilor**
+- Sprint 1: 20.10.2024-03.11.2024
+- Sprint 2: 01.12.2024-27.01.2025
+- Sprint 3: 28.01.2025-31.01.2025
+
+Activitățile din fiecare sprint au fost organizate și gestionate prin **Trello**, unde am notat activitățile principale.
+
+### Sprint 1: Planificarea Proiectului
+**Obiective**:
+- Definirea Product Vision-ului proiectului
+- Stabilirea arhitecturii generale
+- Alegerea tehnologiilor utilizate
+- Organizarea pentru etapa intermediară
+- Crearea backlog-ului inițial
+  
+![Screenshot 2025-01-30 175228](https://github.com/user-attachments/assets/727e7466-7ef1-4160-be0e-0e992c16c183)
+
+## Sprint 2: Implementarea Proiectului
+**Obiective**:
+- Implementarea funcționalităților principale
+- Asignarea task-urilor din backlog fiecărui membru din echipă
+- Două funcționalități au fost lăsate pentru implementare doar dacă timpul ne-ar fi permis
+  
+![Screenshot 2025-01-30 175223](https://github.com/user-attachments/assets/e97baf90-e433-4e6d-bc9e-98de227d28d0)
+
+## Sprint 3: Testarea și Documentarea Proiectului
+**Obiective**:
+- Nu am reușit să implementăm sistemul de confirmare a înregistrării prin email și vizualizarea profilurilor altor utilizatori, așa cum ne-am propus în etapa intermediară 
+- Testarea și documentarea proiectului
+- Realizarea descrierii arhitecturale
+  
+![image](https://github.com/user-attachments/assets/04cd0805-becf-4b30-8938-70d4367b200d)
+
 # Requirements
 ## Functional Requirements
 1. Gestionare utilizatori
@@ -56,6 +103,8 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 14. Ca Administrator, vreau să creez, să actualizez și să șterg categorii de cărți (ex: ficțiune, știință, mister) astfel încât utilizatorii să poată găsi ușor cărțile după gen.
 15. Ca Utilizator, vreau să navighez cărțile după categorii (ex: ficțiune, mister) pentru a găsi genuri care îmi plac.
 
+# Backlog
+Pentru gestionarea și urmărirea activităților din cadrul proiectului nostru, am utilizat **GitHub Projects**, reușind să ne organizăm task-urile într-un mod clar și accesibil, în funcție de prioritatea lor. Acesta poate fi accesat la acest link: https://github.com/orgs/unibuc-cs/projects/53/views/2
 # User Personas 
 
 ## Andreea - Manager de proiect
@@ -82,7 +131,7 @@ Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe po
 ![Components](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-Backend_Components.png)
 
 # Class Diagram
-![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/UML.jpeg)
+![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/diagrama_UML.jpg)
 
 # Use Case Diagram
 
@@ -140,6 +189,100 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
      ![](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/performance_results.png)
 
    - **Observatii**: Performanța paginii este  mai slabă (scor 55), afectată de timpi mari de încărcare și un Speed Index ridicat. Deși interactivitatea și stabilitatea vizuală sunt acceptabile, pagina necesită optimizări precum reducerea dimensiunii resurselor, îmbunătățirea caching-ului.
+
+# Security Analysis
+Această aplicație web implementează un sistem de autentificare bazat pe **JWT (JSON Web Tokens)** și utilizează o bază de date **SQLite** pentru gestionarea utilizatorilor și a refresh token-urilor. Securitatea este esențială pentru protejarea datelor utilizatorilor, prevenirea accesului neautorizat și reducerea riscurilor asociate atacurilor cibernetice.
+
+## Măsuri de securitate implementate
+
+### Autentificare bazată pe JWT
+- Folosim **access tokens** cu expirare la 15 minute și **refresh tokens** pentru menținerea autentificării fără a solicita reintroducerea credențialelor.
+- Autentificarea se realizează prin trimiterea JWT-ului în **header-ul Authorization**, ceea ce **elimină riscul atacurilor CSRF**.
+  
+### Protejarea parolelor utilizatorilor
+- Parolele sunt protejate prin **bcrypt**, ceea ce reduce riscul compromiterii datelor în cazul unui atac.
+  ![image](https://github.com/user-attachments/assets/613d6c18-774a-47e2-8530-a1a705b8ff4e)
+
+### Validarea identității utilizatorilor
+- Token-urile sunt verificate prin middleware-ul **verifyToken**, asigurând că doar utilizatorii autentificați pot accesa resurse protejate.
+  ![image](https://github.com/user-attachments/assets/cacf4a70-e3f7-4cd3-9a27-203b52f26687)
+
+### Gestionarea refresh token-urilor și logout securizat
+- Pentru a asigura securitatea și integritatea sesiunilor utilizatorilor, salvăm refresh token-urile într-o bază de date securizată și le verificăm atent validitatea înainte de a emite un nou access token, prevenind astfel orice acces neautorizat și protejând datele sensibile ale utilizatorilor.
+- La logout, ștergem refresh token-ul din baza de date, prevenind utilizarea acestuia ulterior.
+  
+### Sistem de roluri pentru utilizatori
+- Avem un mecanism de **gestionare a rolurilor**, ceea ce ne permite să controlăm accesul la acțiuni administrative.
+- Operațiile de CRUD sunt realizate doar de **admin**.
+  
+## Riscuri de securitate și măsuri de rezolvare
+### 1. Atacuri asupra Autentificării și Gestionării Sesiunilor
+
+**Probleme identificate**
+- **Autentificarea poate fi vulnerabilă la atacuri prin forță brută**, deoarece nu există o limitare a numărului de încercări eșuate de autentificare.
+- **Refresh token-urile pot fi reutilizate în cazul unui atac asupra bazei de date**, întrucât nu implementăm rotația acestora.
+- **Nu există un mecanism automat de expirare a refresh token-urilor**, ceea ce permite utilizatorilor să rămână autentificați pe termen nedefinit.
+  
+**Măsuri de îmbunătățire**
+- Putem implementa un mecanism de **rate limiting** pentru login (ex: blocarea contului după 5 încercări eșuate într-un interval definit).
+- Putem introduce **rotația refresh token-urilor**, astfel încât fiecare utilizare a unui refresh token să genereze unul nou și să îl invalideze pe cel precedent.
+- Putem configura o **perioadă maximă de valabilitate pentru refresh token-uri** (ex: 7 zile), pentru a preveni utilizarea acestora pe termen nelimitat.
+- Putem adăuga un **sistem de logout global**, care să permită utilizatorilor să invalideze manual toate sesiunile active.
+  
+### 2. Atacuri de tip Denial of Service (DoS)
+
+**Probleme identificate**
+- **Endpoint-urile de login și generare a refresh token-urilor pot fi supraîncărcate**, ceea ce ar putea bloca serverul.
+- **Lipsa unei limitări a numărului de cereri poate degrada performanța API-ului**, în cazul în care un utilizator abuzează de endpoint-uri publice.
+  
+**Măsuri de îmbunătățire**
+- Putem limita numărul de cereri pe endpoint-uri critice, folosind **express-rate-limit**.
+- Putem implementa **monitorizarea și blocarea IP-urilor suspecte**, care trimit un număr neobișnuit de mare de cereri într-un timp scurt.
+- Putem introduce un **mecanism de caching** pentru răspunsurile frecvente, pentru a reduce solicitările inutile către baza de date.
+  
+### 3. Atacuri prin Cross-Site Scripting (XSS)
+
+**Probleme identificate**
+- Aplicația permite input-uri nesecurizate din partea utilizatorilor, ceea ce poate duce la injectarea de scripturi malițioase.
+
+**Măsuri de îmbunătățire**
+- Putem sanitiza toate input-urile utilizatorilor utilizând **DOMPurify** sau o metodă similară.
+- Putem activa **Content Security Policy** (CSP) pentru a bloca execuția scripturilor inline.
+
+### 4. Securitatea Stocării
+
+**Probleme identificate**
+- Refresh token-urile sunt stocate în SQLite, ceea ce poate reprezenta un risc în cazul unui atac asupra bazei de date.
+  
+**Măsuri de îmbunătățire**
+- Putem lua în considerare utilizarea **Redis** pentru stocarea refresh token-urilor, asigurând o expirare automată și protecție suplimentară.
+
+# CI/CD
+## Environment-uri folosite
+Proiectul utilizează doua medii distincte:
+
+1. **Development**
+3. **Production**
+
+### 1. Development
+Mediul de dezvoltare este folosit pentru a lucra la noile funcționalități și pentru testarea acestora. Aplicația rulează local.
+
+- **Baza de date**: Folosim o bază de date separată de producție, specifică pentru dezvoltare, care poate fi resetată și modificată fără a afecta datele reale
+- **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.env`, care conține setările pentru conexiunea la baza de date 
+- **Comandă pentru rularea aplicatiei de dezvoltare**: npm start
+
+### 2. Production
+Mediul de producție este utilizat pentru aplicația finală, care este disponibilă pentru utilizatori. Aplicația rulează local.
+
+- **Baza de date**: Se utilizează baza de date de producție, care conține date reale și critice.
+- **Configurație**: Variabilele de mediu sunt încărcate din fișierul `.envProduction`, care conține setările pentru conexiunea la baza de date 
+- **Comandă pentru rularea aplicatiei finale**: npm run start:prod
+
+## CI/CD pipeline
+Am folosit ramuri separate pentru dezvoltarea noilor funcționalități și pentru corectarea bug-urilor. Fiecare ramură de feature a fost creată pe baza ramurii main, iar după finalizarea modificărilor, am realizat un merge în ramura principală.
+
+După trecerea testelor, am încercat să facem deploy-ul în producție pe o platformă specializată. Pipeline-ul, care se declanșează automat la fiecare push pe ramura main, a fost creat utilizând GitHub Actions și validează funcționarea aplicației, însă nu a încărcat nimic în mediul de producție.
+
 
 
  
