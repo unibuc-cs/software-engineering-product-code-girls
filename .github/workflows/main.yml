@@ -3,7 +3,7 @@ name: Deploy Node.js + React App with Vite
 on:
   push:
     branches:
-      - setupENV
+      - main
   workflow_dispatch: 
 
 jobs:
@@ -49,17 +49,24 @@ jobs:
           cd frontend
           nohup npm run dev &
 
-      # 7. Wait for apps to start
+      # 7. Expose the React App using ngrok
+      - name: Expose React App with ngrok
+        run: |
+          npm install -g ngrok
+          nohup ngrok http 5173 > /dev/null &
+
+      # 8. Wait for apps to start
       - name: Wait for apps to start
         run: |
           sleep 20  # Increased wait time to ensure the apps have time to start
 
-      # 8. Check if React app is running
+      # 9. Check if React app is running
       - name: Check if React app is running
         run: |
           curl --fail http://localhost:5173 || exit 1
 
-      # 9. Display URL for React App (Optional)
+      # 10. Display the ngrok URL for React App (Optional)
       - name: Display URL for React App
         run: |
           echo "React app should be running at: http://localhost:5173"
+          echo "Access React app at ngrok URL: $(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)"
