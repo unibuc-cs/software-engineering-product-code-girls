@@ -6,6 +6,46 @@ Obiectivul final este de a crea o experiență digitală captivantă și interac
 # Demo
 https://youtu.be/xHe0NP-Zy64
 
+# Organizare
+## Membrii Echipei
+* Berca Teodora
+* Cochiorca Oana-Maria
+* Horga Daria
+* Ruști Emilia
+* Silaghi Mara
+
+## Organizarea pe Sprint-uri
+Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-uri. Înaintea fiecărui sprint, am organizat o ședință online pe Google Meet pentru a stabili obiectivele și prioritățile.
+
+**Perioada Sprint-urilor**
+- Sprint 1: 20.10.2024-03.11.2024
+- Sprint 2: 01.12.2024-27.01.2025
+- Sprint 3: 28.01.2025-31.01.2025
+
+Activitățile din fiecare sprint au fost organizate și gestionate prin **Trello**, unde am notat activitățile principale.
+
+### Sprint 1: Planificarea Proiectului
+**Activitățile principale**:
+- Stabilirea temei
+- Alegerea tehnologiilor utilizate în dezvoltarea proiectului
+- Organizarea pentru etapa intermediară
+  
+![Screenshot 2025-01-30 175228](https://github.com/user-attachments/assets/727e7466-7ef1-4160-be0e-0e992c16c183)
+
+## Sprint 2: Implementarea Proiectului
+**Activitățile principale**:
+- Implementarea funcționalităților principale
+- Asignarea task-urilor din backlog fiecărui membru din echipă
+- Două funcționalități au fost lăsate pentru implementare doar dacă timpul ne-ar fi permis
+  
+![Screenshot 2025-01-30 175223](https://github.com/user-attachments/assets/e97baf90-e433-4e6d-bc9e-98de227d28d0)
+
+## Sprint 3: Finalizarea Proiectului
+**Activitățile principale**:
+- Nu am reușit să implementăm sistemul de confirmare a înregistrării prin email și vizualizarea profilurilor altor utilizatori, așa cum ne-am propus în etapa intermediară 
+- Concentrarea pe testare, mentenanță și descrierea arhitecturală
+  
+![image](https://github.com/user-attachments/assets/04cd0805-becf-4b30-8938-70d4367b200d)
 
 # Requirements
 ## Functional Requirements
