@@ -145,6 +145,72 @@ Pentru fiecare nivel de testare, am folosit următoarele metode pentru a asigura
 
    - **Observatii**: Performanța paginii este  mai slabă (scor 55), afectată de timpi mari de încărcare și un Speed Index ridicat. Deși interactivitatea și stabilitatea vizuală sunt acceptabile, pagina necesită optimizări precum reducerea dimensiunii resurselor, îmbunătățirea caching-ului.
 
+# Security Analysis
+Această aplicație web implementează un sistem de autentificare bazat pe **JWT (JSON Web Tokens)** și utilizează o bază de date **SQLite** pentru gestionarea utilizatorilor și a refresh token-urilor. Securitatea este esențială pentru protejarea datelor utilizatorilor, prevenirea accesului neautorizat și reducerea riscurilor asociate atacurilor cibernetice.
+
+## Măsuri de securitate implementate
+
+### Autentificare bazată pe JWT
+- Folosim **access tokens** cu expirare la 15 minute și **refresh tokens** pentru menținerea autentificării fără a solicita reintroducerea credențialelor.
+- Autentificarea se realizează prin trimiterea JWT-ului în **header-ul Authorization**, ceea ce **elimină riscul atacurilor CSRF**.
+  
+### Protejarea parolelor utilizatorilor
+- Parolele sunt protejate prin **bcrypt**, ceea ce reduce riscul compromiterii datelor în cazul unui atac.
+  ![image](https://github.com/user-attachments/assets/613d6c18-774a-47e2-8530-a1a705b8ff4e)
+
+### Validarea identității utilizatorilor
+- Token-urile sunt verificate prin middleware-ul **verifyToken**, asigurând că doar utilizatorii autentificați pot accesa resurse protejate.
+  ![image](https://github.com/user-attachments/assets/cacf4a70-e3f7-4cd3-9a27-203b52f26687)
+
+### Gestionarea refresh token-urilor și logout securizat
+- Pentru a asigura securitatea și integritatea sesiunilor utilizatorilor, salvăm refresh token-urile într-o bază de date securizată și le verificăm atent validitatea înainte de a emite un nou access token, prevenind astfel orice acces neautorizat și protejând datele sensibile ale utilizatorilor.
+- La logout, ștergem refresh token-ul din baza de date, prevenind utilizarea acestuia ulterior.
+  
+### Sistem de roluri pentru utilizatori
+- Avem un mecanism de **gestionare a rolurilor**, ceea ce ne permite să controlăm accesul la acțiuni administrative.
+- Operațiile de CRUD sunt realizate doar de **admin**.
+  
+## Riscuri de securitate și măsuri de rezolvare
+### 1. Atacuri asupra Autentificării și Gestionării Sesiunilor
+
+**Probleme identificate**
+- **Autentificarea poate fi vulnerabilă la atacuri prin forță brută**, deoarece nu există o limitare a numărului de încercări eșuate de autentificare.
+- **Refresh token-urile pot fi reutilizate în cazul unui atac asupra bazei de date**, întrucât nu implementăm rotația acestora.
+- **Nu există un mecanism automat de expirare a refresh token-urilor**, ceea ce permite utilizatorilor să rămână autentificați pe termen nedefinit.
+  
+**Măsuri de îmbunătățire**
+- Putem implementa un mecanism de **rate limiting** pentru login (ex: blocarea contului după 5 încercări eșuate într-un interval definit).
+- Putem introduce **rotația refresh token-urilor**, astfel încât fiecare utilizare a unui refresh token să genereze unul nou și să îl invalideze pe cel precedent.
+- Putem configura o **perioadă maximă de valabilitate pentru refresh token-uri** (ex: 7 zile), pentru a preveni utilizarea acestora pe termen nelimitat.
+- Putem adăuga un **sistem de logout global**, care să permită utilizatorilor să invalideze manual toate sesiunile active.
+  
+### 2. Atacuri de tip Denial of Service (DoS)
+
+**Probleme identificate**
+- **Endpoint-urile de login și generare a refresh token-urilor pot fi supraîncărcate**, ceea ce ar putea bloca serverul.
+- **Lipsa unei limitări a numărului de cereri poate degrada performanța API-ului**, în cazul în care un utilizator abuzează de endpoint-uri publice.
+  
+**Măsuri de îmbunătățire**
+- Putem limita numărul de cereri pe endpoint-uri critice, folosind **express-rate-limit**.
+- Putem implementa **monitorizarea și blocarea IP-urilor suspecte**, care trimit un număr neobișnuit de mare de cereri într-un timp scurt.
+- Putem introduce un **mecanism de caching** pentru răspunsurile frecvente, pentru a reduce solicitările inutile către baza de date.
+  
+### 3. Atacuri prin Cross-Site Scripting (XSS)
+
+**Probleme identificate**
+- Aplicația permite input-uri nesecurizate din partea utilizatorilor, ceea ce poate duce la injectarea de scripturi malițioase.
+
+**Măsuri de îmbunătățire**
+- Putem sanitiza toate input-urile utilizatorilor utilizând **DOMPurify** sau o metodă similară.
+- Putem activa **Content Security Policy** (CSP) pentru a bloca execuția scripturilor inline.
+
+## 4. Securitatea Stocării și a Variabilelor de Mediu
+
+**Probleme identificate**
+- Refresh token-urile sunt stocate în SQLite, ceea ce poate reprezenta un risc în cazul unui atac asupra bazei de date.
+  
+**Măsuri de îmbunătățire**
+- Putem lua în considerare utilizarea **Redis** pentru stocarea refresh token-urilor, asigurând o expirare automată și protecție suplimentară.
 
 # CI/CD
 ## Environment-uri folosite
