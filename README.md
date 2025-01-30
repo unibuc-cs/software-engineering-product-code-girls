@@ -3,6 +3,9 @@ Noi vom realiza o aplicație web inspirată de Goodreads, folosind React, Node.J
 Pentru administratori, aplicația oferă un sistem eficient de gestionare a catalogului de cărți, permițând adăugarea, editarea și ștergerea titlurilor și categoriilor, astfel încât biblioteca virtuală să fie mereu actualizată și relevantă. Cu funcții de căutare avansată, organizare pe categorii și acces la profiluri publice ale utilizatorilor, aplicația încurajează descoperirea de noi lecturi și facilitează schimbul de opinii și recomandări între utilizatori. <br/> <br/>
 Obiectivul final este de a crea o experiență digitală captivantă și interactivă care să susțină și să amplifice pasiunea pentru lectură și să ofere un spațiu personalizat pentru fiecare utilizator, fie că este un cititor ocazional sau un avid consumator de cărți.
 
+# Demo
+https://youtu.be/xHe0NP-Zy64
+
 # Requirements
 ## Functional Requirements
 1. Gestionare utilizatori
