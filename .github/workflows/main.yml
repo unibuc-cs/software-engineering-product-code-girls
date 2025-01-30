@@ -47,7 +47,7 @@ jobs:
       - name: Expose React App with ngrok
         run: |
           npm install -g ngrok
-          ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+          ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
           nohup ngrok http 5173 &
 
       # 7. Wait for apps to start (longer wait time to ensure ngrok is ready)
