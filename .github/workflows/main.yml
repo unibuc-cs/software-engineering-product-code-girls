@@ -3,8 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # This will trigger the pipeline on push to the main branch
-  workflow_dispatch:  # Allows manual triggering of the workflow
+      - main 
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -33,13 +33,13 @@ jobs:
       - name: Start Node.js Server (Backend)
         run: |
           cd backend
-          npm run start:prod
+          nohup npm run start:prod &
 
       # 6. Start React App (Frontend) 
       - name: Start React App (Frontend)
         run: |
           cd frontend
-          npm run dev
+          nohup npm run dev & 
 
       # 7. Wait for apps to start (longer wait time to ensure both are running)
       - name: Wait for apps to start
