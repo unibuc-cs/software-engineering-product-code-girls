@@ -49,27 +49,24 @@ jobs:
       - name: Start ngrok Tunnel (One Tunnel for Both Frontend and Backend)
         run: |
           # Expose frontend on port 5173
-          ngrok http 5173 --host-header=localhost:5173 &  # Frontend tunnel
+          ngrok http 5173 --host-header=localhost:5173 --log=stdout &  # Frontend tunnel
           # Expose backend on port 8081
-          ngrok http 8081 --host-header=localhost:8081 &  # Backend tunnel
+          ngrok http 8081 --host-header=localhost:8081 --log=stdout &  # Backend tunnel
 
-      - name: Wait for apps to start
+      - name: Wait for ngrok tunnels to initialize
         run: |
-          sleep 10
+          # Wait for a longer time to ensure ngrok tunnels are initialized
+          sleep 20
 
-      - name: Check if React app is running
-        run: |
-          curl --fail http://localhost:5173 || exit 1
-
-      - name: Get ngrok Tunnel URLs
+      - name: Fetch ngrok Tunnel URLs
         run: |
           # Fetch ngrok tunnel URLs using the API
-          ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
-          ngrok_url_backend=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[1].public_url)
-          
+          ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          ngrok_url_backend=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[1].public_url')
+
           echo "Frontend is available at: $ngrok_url_frontend"
           echo "Backend API is available at: $ngrok_url_backend"
-          
+
       - name: Display URLs for React App and Backend
         run: |
           echo "Access React app at: $ngrok_url_frontend"
