@@ -1,74 +1,76 @@
-name: CI/CD pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main  # This will trigger the pipeline on push to the main branch
+  workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment: Production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Frontend Deployment Steps
+      - name: Set up Node.js for Frontend
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'v20.18.0'  # Use the Node.js version you need
+
+      - name: Install Frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build  # Make sure the build script is in your package.json
+
+      # Backend Deployment Steps
+      - name: Set up Node.js for Backend
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'v20.18.0'
+
+      - name: Install Backend dependencies
+        run: |
+          cd backend
+          npm install
+          npm rebuild better-sqlite3  # If you're using better-sqlite3 in the backend
+
+      - name: Run Backend Tests
+        run: |
+          cd backend
+          npm test  # Run tests for the backend
+
+  deploy:
+    needs: build  # Ensures deploy only runs if the build job is successful
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'v20.18.0'
+      # Login to Heroku
+      - name: Heroku Login
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh  # Install Heroku CLI
+          echo ${{ secrets.HEROKU_API_KEY }} | heroku auth:token  # Login to Heroku using the API key
 
-      - name: Install dependencies
+      # Deploy Frontend to Heroku
+      - name: Deploy Frontend to Heroku
         run: |
           cd frontend
-          npm install
-          cd ../backend
-          npm install
-          npm rebuild better-sqlite3
-          
-      - name: Rebuild bcrypt package
-        run: |
-            cd backend
-            npm install bcryptjs
+          git remote add heroku https://git.heroku.com/your-frontend-app.git
+          git push heroku main 
 
-      - name: Install pm2
-        run: |
-          npm install pm2 -g
-
-      - name: Start Node.js Server (Backend) on port 8081
+      # Deploy Backend to Heroku
+      - name: Deploy Backend to Heroku
         run: |
           cd backend
-          nohup npm run start:prod &  # Start the backend server on port 8081
-
-      - name: Install ngrok
-        run: |
-          npm install -g ngrok
-          ngrok config add-authtoken 2sLFXEKSbOjAQCGoxXlqRQVvxm1_5Twgq6Ncv3KsSfQU5smhR
-
-      - name: Start ngrok Tunnel for Frontend
-        run: |
-          cd frontend
-          # Expose frontend on port 5173 via ngrok (only frontend exposed)
-          ngrok http 5173
-
-      - name: Wait for ngrok tunnel to initialize
-        run: |
-          # Wait for a longer time to ensure ngrok tunnels are initialized
-          sleep 20
-
-      - name: Fetch ngrok Tunnel URL
-        run: |
-          # Fetch the ngrok tunnel URL for frontend
-          ngrok_url_frontend=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-          echo "Frontend is available at: $ngrok_url_frontend"
-
-      - name: Display URL for React App
-        run: |
-          echo "Access React app at: $ngrok_url_frontend"
-          # Backend URL is not needed since it's running locally
-
-      - name: Keep frontend running for 600 seconds
-        run: |
-          sleep 600
+          git remote add heroku https://git.heroku.com/your-backend-app.git
+          git push heroku main  # Push to Heroku
