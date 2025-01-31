@@ -122,7 +122,7 @@ Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe po
 # Architectural Description
 ## 1. Sinteză a produsului rezultat
 
-GoodReadsApp este o aplicație web destinată pasionaților de lectură, oferindu-le un mijloc prin care să descopere și să citească cărți noi, cuprinzând o gamă largă de edituri, autori si categorii diferite. Aplicația aduce cititorii împreună prin posibilitatea de a vedea părerile și criticile amatorilor de cărți, comentari și review-uri pentru fiecare carte disponibilă. De asemenea, cititorii pot tine evidenta cartilor citite si a celor ce urmeaza pe lista.
+GoodReadsApp este o aplicație web destinată pasionaților de lectură, oferindu-le un mijloc prin care să descopere și să citească cărți noi, cuprinzând o gamă largă de edituri, autori si categorii diferite. Aplicația aduce cititorii împreună prin posibilitatea de a vedea părerile și criticile amatorilor de cărți, comentari și review-uri pentru fiecare carte disponibilă. De asemenea, cititorii pot ține evidența cărților citite si a celor ce urmează pe listă.
 
 Comparativ cu viziunea inițiala, produsul a fost realizat în totalitate, aducând în plus o interfață îmbunătățită pentru utlizatori, posibilitatea de a introduce poze de profil și optimizări pe partea de backend. Singurul punct de implementare nerealizat este parte de vizualizare a tuturor profilurilor.
 
