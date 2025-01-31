@@ -119,7 +119,44 @@ Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pa
 ## Mihai - Inginer software
 Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
 
-# C4 Diagram
+# Architectural Description
+## 1. Sinteză a produsului rezultat
+
+GoodReadsApp este o aplicație web destinată pasionaților de lectură, oferindu-le un mijloc prin care să descopere și să citească cărți noi, cuprinzând o gamă largă de edituri, autori si categorii diferite. Aplicația aduce cititorii împreună prin posibilitatea de a vedea părerile și criticile amatorilor de cărți, comentari și review-uri pentru fiecare carte disponibilă. De asemenea, cititorii pot tine evidenta cartilor citite si a celor ce urmeaza pe lista.
+
+Comparativ cu viziunea inițiala, produsul a fost realizat în totalitate, aducând în plus o interfață îmbunătățită pentru utlizatori, posibilitatea de a introduce poze de profil și optimizări pe partea de backend. Singurul punct de implementare nerealizat este parte de vizualizare a tuturor profilurilor.
+
+## 2. Tehnologii folosite
+- React.js,Vite : Pentru partea de frontend și interacțiune cu utilizatorul
+- Express framework, Node.js : Pentru partea de implementare a funcționalitaților în backend
+- Server SQL (SQLite) : Crearea unei baze de date și legarea acesteia de backend
+- JavaScript, CSS, HTML : Pentru realizarea și perfecționarea frontend-ului
+- Jest, Cypress : Pentru testarea aplicatiei web
+- Postman : Folosit la testarea și dezvoltarea API-urilor prin trimiterea de cereri HTTP
+- JWT : Pentru securitatea aplicației și autentificarea utilizatorilor
+
+## 3. Architectural Decision Records (ADR)
+### ADR-001: Alegerea arhitecturii client-server
+  * Motivare: Separarea clară între interfața cu utilizatorul și logica de afaceri și posibilitatea de a scala independent frontend-ul și backend-ul.
+  * Impact: O comunicare bine definită între frontend si backend (REST API) și permiterea reutilizării backend-ului pentru o eventuală aplicație mobilă
+
+### ADR-002: Utilizarea SQLite pentru stocarea datelor
+  * Motivare: Structura relațională este potrivită pentru gestionarea utilizatorilor, cărților și recenziilor.
+  * Impact: Necesită proiectarea unui model de date bine structurat. Posibilă creștere a costurilor de mentenanță pe măsură ce baza de date devine mai mare.
+
+## 4. Cerințe non-funcționale și soluții arhitecturale
+
+  * Performanță – Vite optimizează frontend-ul, caching-ul în Express & SQLite reduce accesul la baza de date.
+
+  * Scalabilitate – Backend-ul modular cu Express.js permite extinderea funcționalităților, migrarea la PostgreSQL/MySQL poate îmbunătăți gestionarea datelor, iar trecerea la microservicii ar putea facilita creșterea aplicației.
+
+  * Securitate – JWT asigură autentificarea securizată prin token. De asemenea este implemntată ierarhizarea utilizatorilor pentru contolul permisiunilor si al accesului la modificarile bazei de date.
+
+  * Disponibilitate & Fiabilitate – backup-ul automat al bazei de date protejează datele utilizatorilor, iar middleware-ul Express monitorizează și detectează rapid erorile.
+
+  * Testabilitate – Jest este folosit pentru testarea unitară a componentelor, Cypress pentru testarea end-to-end a fluxurilor utilizatorilor, iar Postman pentru validarea și automatizarea testării API-urilor.
+
+## 5. Diagrame C4
 
 ### System Context
 ![System_Context](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-System_Context.png)
