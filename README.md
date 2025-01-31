@@ -128,6 +128,12 @@ Activitățile din fiecare sprint au fost organizate și gestionate prin **Trell
 
 ## Diagrame C4
 
+# Use Case Diagram
+![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.jpeg)
+
+# Class Diagram
+![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/diagrama_UML.jpg)
+
 ### System Context
 ![System_Context](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-System_Context.png)
 
@@ -136,14 +142,6 @@ Activitățile din fiecare sprint au fost organizate și gestionate prin **Trell
 
 ### Components
 ![Components](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-Backend_Components.png)
-
-# Class Diagram
-![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/diagrama_UML.jpg)
-
-# Use Case Diagram
-
-![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.jpeg)
-
 
 
 
