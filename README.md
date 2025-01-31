@@ -57,10 +57,6 @@ Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pa
 Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
 
 
-## Organizarea pe Sprint-uri
-Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-uri. Înaintea fiecărui sprint, am organizat o ședință online pe Google Meet pentru a stabili obiectivele și prioritățile.
-
-
 # Requirements
 ## Functional Requirements
 1. Gestionare utilizatori
@@ -91,6 +87,9 @@ Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-ur
 # Organizare
 ## Backlog
 Pentru gestionarea și urmărirea activităților din cadrul proiectului nostru, am utilizat **GitHub Projects**, reușind să ne organizăm task-urile într-un mod clar și accesibil, în funcție de prioritatea lor. Acesta poate fi accesat la acest link: https://github.com/orgs/unibuc-cs/projects/53/views/2
+
+## Organizarea pe Sprint-uri
+Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-uri. Înaintea fiecărui sprint, am organizat o ședință online pe Google Meet pentru a stabili obiectivele și prioritățile.
 
 **Perioada Sprint-urilor**
 - Sprint 1: 20.10.2024-03.11.2024
