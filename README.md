@@ -172,7 +172,7 @@ Comparativ cu viziunea inițiala, produsul a fost realizat în totalitate, aduc�
 
 # Use Case Diagram
 
-![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.png)
+![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.jpeg)
 
 # QA
 ## Obiectivele Testării
