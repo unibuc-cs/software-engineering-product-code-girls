@@ -17,7 +17,7 @@ https://youtu.be/xHe0NP-Zy64
 # Features:
 * Gestionarea conturilor utilizatorilor și autentificare securizată.
 * Gestionarea cărților din bibliotecă (adăugare, vizualizare, editare și ștergere).
-* Funcționalități de rating și recenzii pentru cărți.
+* Funcționalități de rating, comentarii și recenzii pentru cărți.
 * Funcționalități de catalogare și organizare a cărților în categorii.
 * Gestionarea bibliotecii personale a utilizatorului, cu liste “Read” și “To Read”.
 * Căutare și filtrare de cărți după titlu, autor sau taguri.
