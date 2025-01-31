@@ -134,6 +134,7 @@ Activitățile din fiecare sprint au fost organizate și gestionate prin **Trell
 # Class Diagram
 ![class_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/diagrama_UML.jpg)
 
+# C4 Diagram
 ### System Context
 ![System_Context](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-System_Context.png)
 
