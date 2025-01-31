@@ -1,12 +1,3 @@
-# Product vision
-Noi vom realiza o aplicație web inspirată de Goodreads, folosind React, Node.Js și SQLite. Aplicația noastră este o platformă modernă și interactivă destinată pasionaților de lectură, care le permite să-și gestioneze și personalizeze experiența de citit. Utilizatorii pot crea conturi pentru a-și salva preferințele de lectură, pentru a organiza și urmări progresul lecturilor, precum și pentru a evalua și comenta cărțile citite, contribuind la o comunitate activă de cititori. <br/> <br/>
-Pentru administratori, aplicația oferă un sistem eficient de gestionare a catalogului de cărți, permițând adăugarea, editarea și ștergerea titlurilor și categoriilor, astfel încât biblioteca virtuală să fie mereu actualizată și relevantă. Cu funcții de căutare avansată, organizare pe categorii și acces la profiluri publice ale utilizatorilor, aplicația încurajează descoperirea de noi lecturi și facilitează schimbul de opinii și recomandări între utilizatori. <br/> <br/>
-Obiectivul final este de a crea o experiență digitală captivantă și interactivă care să susțină și să amplifice pasiunea pentru lectură și să ofere un spațiu personalizat pentru fiecare utilizator, fie că este un cititor ocazional sau un avid consumator de cărți.
-
-# Demo
-https://youtu.be/xHe0NP-Zy64
-
-# Organizare
 ## Membrii Echipei
 * Berca Teodora
 * Cochiorca Oana-Maria
@@ -14,8 +5,92 @@ https://youtu.be/xHe0NP-Zy64
 * Ruști Emilia
 * Silaghi Mara
 
+# Product vision
+Noi vom realiza o aplicație web inspirată de Goodreads, folosind React, Node.Js și SQLite. Aplicația noastră este o platformă modernă și interactivă destinată pasionaților de lectură, care le permite să-și gestioneze și personalizeze experiența de citit. Utilizatorii pot crea conturi pentru a-și salva preferințele de lectură, pentru a organiza și urmări progresul lecturilor, precum și pentru a evalua și comenta cărțile citite, contribuind la o comunitate activă de cititori. <br/> <br/>
+Pentru administratori, aplicația oferă un sistem eficient de gestionare a catalogului de cărți, permițând adăugarea, editarea și ștergerea titlurilor și categoriilor, astfel încât biblioteca virtuală să fie mereu actualizată și relevantă. Cu funcții de căutare avansată, organizare pe categorii și acces la profiluri publice ale utilizatorilor, aplicația încurajează descoperirea de noi lecturi și facilitează schimbul de opinii și recomandări între utilizatori. <br/> <br/>
+Obiectivul final este de a crea o experiență digitală captivantă și interactivă care să susțină și să amplifice pasiunea pentru lectură și să ofere un spațiu personalizat pentru fiecare utilizator, fie că este un cititor ocazional sau un avid consumator de cărți.
+
+
+## Demo
+https://youtu.be/xHe0NP-Zy64
+
+# Features:
+* Gestionarea conturilor utilizatorilor și autentificare securizată.
+* Gestionarea cărților din bibliotecă (adăugare, vizualizare, editare și ștergere).
+* Funcționalități de rating și recenzii pentru cărți.
+* Funcționalități de catalogare și organizare a cărților în categorii.
+* Gestionarea bibliotecii personale a utilizatorului, cu liste “Read” și “To Read”.
+* Căutare și filtrare de cărți după titlu, autor sau taguri.
+* Vizualizarea profilului personal și a profilului altor utilizatori.
+
+
+# User stories
+1. Ca Utilizator, vreau să îmi creez un cont pentru a-mi salva preferințele de cărți și pentru a-mi gestiona biblioteca personală.
+2. Ca Utilizator, vreau să mă autentific în siguranță pentru a putea accesa profilul meu și a interacționa cu platforma.
+3. Ca Administrator, vreau să adaug cărți noi cu detalii precum titlu, autor, rating, descriere și taguri, astfel încât utilizatorii să aibă cele mai noi opțiuni de explorat.
+4. Ca Administrator, vreau să editez detaliile unei cărți existente pentru a corecta eventualele erori sau a face actualizări.
+5. Ca Administrator, vreau să șterg cărți din catalog pentru a elimina intrările învechite sau incorecte de pe platformă.
+6. Ca Utilizator, vreau să vizualizez informații detaliate despre o carte, inclusiv titlul, autorul, ratingul, descrierea și tagurile, pentru a decide dacă vreau să o citesc.
+7. Ca Utilizator, vreau să evaluez cărțile citite pe o scală (1-5 stele) pentru a contribui la evaluările comunității și pentru a descoperi alte cărți care mi-ar plăcea.
+8. Ca Utilizator, vreau să las comentarii la cărți pentru a-mi împărtăși gândurile și a participa la discuții cu alți cititori.
+9. Ca Utilizator, vreau să citesc comentariile lăsate de alții la o carte pentru a obține perspective diferite.
+10. Ca Utilizator, vreau să adaug cărți în biblioteca mea personală în listele „Citite” și „De citit” pentru a ține evidența celor citite și a celor pe care vreau să le citesc.
+11. Ca Utilizator, vreau să vizualizez profilul meu personal unde pot vedea cărțile adăugate, evaluările și comentariile mele, pentru a-mi urmări parcursul lecturilor.
+12. Ca Utilizator, vreau să vizualizez profilurile publice ale altor utilizatori, inclusiv listele lor de lectură și evaluările, pentru a descoperi cărți bazate pe recomandările lor.
+13. Ca Utilizator, vreau să caut cărți după titlu, autor sau taguri pentru a găsi rapid ceea ce caut.
+14. Ca Administrator, vreau să creez, să actualizez și să șterg categorii de cărți (ex: ficțiune, știință, mister) astfel încât utilizatorii să poată găsi ușor cărțile după gen.
+15. Ca Utilizator, vreau să navighez cărțile după categorii (ex: ficțiune, mister) pentru a găsi genuri care îmi plac.
+
+
+# User Personas 
+
+## Andreea - Manager de proiect
+Andreea, în vârstă de 30 de ani, este manager de proiect într-o corporație. În timpul liber este pasionată de lectură și își dorește să descopere cărți de calitate și recenzii relevante care să o ajute în alegerea lecturilor. Ea citește atât ficțiune, cât și cărți de dezvoltare personală. Uneori, consideră că recenziile disponibile sunt subiective sau insuficient argumentate, ceea ce îngreunează procesul de selecție. Andreea este un utilizator activ de aplicații web și mobile și se descurcă foarte bine cu platformele digitale.
+
+## Maria - Elev
+Maria, în vârstă de 14 ani, este elevă în clasa a opta. Ea își dorește să țină o evidență a tuturor cărților pe care vrea să le citească în viitor, deoarece în prezent nu are atât de mult timp liber. În plus, vrea să găsească recomandări de cărți potrivite pentru vârsta și interesele ei. Găsește uneori dificil să aleagă cărți potrivite și este influențată de recenziile și sugestiile de carte de pe rețelele sociale. Se descurcă foarte bine în utilizarea aplicațiilor web și mobile și este obișnuită cu platformele digitale.
+
+## Ioana - Părinte
+Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pasionată de lectură și își dorește să poată discuta despre cărțile citite cu alte persoane. De asemenea, este interesată să descopere cărți potrivite pentru copilul său, astfel încât să îl încurajeze să citească mai mult. Uneori, găsește dificil să aleagă cărți de calitate și nu are mereu acces la o comunitate de cititori activi. Folosește aplicații web și mobile, dar preferă platformele intuitive și ușor de utilizat.
+
+## Mihai - Inginer software
+Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
+
+
 ## Organizarea pe Sprint-uri
 Pentru dezvoltarea proiectului, echipa noastră s-a organizat în trei sprint-uri. Înaintea fiecărui sprint, am organizat o ședință online pe Google Meet pentru a stabili obiectivele și prioritățile.
+
+
+# Requirements
+## Functional Requirements
+1. Gestionare utilizatori
+    * Utilizatorii trebuie să poată crea un cont folosind email și parolă și să se autentifice securizat.
+    * Utilizatorii trebuie să poată vizualiza profilul propriu, inclusiv lista de cărți din “Read” și “To Read”.
+    * Utilizatorii trebuie să poată edita profilul și să își actualizeze preferințele de lectură.
+2. Gestionare cărți
+    * Administratorii trebuie să poată adăuga, edita și șterge cărți, incluzând detalii de bază (titlu, autor, descriere).
+    * Utilizatorii trebuie să poată vizualiza o listă de cărți din catalogul comun.
+    * Utilizatorii trebuie să poată accesa detalii despre o carte individuală (titlu, autor, descriere, rating mediu).
+3. Interacțiuni utilizatori
+    * Utilizatorii trebuie să poată adăuga cărți la listele personale “Read” și “To Read”.
+    * Utilizatorii trebuie să poată evalua o carte pe o scară de 1-5 stele.
+4. Căutare și navigare
+    * Utilizatorii trebuie să poată căuta o carte după titlu sau autor.
+    * Utilizatorii trebuie să poată filtra cărțile după categorii (e.g., Ficțiune, Istorie).
+5. Gestionare categorii
+    * Administratorii trebuie să poată crea, edita și șterge categorii pentru organizarea cărților.
+## Non-Functional Requirements
+1. Securitate de bază
+    * Sistemul trebuie să aibă autentificare pentru utilizatori și să asigure păstrarea parolelor într-o formă securizată (de exemplu, folosind hashing simplu).
+2. Performanță de bază
+    * Aplicația trebuie să răspundă rapid pentru majoritatea acțiunilor uzuale, în special căutarea și afișarea listelor de cărți.
+3. Compatibilitate de bază
+    * Aplicația trebuie să funcționeze corect în browserul Chrome / Microsoft Edge, fără a fi necesară optimizarea pentru alte browsere sau dispozitive mobile.
+
+
+# Organizare
+## Backlog
+Pentru gestionarea și urmărirea activităților din cadrul proiectului nostru, am utilizat **GitHub Projects**, reușind să ne organizăm task-urile într-un mod clar și accesibil, în funcție de prioritatea lor. Acesta poate fi accesat la acest link: https://github.com/orgs/unibuc-cs/projects/53/views/2
 
 **Perioada Sprint-urilor**
 - Sprint 1: 20.10.2024-03.11.2024
@@ -50,113 +125,8 @@ Activitățile din fiecare sprint au fost organizate și gestionate prin **Trell
   
 ![image](https://github.com/user-attachments/assets/04cd0805-becf-4b30-8938-70d4367b200d)
 
-# Requirements
-## Functional Requirements
-1. Gestionare utilizatori
-    * Utilizatorii trebuie să poată crea un cont folosind email și parolă și să se autentifice securizat.
-    * Utilizatorii trebuie să poată vizualiza profilul propriu, inclusiv lista de cărți din “Read” și “To Read”.
-    * Utilizatorii trebuie să poată edita profilul și să își actualizeze preferințele de lectură.
-2. Gestionare cărți
-    * Administratorii trebuie să poată adăuga, edita și șterge cărți, incluzând detalii de bază (titlu, autor, descriere).
-    * Utilizatorii trebuie să poată vizualiza o listă de cărți din catalogul comun.
-    * Utilizatorii trebuie să poată accesa detalii despre o carte individuală (titlu, autor, descriere, rating mediu).
-3. Interacțiuni utilizatori
-    * Utilizatorii trebuie să poată adăuga cărți la listele personale “Read” și “To Read”.
-    * Utilizatorii trebuie să poată evalua o carte pe o scară de 1-5 stele.
-4. Căutare și navigare
-    * Utilizatorii trebuie să poată căuta o carte după titlu sau autor.
-    * Utilizatorii trebuie să poată filtra cărțile după categorii (e.g., Ficțiune, Istorie).
-5. Gestionare categorii
-    * Administratorii trebuie să poată crea, edita și șterge categorii pentru organizarea cărților.
-## Non-Functional Requirements
-1. Securitate de bază
-    * Sistemul trebuie să aibă autentificare pentru utilizatori și să asigure păstrarea parolelor într-o formă securizată (de exemplu, folosind hashing simplu).
-2. Performanță de bază
-    * Aplicația trebuie să răspundă rapid pentru majoritatea acțiunilor uzuale, în special căutarea și afișarea listelor de cărți.
-3. Compatibilitate de bază
-    * Aplicația trebuie să funcționeze corect în browserul Chrome / Microsoft Edge, fără a fi necesară optimizarea pentru alte browsere sau dispozitive mobile.
 
-# Features:
-* Gestionarea conturilor utilizatorilor și autentificare securizată.
-* Gestionarea cărților din bibliotecă (adăugare, vizualizare, editare și ștergere).
-* Funcționalități de rating și recenzii pentru cărți.
-* Funcționalități de catalogare și organizare a cărților în categorii.
-* Gestionarea bibliotecii personale a utilizatorului, cu liste “Read” și “To Read”.
-* Căutare și filtrare de cărți după titlu, autor sau taguri.
-* Vizualizarea profilului personal și a profilului altor utilizatori.
-
-
-# User stories
-1. Ca Utilizator, vreau să îmi creez un cont pentru a-mi salva preferințele de cărți și pentru a-mi gestiona biblioteca personală.
-2. Ca Utilizator, vreau să mă autentific în siguranță pentru a putea accesa profilul meu și a interacționa cu platforma.
-3. Ca Administrator, vreau să adaug cărți noi cu detalii precum titlu, autor, rating, descriere și taguri, astfel încât utilizatorii să aibă cele mai noi opțiuni de explorat.
-4. Ca Administrator, vreau să editez detaliile unei cărți existente pentru a corecta eventualele erori sau a face actualizări.
-5. Ca Administrator, vreau să șterg cărți din catalog pentru a elimina intrările învechite sau incorecte de pe platformă.
-6. Ca Utilizator, vreau să vizualizez informații detaliate despre o carte, inclusiv titlul, autorul, ratingul, descrierea și tagurile, pentru a decide dacă vreau să o citesc.
-7. Ca Utilizator, vreau să evaluez cărțile citite pe o scală (1-5 stele) pentru a contribui la evaluările comunității și pentru a descoperi alte cărți care mi-ar plăcea.
-8. Ca Utilizator, vreau să las comentarii la cărți pentru a-mi împărtăși gândurile și a participa la discuții cu alți cititori.
-9. Ca Utilizator, vreau să citesc comentariile lăsate de alții la o carte pentru a obține perspective diferite.
-10. Ca Utilizator, vreau să adaug cărți în biblioteca mea personală în listele „Citite” și „De citit” pentru a ține evidența celor citite și a celor pe care vreau să le citesc.
-11. Ca Utilizator, vreau să vizualizez profilul meu personal unde pot vedea cărțile adăugate, evaluările și comentariile mele, pentru a-mi urmări parcursul lecturilor.
-12. Ca Utilizator, vreau să vizualizez profilurile publice ale altor utilizatori, inclusiv listele lor de lectură și evaluările, pentru a descoperi cărți bazate pe recomandările lor.
-13. Ca Utilizator, vreau să caut cărți după titlu, autor sau taguri pentru a găsi rapid ceea ce caut.
-14. Ca Administrator, vreau să creez, să actualizez și să șterg categorii de cărți (ex: ficțiune, știință, mister) astfel încât utilizatorii să poată găsi ușor cărțile după gen.
-15. Ca Utilizator, vreau să navighez cărțile după categorii (ex: ficțiune, mister) pentru a găsi genuri care îmi plac.
-
-# Backlog
-Pentru gestionarea și urmărirea activităților din cadrul proiectului nostru, am utilizat **GitHub Projects**, reușind să ne organizăm task-urile într-un mod clar și accesibil, în funcție de prioritatea lor. Acesta poate fi accesat la acest link: https://github.com/orgs/unibuc-cs/projects/53/views/2
-# User Personas 
-
-## Andreea - Manager de proiect
-Andreea, în vârstă de 30 de ani, este manager de proiect într-o corporație. În timpul liber este pasionată de lectură și își dorește să descopere cărți de calitate și recenzii relevante care să o ajute în alegerea lecturilor. Ea citește atât ficțiune, cât și cărți de dezvoltare personală. Uneori, consideră că recenziile disponibile sunt subiective sau insuficient argumentate, ceea ce îngreunează procesul de selecție. Andreea este un utilizator activ de aplicații web și mobile și se descurcă foarte bine cu platformele digitale.
-
-## Maria - Elev
-Maria, în vârstă de 14 ani, este elevă în clasa a opta. Ea își dorește să țină o evidență a tuturor cărților pe care vrea să le citească în viitor, deoarece în prezent nu are atât de mult timp liber. În plus, vrea să găsească recomandări de cărți potrivite pentru vârsta și interesele ei. Găsește uneori dificil să aleagă cărți potrivite și este influențată de recenziile și sugestiile de carte de pe rețelele sociale. Se descurcă foarte bine în utilizarea aplicațiilor web și mobile și este obișnuită cu platformele digitale.
-
-## Ioana - Părinte
-Ioana, în vârstă de 40 de ani, este mamă casnică. În timpul liber, este pasionată de lectură și își dorește să poată discuta despre cărțile citite cu alte persoane. De asemenea, este interesată să descopere cărți potrivite pentru copilul său, astfel încât să îl încurajeze să citească mai mult. Uneori, găsește dificil să aleagă cărți de calitate și nu are mereu acces la o comunitate de cititori activi. Folosește aplicații web și mobile, dar preferă platformele intuitive și ușor de utilizat.
-
-## Mihai - Inginer software
-Mihai, în vârstă de 35 de ani, lucrează într-o companie de tehnologie pe postul de inginer software. În ultima perioadă, nu mai are atât de mult timp liber și este foarte selectiv cu modul în care și-l petrece. Atunci când vrea să citească, își dorește să aleagă doar cărțile cele mai apreciate de public, bazându-se pe recenzii bine argumentate. El se descurcă foarte bine cu aplicațiile web și mobile și preferă soluții eficiente și bine optimizate.
-
-# Architectural Description
-## 1. Sinteză a produsului rezultat
-
-GoodReadsApp este o aplicație web destinată pasionaților de lectură, oferindu-le un mijloc prin care să descopere și să citească cărți noi, cuprinzând o gamă largă de edituri, autori si categorii diferite. Aplicația aduce cititorii împreună prin posibilitatea de a vedea părerile și criticile amatorilor de cărți, comentari și review-uri pentru fiecare carte disponibilă. De asemenea, cititorii pot ține evidența cărților citite si a celor ce urmează pe listă.
-
-Comparativ cu viziunea inițiala, produsul a fost realizat în totalitate, aducând în plus o interfață îmbunătățită pentru utlizatori, posibilitatea de a introduce poze de profil și optimizări pe partea de backend. Singurule puncte de implementare nerealizate sunt partea de vizualizare a tuturor profilurilor și cea de confirmare prin email.
-
-## 2. Tehnologii folosite
-- React.js,Vite : Pentru partea de frontend și interacțiune cu utilizatorul
-- Express framework, Node.js : Pentru partea de implementare a funcționalitaților în backend
-- Server SQL (SQLite) : Crearea unei baze de date și legarea acesteia de backend
-- JavaScript, CSS, HTML : Pentru realizarea și perfecționarea frontend-ului
-- Jest, Cypress : Pentru testarea aplicatiei web
-- Postman : Folosit la testarea și dezvoltarea API-urilor prin trimiterea de cereri HTTP
-- JWT : Pentru securitatea aplicației și autentificarea utilizatorilor
-
-## 3. Architectural Decision Records (ADR)
-### ADR-001: Alegerea arhitecturii client-server
-  * Motivare: Separarea clară între interfața cu utilizatorul și logica de afaceri și posibilitatea de a scala independent frontend-ul și backend-ul.
-  * Impact: O comunicare bine definită între frontend si backend (REST API) și permiterea reutilizării backend-ului pentru o eventuală aplicație mobilă
-
-### ADR-002: Utilizarea SQLite pentru stocarea datelor
-  * Motivare: Structura relațională este potrivită pentru gestionarea utilizatorilor, cărților și recenziilor.
-  * Impact: Necesită proiectarea unui model de date bine structurat. Posibilă creștere a costurilor de mentenanță pe măsură ce baza de date devine mai mare.
-
-## 4. Cerințe non-funcționale și soluții arhitecturale
-
-  * Performanță – Vite optimizează frontend-ul, caching-ul în Express & SQLite reduce accesul la baza de date.
-
-  * Scalabilitate – Backend-ul modular cu Express.js permite extinderea funcționalităților, migrarea la PostgreSQL/MySQL poate îmbunătăți gestionarea datelor, iar trecerea la microservicii ar putea facilita creșterea aplicației.
-
-  * Securitate – JWT asigură autentificarea securizată prin token. De asemenea este implemntată ierarhizarea utilizatorilor pentru contolul permisiunilor si al accesului la modificarile bazei de date.
-
-  * Disponibilitate & Fiabilitate – backup-ul automat al bazei de date protejează datele utilizatorilor, iar middleware-ul Express monitorizează și detectează rapid erorile.
-
-  * Testabilitate – Jest este folosit pentru testarea unitară a componentelor, Cypress pentru testarea end-to-end a fluxurilor utilizatorilor, iar Postman pentru validarea și automatizarea testării API-urilor.
-
-## 5. Diagrame C4
+## Diagrame C4
 
 ### System Context
 ![System_Context](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/structurizr-System_Context.png)
@@ -173,6 +143,48 @@ Comparativ cu viziunea inițiala, produsul a fost realizat în totalitate, aduc�
 # Use Case Diagram
 
 ![use_case_diagr](https://github.com/unibuc-cs/software-engineering-product-code-girls/blob/main/backend/uploads/Decision%20tree.jpeg)
+
+
+
+
+# Architectural Description
+## 1. Sinteză a produsului rezultat
+
+GoodReadsApp este o aplicație web destinată pasionaților de lectură, oferindu-le un mijloc prin care să descopere și să citească cărți noi. Aplicația cuprinde o gamă largă de cărți, autori si categorii diferite. Aceasta aduce cititorii împreună prin posibilitatea de a vedea părerile și criticile amatorilor de cărți. De asemenea, cititorii pot ține evidența cărților citite si a celor pe care își doresc să le citească.
+
+Comparativ cu viziunea inițială, produsul a fost realizat aproape în totalitate, lipsind partea de vizualizare a tuturor profilurilor și cea de conectare prin email a utilizatorului. În plus, am adăugat o interfață îmbunătățită pentru utlizatori, posibilitatea de a introduce poze de profil și optimizări pe partea de backend. 
+
+## 2. Tehnologii folosite
+- React.js,Vite : Pentru partea de frontend și interacțiune cu utilizatorul
+- Express framework, Node.js : Pentru partea de implementare a funcționalitaților în backend
+- Server SQL (SQLite) : Crearea unei baze de date și legarea acesteia de backend
+- JavaScript, CSS, HTML : Pentru realizarea și perfecționarea frontend-ului
+- Jest, Cypress : Pentru testarea aplicatiei web
+- Postman : Folosit la testarea și dezvoltarea API-urilor prin trimiterea de cereri HTTP
+- JWT : Pentru securitatea aplicației și autentificarea utilizatorilor
+
+## 3. Architectural Decision Records (ADR)
+### ADR-001: Alegerea arhitecturii client-server
+  * Motivație: Separarea clară între interfața cu utilizatorul și logica de back-end.
+  * Impact: O comunicare bine definită între frontend si backend (REST API) și permiterea reutilizării backend-ului pentru o eventuală aplicație mobilă
+
+### ADR-002: Utilizarea SQLite pentru stocarea datelor
+  * Motivație: Structura relațională este potrivită pentru gestionarea utilizatorilor, cărților și recenziilor.
+  * Impact: Necesită proiectarea unui model de date bine structurat. Posibilă creștere a costurilor de mentenanță pe măsură ce baza de date devine mai mare.
+
+## 4. Cerințe non-funcționale și soluții arhitecturale
+
+  * Performanță – Vite optimizează frontend-ul, caching-ul în Express & SQLite îmbunătățește viteza de acces la date în anumite scenarii (fiind local, fără un server separat, cu fișiere stocate direct pe disc).
+
+  * Scalabilitate – Backend-ul modular cu Express.js permite extinderea funcționalităților, migrarea la PostgreSQL/MySQL poate îmbunătăți gestionarea datelor, iar trecerea la microservicii ar putea facilita creșterea aplicației.
+
+  * Securitate – JWT asigură autentificarea securizată prin token. De asemenea, este implementată ierarhizarea utilizatorilor pentru controlul permisiunilor și al accesului la modificarile bazei de date.
+
+  * Disponibilitate & Fiabilitate – backup-ul automat al bazei de date protejează datele utilizatorilor, iar middleware-ul Express monitorizează și detectează rapid erorile.
+
+  * Testabilitate – Jest este folosit pentru testarea unitară a componentelor, Cypress pentru testarea end-to-end a fluxurilor utilizatorilor, iar Postman pentru validarea și automatizarea testării API-urilor.
+
+
 
 # QA
 ## Obiectivele Testării
